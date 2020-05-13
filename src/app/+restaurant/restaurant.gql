@@ -1,3 +1,21 @@
+query getRestaurant($id: ID!) {
+  restaurant(id: $id) {
+    id
+    name
+    phone
+    menu {
+      name
+      price
+      includeBread
+      includeBeverage
+      sections {
+        title
+        items
+      }
+    }
+  }
+}
+
 mutation saveRestaurant($restaurant: RestaurantInput!) {
   saveRestaurant(restaurant: $restaurant) {
     updated
