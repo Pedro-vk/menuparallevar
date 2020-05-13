@@ -1,0 +1,15 @@
+@mixin ui-padding-component() {
+  .padding {
+    padding: $size---padding;
+
+    &--top { padding-top: $size---padding; }
+    &--left { padding-left: $size---padding; }
+    &--right { padding-right: $size---padding; }
+    &--bottom { padding-bottom: $size---padding; }
+
+    &--half-top { padding-top: $size---padding / 2; }
+    &--half-left { padding-left: $size---padding / 2; }
+    &--half-right { padding-right: $size---padding / 2; }
+    &--half-bottom { padding-bottom: $size---padding / 2; }
+  }
+}

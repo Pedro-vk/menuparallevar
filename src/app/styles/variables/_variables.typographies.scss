@@ -1,0 +1,23 @@
+$typo---roboto: (
+  name: (Roboto, "Helvetica Neue", sans-serif),
+  variants: (
+    regular: 400,
+    normal: 400,
+    bold: 700,
+  )
+) !default;
+
+$typo---roboto-mono: (
+  name: ("Roboto Mono", monospace),
+  variants: (
+    regular: 400,
+    normal: 400,
+  )
+) !default;
+
+$typos: (
+  default: $typo---roboto,
+  monospace: $typo---roboto-mono,
+  text: $typo---roboto,
+  heading: $typo---roboto,
+) !default;

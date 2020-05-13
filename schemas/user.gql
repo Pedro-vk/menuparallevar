@@ -1,0 +1,10 @@
+type User {
+  uid: String
+  name: String
+  email: String
+  picture: String
+}
+
+type Query {
+  user: User
+}

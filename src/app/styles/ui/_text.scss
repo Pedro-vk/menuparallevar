@@ -1,0 +1,109 @@
+
+$ui-text---padding: $size---padding !default;
+$ui-text---color: gc(c3) !default;
+$ui-text--alt---color: gc(c2) !default;
+$ui-text--link---color: gc(brand) !default;
+$ui-text--h1---font-size: 32px !default;
+$ui-text--h2---font-size: 20px !default;
+$ui-text--regular---font-size: 16px !default;
+$ui-text--small---font-size: 12px !default;
+$ui-text--upper---font-size: 14px !default;
+
+@mixin ui-text($type: false, $style: false, $line-height: false, $no-color: false) {
+  @if ($no-color == false) {
+    color: $ui-text---color;
+  }
+
+  @if ($style and ($type != h1 or $type != h2)) {
+    @if ($style == bold and $type != upper) {
+      @include get-font(text, bold);
+    } @else {
+      @include get-font(text, regular);
+    }
+    @if ($style == alt) {
+      color: $ui-text--alt---color;
+    } @else if ($style == link) {
+      color: $ui-text--link---color;
+      @if ($type != upper) {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  @if ($type) {
+    @if ($type == h1 or $type == h2) {
+      @include get-font(heading, bold);
+    } @else if ($type == upper) {
+      @include get-font(text, bold);
+    } @else {
+      @include get-font(text);
+    }
+
+    @if ($type == h1) {
+      font-size: $ui-text--h1---font-size;
+      @if ($line-height) {
+        line-height: 1.25em;
+      }
+    } @else if ($type == h2) {
+      font-size: $ui-text--h2---font-size;
+      @if ($line-height) {
+        line-height: 1.2em;
+      }
+    } @else if ($type == regular) {
+      font-size: $ui-text--regular---font-size;
+      @if ($line-height) {
+        line-height: 1.5em;
+      }
+    } @else if ($type == small) {
+      font-size: $ui-text--small---font-size;
+      @if ($line-height) {
+        line-height: 1.33em;
+      }
+    } @else if ($type == upper) {
+      text-transform: uppercase;
+      font-size: $ui-text--upper---font-size;
+      text-decoration: none;
+      @if ($line-height) {
+        line-height: 1.14em;
+      }
+    } @else {
+      @warn('[ui-text] - Font type "' + $type + '" not found');
+    }
+  }
+}
+
+@mixin ui-text-component() {
+  .text {
+    @include ui-text(regular);
+
+    &--h1    { @include ui-text(h1); }
+    &--h2    { @include ui-text(h2); }
+    &--small { @include ui-text(small); }
+    &--upper { @include ui-text(upper); }
+
+    &--alt   { @include ui-text($style: alt, $no-color: true); }
+    &--link  { @include ui-text($style: link, $no-color: true); }
+    &--bold  { @include ui-text($style: bold, $no-color: true); }
+
+    &--upper#{&}--link { @include ui-text(upper, link); }
+
+    &--padding,
+    &--padding-right {
+      padding-right: $ui-text---padding;
+    }
+    &--padding,
+    &--padding-left {
+      padding-left: $ui-text---padding;
+    }
+
+    &--no-underline {
+      text-decoration: none;
+    }
+
+    &--strongable {
+      strong {
+        @include ui-text($style: bold, $no-color: true);
+      }
+    }
+  }
+}

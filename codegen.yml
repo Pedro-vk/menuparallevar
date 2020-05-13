@@ -1,0 +1,24 @@
+schema: schemas/*.gql
+documents:
+  - ./src/**/*.gql
+generates:
+  src/app/shared/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-apollo-angular
+    config:
+      skipTypename: true
+      scalars:
+        Nutrient: "'energy' | 'alcohol' | 'carb' | 'fat' | 'protein' | 'fibre' | number"
+  src/app/shared/graphql-fragments.ts:
+    plugins:
+      - fragment-matcher
+  server/graphql/schema.ts:
+    plugins:
+      - typescript
+  server/graphql/schema.graphql:
+    plugins:
+      - schema-ast
+    config:
+      includeDirectives: true

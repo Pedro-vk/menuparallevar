@@ -1,0 +1,12 @@
+@import './app/styles/index';
+
+@include reset;
+
+@include ui-components;
+
+html, body { height: 100%; }
+body {
+  @include get-font();
+
+  background: gc(bg);
+}
