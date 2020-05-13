@@ -1,7 +1,11 @@
 <div>
   User: {{(user$ | async)?.displayName}}
-  <span (click)="login()">login</span>
-  <span (click)="logout()">logout</span>
+  <div (click)="login()">login</div>
+  <div (click)="logout()">logout</div>
+</div>
+
+<div>
+  <div routerLink="edit">Edit</div>
 </div>
 
 <router-outlet></router-outlet>
