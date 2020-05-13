@@ -1,13 +1,9 @@
 import {
-  Component, OnInit, ChangeDetectionStrategy, Inject, ViewChild, ViewChildren, AfterViewInit, ElementRef, LOCALE_ID,
-  QueryList,
+  Component, OnInit, ChangeDetectionStrategy,
 } from '@angular/core'
-import { DOCUMENT } from '@angular/common'
-import { Router, NavigationStart, NavigationEnd } from '@angular/router'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app'
 import { filter } from 'rxjs/operators'
-import { scrollbarWidth } from '@xobotyi/scrollbar-width'
 
 import { GetUserGQL } from 'src/app/shared/graphql'
 
@@ -23,8 +19,6 @@ export class AppComponent implements OnInit {
   constructor(
     private fireAuth: AngularFireAuth,
     private getUserGQL: GetUserGQL,
-    private elementRef: ElementRef,
-    private router: Router,
   ) { }
 
   ngOnInit() {

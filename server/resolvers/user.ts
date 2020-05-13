@@ -1,4 +1,4 @@
-import { type, resolver, relation } from '../utils'
+import { type, resolver } from '../utils'
 import { Context } from '../types'
 
 @type('User')
