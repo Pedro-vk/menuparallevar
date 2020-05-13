@@ -1,3 +1,7 @@
-APP
+<div>
+  User: {{(user$ | async)?.displayName}}
+  <span (click)="login()">login</span>
+  <span (click)="logout()">logout</span>
+</div>
 
 <router-outlet></router-outlet>
