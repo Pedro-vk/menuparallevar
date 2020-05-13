@@ -1,0 +1,44 @@
+type Section {
+  title: String!
+  items: [String!]!
+}
+input SectionInput {
+  title: String!
+  items: [String!]!
+}
+
+type Menu {
+  price: Float!
+  name: String!
+  includeBread: Boolean
+  includeBeverage: Boolean
+  sections: [Section!]!
+}
+input MenuInput {
+  price: Float!
+  name: String!
+  includeBread: Boolean
+  includeBeverage: Boolean
+  sections: [SectionInput!]!
+}
+
+type Restaurant {
+  id: ID!
+  name: String!
+  phone: String
+  menu: Menu!
+}
+input RestaurantInput {
+  name: String!
+  phone: String
+  menu: MenuInput!
+}
+
+type Query {
+  restaurant(id: ID!): Restaurant
+  myRestaurant: Restaurant
+}
+
+type Mutation {
+  saveRestaurant(restaurant: RestaurantInput!): SaveOutput!
+}

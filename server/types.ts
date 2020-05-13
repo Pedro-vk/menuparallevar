@@ -13,7 +13,5 @@ export interface Context {
 }
 
 export enum Roles {
-  ADMIN,
-  SUBSCRIBED,
-  FREE,
+  ALL,
 }

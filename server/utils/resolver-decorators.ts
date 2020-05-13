@@ -105,6 +105,5 @@ export function typename(ofUnion: string) {
 
 export const getQueryResolvers = (middlewares?: Middleware[]) => {
   usedMiddlewares = middlewares || []
-  delete queryResolvers.Mutation
   return queryResolvers
 }

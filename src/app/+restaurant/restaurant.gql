@@ -1,0 +1,5 @@
+mutation saveRestaurant($restaurant: RestaurantInput!) {
+  saveRestaurant(restaurant: $restaurant) {
+    updated
+  }
+}
