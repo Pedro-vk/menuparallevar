@@ -23,10 +23,12 @@
 @import './ui/padding';
 @import './ui/button';
 @import './ui/layout';
+@import './ui/switch';
 
 @mixin ui-components() {
   @include ui-text-component;
   @include ui-padding-component;
   @include ui-button-component;
   @include ui-layout-component;
+  @include ui-switch-component;
 }

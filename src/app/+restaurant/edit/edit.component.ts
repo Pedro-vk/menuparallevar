@@ -2,12 +2,15 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
 
 import { SaveRestaurantGQL, GetMyRestaurantGQL, Restaurant } from 'src/app/shared/graphql'
 
+const defaultSections = ['Entrante', 'Plato principal', 'Postre']
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
+  exists: boolean
   restaurant: Restaurant
 
   constructor(
@@ -21,12 +24,20 @@ export class EditComponent implements OnInit {
       .toPromise()
       .then(({data}) => data.myRestaurant)
 
-    console.log(this.restaurant)
+    this.exists = !!this.restaurant
     this.cdr.markForCheck()
   }
 
-  save() {
-    this.saveRestaurantGQL.mutate({restaurant: this.restaurant})
+  async save() {
+    const restaurant: Restaurant = {
+      ...this.restaurant,
+      menu: {
+        ...this.restaurant.menu,
+        sections: this.restaurant.menu.sections
+          .map(section => ({...section, items: section.items.filter(_ => !!_)}))
+      }
+    }
+    await this.saveRestaurantGQL.mutate({restaurant})
       .toPromise()
   }
 

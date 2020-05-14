@@ -1,0 +1,41 @@
+
+$ui-switch---background: gc(c1) !default;
+$ui-switch--active---background: gc(brand) !default;
+$ui-switch---height: 32px !default;
+$ui-switch---padding: 2px !default;
+$ui-switch---switch-distance: 20px !default;
+
+@mixin ui-switch() {
+  @include transition(fast);
+
+  background: $ui-switch---background;
+  height: $ui-switch---height;
+  width: $ui-switch---height + $ui-switch---switch-distance;
+  border-radius: $ui-switch---height / 2;
+  padding: $ui-switch---padding;
+  padding-right: $ui-switch---padding + $ui-switch---switch-distance;
+  cursor: pointer;
+
+  &:before {
+    $size: $ui-switch---height - ($ui-switch---padding * 2);
+
+    content: "";
+    display: inline-block;
+    width: $size;
+    height: $size;
+    border-radius: $size / 2;
+    background: gc(bg);
+  }
+
+  &--active {
+    background: $ui-switch--active---background;
+    padding: $ui-switch---padding;
+    padding-left: $ui-switch---padding + $ui-switch---switch-distance;
+  }
+}
+
+@mixin ui-switch-component() {
+  .switch {
+    @include ui-switch;
+  }
+}

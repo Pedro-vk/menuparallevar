@@ -34,6 +34,23 @@
       <div class="divider" [class.divider--space]="last"></div>
     </ng-container>
 
+    <div class="layout layout--sides padding--half-top padding--half-bottom">
+      <span>Incluye bebida</span>
+      <span
+        class="switch"
+        [class.switch--active]="restaurant.menu.includeBeverage"
+        (click)="restaurant.menu.includeBeverage = !restaurant.menu.includeBeverage">
+      </span>
+    </div>
+    <div class="layout layout--sides padding--half-top padding--half-bottom">
+      <span>Incluye pan</span>
+      <span
+        class="switch"
+        [class.switch--active]="restaurant.menu.includeBread"
+        (click)="restaurant.menu.includeBread = !restaurant.menu.includeBread">
+      </span>
+    </div>
+
     <div class="divider--space-and-half"></div>
   </ng-container>
 </div>
@@ -43,7 +60,7 @@
 </div>
 
 <div class="footer text--right">
-  <button class="button" [disabled]="false">
-    Llamar
+  <button class="button">
+    {{exists ? 'Guardar' : 'Publicar'}}
   </button>
 </div>
