@@ -9,7 +9,7 @@ $ui-text--h2---font-size: 24px !default;
 $ui-text--big---font-size: 19px !default;
 $ui-text--regular---font-size: 16px !default;
 $ui-text--small---font-size: 14px !default;
-$ui-text--upper---font-size: 14px !default;
+$ui-text--upper---font-size: 16px !default;
 
 @mixin ui-text($type: false, $style: false, $line-height: true, $no-color: false) {
   @if ($no-color == false) {
@@ -106,9 +106,9 @@ $ui-text--upper---font-size: 14px !default;
       text-decoration: none;
     }
 
-    &--center {
-      text-align: center;
-    }
+    &--left { text-align: left; }
+    &--right { text-align: right; }
+    &--center { text-align: center; }
 
     &--strongable {
       strong {

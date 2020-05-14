@@ -21,8 +21,10 @@
 // UI
 @import './ui/text';
 @import './ui/padding';
+@import './ui/button';
 
 @mixin ui-components() {
   @include ui-text-component;
   @include ui-padding-component;
+  @include ui-button-component;
 }

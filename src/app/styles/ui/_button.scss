@@ -1,0 +1,22 @@
+
+$ui-button---color: gc(bg) !default;
+$ui-button---background: gc(brand) !default;
+$ui-button---height: 40px !default;
+
+@mixin ui-button() {
+  @include ui-text(upper);
+
+  color: $ui-button---color;
+  background: $ui-button---background;
+  height: $ui-button---height;
+  line-height: $ui-button---height;
+  border-radius: $ui-button---height / 2;
+  padding: 0 $size---padding * 1.5;
+  display: inline-flex;
+}
+
+@mixin ui-button-component() {
+  .button {
+    @include ui-button;
+  }
+}
