@@ -3,28 +3,28 @@ $ui-text---padding: $size---padding !default;
 $ui-text---color: gc(c3) !default;
 $ui-text--alt---color: gc(c2) !default;
 $ui-text--link---color: gc(brand) !default;
+$ui-text--high---color: gc(brand) !default;
 $ui-text--h1---font-size: 32px !default;
-$ui-text--h2---font-size: 20px !default;
+$ui-text--h2---font-size: 24px !default;
+$ui-text--big---font-size: 19px !default;
 $ui-text--regular---font-size: 16px !default;
-$ui-text--small---font-size: 12px !default;
+$ui-text--small---font-size: 14px !default;
 $ui-text--upper---font-size: 14px !default;
 
-@mixin ui-text($type: false, $style: false, $line-height: false, $no-color: false) {
+@mixin ui-text($type: false, $style: false, $line-height: true, $no-color: false) {
   @if ($no-color == false) {
     color: $ui-text---color;
   }
 
-  @if ($style and ($type != h1 or $type != h2)) {
+  @if ($style and ($type != h1)) {
     @if ($style == bold and $type != upper) {
       @include get-font(text, bold);
-    } @else {
-      @include get-font(text, regular);
     }
     @if ($style == alt) {
       color: $ui-text--alt---color;
-    } @else if ($style == link) {
+    } @else if ($style == link or $style == high) {
       color: $ui-text--link---color;
-      @if ($type != upper) {
+      @if ($type != upper and $style != high) {
         text-decoration: underline;
       }
     }
@@ -48,6 +48,11 @@ $ui-text--upper---font-size: 14px !default;
       font-size: $ui-text--h2---font-size;
       @if ($line-height) {
         line-height: 1.2em;
+      }
+    } @else if ($type == big) {
+      font-size: $ui-text--big---font-size;
+      @if ($line-height) {
+        line-height: 1.5em;
       }
     } @else if ($type == regular) {
       font-size: $ui-text--regular---font-size;
@@ -81,6 +86,7 @@ $ui-text--upper---font-size: 14px !default;
     &--small { @include ui-text(small); }
     &--upper { @include ui-text(upper); }
 
+    &--high  { @include ui-text($style: high, $no-color: true); }
     &--alt   { @include ui-text($style: alt, $no-color: true); }
     &--link  { @include ui-text($style: link, $no-color: true); }
     &--bold  { @include ui-text($style: bold, $no-color: true); }
@@ -98,6 +104,10 @@ $ui-text--upper---font-size: 14px !default;
 
     &--no-underline {
       text-decoration: none;
+    }
+
+    &--center {
+      text-align: center;
     }
 
     &--strongable {

@@ -1,1 +1,38 @@
-{{restaurant$ | async | json}}
+<div *ngIf="restaurant$ | async as restaurant" class="content padding">
+  <h1 class="text text--h1">{{restaurant.name}}</h1>
+  <span class="text text--small text--alt padding--half-top">{{now | date : 'EEEE, d \'de\' MMMM'}}</span>
+
+  <div class="divider--space"></div>
+
+  <div class="menu-title padding--top padding--bottom">
+    <h2 class="text text--h2">{{restaurant.menu.name}}</h2>
+    <div class="text text--h2 text--high">{{restaurant.menu.price}}€</div>
+  </div>
+
+  <ng-container *ngFor="let section of restaurant.menu.sections; let last = last">
+    <div class="padding--top padding--bottom">
+      <h3 class="text text--alt">{{section.title}}</h3>
+
+      <div class="padding--half-top text" *ngFor="let item of section.items">
+        {{item}}
+      </div>
+    </div>
+
+    <div class="divider" [class.divider--space]="last"></div>
+  </ng-container>
+
+  <div class="padding--top text text--small text--alt text--center" *ngIf="menuIncludes(restaurant.menu) as includes">
+    Incluye {{includes}}
+  </div>
+
+  <div class="divider--space-and-half"></div>
+
+</div>
+
+<div class="footer-message text text--alt text--center padding">
+  Hecho con ❤️ en tiempos de Covid-19
+</div>
+
+<div class="footer">
+  Footer content
+</div>

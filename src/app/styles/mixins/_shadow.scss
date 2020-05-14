@@ -7,9 +7,10 @@ $shadow---elevations: (
   (24, 24),
 ) !default;
 
-@mixin shadow($elevation, $border: false, $horizontal: false) {
-  $x: if($horizontal, $shadow---offset, 0);
-  $y: if($horizontal, 0, $shadow---offset);
+@mixin shadow($elevation, $border: false, $horizontal: false, $reverse: false) {
+  $offset: if($reverse, -$shadow---offset, $shadow---offset);
+  $x: if($horizontal, $offset, 0);
+  $y: if($horizontal, 0, $offset);
   $blur: nth(nth($shadow---elevations, $elevation), 1) * 1px;
   $opacity: nth(nth($shadow---elevations, $elevation), 2) / 100;
   $base-shadow: $x $y $blur gc(shadow, $opacity);

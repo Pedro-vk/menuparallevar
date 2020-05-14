@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core'
-import { CommonModule } from '@angular/common'
+import { NgModule, LOCALE_ID } from '@angular/core'
+import { CommonModule, registerLocaleData } from '@angular/common'
+import localeEs from '@angular/common/locales/es'
 import { HttpClientModule } from '@angular/common/http'
 import { BrowserModule } from '@angular/platform-browser'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -14,6 +15,8 @@ import { AppComponent } from './app.component'
 
 import { restaurantsComponents } from './+restaurant'
 // import { providers } from './shared'
+
+registerLocaleData(localeEs, 'es')
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { restaurantsComponents } from './+restaurant'
   providers: [
     // ...providers,
     // ...pipes,
+    {provide: LOCALE_ID, useValue: 'es'},
   ],
   bootstrap: [AppComponent]
 })

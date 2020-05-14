@@ -11,5 +11,24 @@
     &--half-left { padding-left: $size---padding / 2; }
     &--half-right { padding-right: $size---padding / 2; }
     &--half-bottom { padding-bottom: $size---padding / 2; }
+
+    &--remove-horizontal {
+      margin-left: -$size---padding;
+      margin-right: -$size---padding;
+    }
+  }
+
+  .divider {
+    border-top: 1px solid gc(border);
+
+    &--space {
+      padding-top: $size---padding;
+    }
+    &--half-space {
+      padding-top: $size---padding * 0.5;
+    }
+    &--space-and-half {
+      padding-top: $size---padding * 1.5;
+    }
   }
 }

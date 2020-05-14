@@ -1,0 +1,31 @@
+@import '../../styles/index';
+
+$footer-message---height: 56px;
+
+:host {
+  height: 100%;
+}
+
+.content {
+  min-height: calc(100% - #{$footer-message---height + $size---footer});
+}
+
+.menu-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-message {
+  background: gc(bgdark);
+}
+
+.footer {
+  @include shadow(2, $reverse: true);
+
+  height: $size---footer;
+  position: sticky;
+  bottom: 0;
+  background: gc(bg);
+  border-top: 1px solid gc(border);
+  padding: $size---padding;
+}
