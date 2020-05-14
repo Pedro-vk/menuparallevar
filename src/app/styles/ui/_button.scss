@@ -5,7 +5,9 @@ $ui-button---height: 40px !default;
 
 @mixin ui-button() {
   @include ui-text(upper);
+  @include transition(fast);
 
+  border: 0;
   color: $ui-button---color;
   background: $ui-button---background;
   height: $ui-button---height;
@@ -13,6 +15,12 @@ $ui-button---height: 40px !default;
   border-radius: $ui-button---height / 2;
   padding: 0 $size---padding * 1.5;
   display: inline-flex;
+
+  &[disabled] {
+    background: gc(bgdark);
+    color: gc(c2);
+    pointer-events: none;
+  }
 }
 
 @mixin ui-button-component() {
