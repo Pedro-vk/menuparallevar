@@ -22,3 +22,33 @@
   border-top: 1px solid gc(border);
   padding: $size---padding;
 }
+
+.price-input {
+  width: 80px;
+  text-align: right;
+  padding: 0;
+  padding-left: $size---padding / 2;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.price-tip {
+  @include transition(fast);
+
+  display: inline-flex;
+  vertical-align: bottom;
+  width: 0;
+  white-space: nowrap;
+  position: relative;
+  top: 20px;
+  justify-content: flex-end;
+  opacity: 1;
+}
+
+.price-input:focus ~ .price-tip {
+  opacity: 0;
+  pointer-events: none;
+}
