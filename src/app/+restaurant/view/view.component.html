@@ -5,9 +5,9 @@
 
     <div class="divider--space"></div>
 
-    <div class="menu-title padding--top padding--bottom">
+    <div class="padding--top padding--bottom layout layout--sides">
       <h2 class="text text--h2">{{restaurant.menu.name}}</h2>
-      <div class="text text--h2 text--high">{{restaurant.menu.price}}€</div>
+      <div class="text text--h2 text--high">{{restaurant.menu.price | number : '.2-2'}}€</div>
     </div>
 
     <ng-container *ngFor="let section of restaurant.menu.sections; let last = last">

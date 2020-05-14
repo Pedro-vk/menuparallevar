@@ -22,9 +22,11 @@
 @import './ui/text';
 @import './ui/padding';
 @import './ui/button';
+@import './ui/layout';
 
 @mixin ui-components() {
   @include ui-text-component;
   @include ui-padding-component;
   @include ui-button-component;
+  @include ui-layout-component;
 }
