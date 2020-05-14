@@ -7,7 +7,7 @@ export class AddRoleMiddleware implements Middleware {
     const {uid, db} = context
     if (uid) {
       const [dbUser] = await db.collection('user').find({_id: uid}).toArray()
-      context.role = +Roles[dbUser.role] ?? Roles.ALL
+      context.role = +(Roles[dbUser.role] ?? Roles.ALL)
     }
     return [a, b, context, d] as any
   }

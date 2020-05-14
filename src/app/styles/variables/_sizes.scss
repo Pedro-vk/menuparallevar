@@ -1,2 +1,6 @@
 $size---padding: 16px !default;
 $size---footer: 72px !default;
+$size---footer-message: 56px !default;
+
+
+$size---content: calc(100% - #{$size---footer-message + $size---footer});

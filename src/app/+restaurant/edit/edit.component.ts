@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
 
-import { SaveRestaurantGQL } from 'src/app/shared/graphql'
+import { SaveRestaurantGQL, GetMyRestaurantGQL, Restaurant } from 'src/app/shared/graphql'
 
 @Component({
   selector: 'app-edit',
@@ -8,26 +8,29 @@ import { SaveRestaurantGQL } from 'src/app/shared/graphql'
   styleUrls: ['./edit.component.scss']
 })
 export class EditComponent implements OnInit {
+  restaurant: Restaurant
 
-  constructor(private saveRestaurantGQL: SaveRestaurantGQL) { }
+  constructor(
+    private saveRestaurantGQL: SaveRestaurantGQL,
+    private getMyRestaurantGQL: GetMyRestaurantGQL,
+    private cdr: ChangeDetectorRef,
+  ) { }
 
-  ngOnInit(): void {
-    this.saveRestaurantGQL.mutate({restaurant: {
-      name: 'Restaurante Juan',
-      phone: '601501401',
-      menu: {
-        name: 'Menú del día',
-        price: 10.95,
-        includeBread: true,
-        includeBeverage: false,
-        sections: [
-          {title: 'Entrantes', items: ['Albóndigas de atún', 'Ensalada mixta']},
-          {title: 'Primeros', items: ['Entrecot', 'Croquetas de jamón']},
-          {title: 'Postre', items: ['Postre de leche de mípalo']},
-        ],
-      },
-    }})
+  async ngOnInit() {
+    this.restaurant = await this.getMyRestaurantGQL.fetch()
+      .toPromise()
+      .then(({data}) => data.myRestaurant)
+
+    console.log(this.restaurant)
+    this.cdr.markForCheck()
+  }
+
+  save() {
+    this.saveRestaurantGQL.mutate({restaurant: this.restaurant})
       .toPromise()
   }
 
+  trackIndex(i: number) {
+    return i
+  }
 }

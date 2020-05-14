@@ -1,1 +1,43 @@
-<p>edit works!</p>
+<div class="content padding">
+  <ng-container *ngIf="restaurant">
+    <h1 class="text text--h1">{{restaurant.name}}</h1>
+    <span class="text text--small text--link padding--half-top">
+      Editar información de mi restaurante
+    </span>
+
+    <div class="divider--space"></div>
+
+    <div class="padding--top padding--bottom layout layout--sides">
+      <h2 class="text text--h2">{{restaurant.menu.name}}</h2>
+      <div class="text text--h2 text--high">{{restaurant.menu.price | number : '.2-2'}}€</div>
+    </div>
+
+    <ng-container *ngFor="let section of restaurant.menu.sections; let last = last; trackBy: trackIndex">
+      <div class="padding--top padding--bottom">
+        <h3 class="text text--alt">{{section.title}}</h3>
+
+        <div
+          *ngFor="let item of section.items; let index = index; trackBy: trackIndex"
+          class="padding--half-top layout layout--sides">
+
+          <input [(ngModel)]="section.items[index]" class="text">
+          <span class="mat-icon clickable" (click)="section.items.splice(index, 0)">delete</span>
+        </div>
+      </div>
+
+      <div class="divider" [class.divider--space]="last"></div>
+    </ng-container>
+
+    <div class="divider--space-and-half"></div>
+  </ng-container>
+</div>
+
+<div class="footer-message text text--alt text--center padding">
+  Hecho con ❤️ en tiempos de Covid-19
+</div>
+
+<div class="footer text--right">
+  <button class="button" [disabled]="false">
+    Llamar
+  </button>
+</div>

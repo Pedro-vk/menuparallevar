@@ -7,7 +7,7 @@ $footer-message---height: 56px;
 }
 
 .content {
-  min-height: calc(100% - #{$footer-message---height + $size---footer});
+  min-height: $size---content;
 }
 
 .footer-message {

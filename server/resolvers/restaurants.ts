@@ -11,7 +11,6 @@ export class RestaurantResolver {
   @resolver()
   static async restaurant(parent: unknown, {id}: QueryRestaurantArgs, {db}: Context) {
     const [user] = await db.collection('restaurants').find({_id: new ObjectId(id)}).toArray()
-    console.log(id, user)
     return {...user, id: user._id}
   }
 
