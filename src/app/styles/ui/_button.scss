@@ -21,6 +21,15 @@ $ui-button---height: 40px !default;
     color: gc(c1);
     pointer-events: none;
   }
+
+  &--secondary {
+    background: gc(bgdark);
+    border-radius: 8px;
+    color: gc(brand);
+    width: 100%;
+    font-size: 14px;
+    justify-content: center;
+  }
 }
 
 @mixin ui-button-component() {

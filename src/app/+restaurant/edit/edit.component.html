@@ -20,9 +20,15 @@
           *ngFor="let item of section.items; let index = index; trackBy: trackIndex"
           class="padding--half-top layout layout--sides">
 
-          <input [(ngModel)]="section.items[index]" class="text">
+          <input [(ngModel)]="section.items[index]" placeholder="Nuevo plato" class="text">
           <span class="mat-icon clickable" (click)="section.items.splice(index, 0)">delete</span>
         </div>
+
+        <div class="divider--space"></div>
+
+        <button class="button button--secondary" (click)="section.items.push(undefined)">
+          Añadir {{section.title | lowercase}}
+        </button>
       </div>
 
       <div class="divider" [class.divider--space]="last"></div>
