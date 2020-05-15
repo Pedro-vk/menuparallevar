@@ -44,7 +44,7 @@
 
         <div class="divider--space"></div>
 
-        <button class="button button--secondary" (click)="section.items.push(undefined)">
+        <button type="button" class="button button--secondary" (click)="section.items.push(undefined)">
           Añadir {{section.title | lowercase}}
         </button>
       </div>
@@ -77,10 +77,10 @@
   </div>
 
   <div class="footer text--right layout layout--buttons">
-    <button class="button" [disabled]="!published" (click)="share()">
+    <button type="button" class="button" [disabled]="!published" (click)="share()">
       Compartir
     </button>
-    <button class="button" [disabled]="menu.invalid || !restaurant.menu.price" (click)="save()">
+    <button type="button" class="button" [disabled]="menu.invalid || !restaurant.menu.price" (click)="save()">
       {{published ? 'Guardar' : 'Publicar'}}
     </button>
   </div>
@@ -125,7 +125,7 @@
   </form>
 
   <div class="footer">
-    <button
+    <button type="button"
       class="button button--full"
       [disabled]="info.invalid || !restaurant.name"
       (click)="save(true); editRestaurant = false">
