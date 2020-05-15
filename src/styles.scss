@@ -11,6 +11,12 @@ body {
   background: gc(bg);
 }
 
+app-root {
+  max-width: 460px;
+  margin: auto;
+  display: block;
+}
+
 * {
   box-sizing: border-box;
 }
