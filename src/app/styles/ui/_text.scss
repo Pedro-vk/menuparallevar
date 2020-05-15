@@ -105,6 +105,9 @@ $ui-text--upper---font-size: 16px !default;
     &--no-underline {
       text-decoration: none;
     }
+    &--underline {
+      text-decoration: underline;
+    }
 
     &--left { text-align: left; }
     &--right { text-align: right; }

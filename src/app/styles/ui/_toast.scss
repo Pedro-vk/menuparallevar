@@ -23,6 +23,22 @@ $ui-toast---height: 32px !default;
     height: $ui-toast---height;
   }
 
+  &--color {
+    background: gc(brand);
+  }
+  &--alt {
+    background: gc(bgdark);
+    color: gc(c2);
+  }
+
+  &--banner {
+    height: $ui-toast---height;
+    margin: -$size---padding;
+    margin-bottom: $size---padding;
+    text-align: center;
+    position: static;
+  }
+
   &-wrapper {
     position: relative;
   }

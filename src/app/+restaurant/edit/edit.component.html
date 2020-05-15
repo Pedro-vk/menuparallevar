@@ -1,5 +1,9 @@
 <ng-container *ngIf="restaurant">
   <form #menu="ngForm" class="content padding">
+    <div class="toast toast--banner toast--alt text--underline" routerLink="/">
+      Volver al inicio
+    </div>
+
     <h1 class="text text--h1">{{restaurant.name}}</h1>
     <span class="text text--small text--link padding--half-top clickable" (click)="editRestaurant = true">
       Editar información de mi restaurante
