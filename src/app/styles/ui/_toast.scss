@@ -33,14 +33,19 @@ $ui-toast---height: 32px !default;
 
   &--banner {
     height: $ui-toast---height;
-    margin: 0 (-$size---padding);
-    top: -$size---padding;
+    width: 100%;
+    left: 0;
+    top: 0;
     text-align: center;
-    position: relative;
+    position: fixed;
   }
 
   &-wrapper {
     position: relative;
+
+    &--banner {
+      padding-top: $size---padding * 3;
+    }
   }
 }
 
