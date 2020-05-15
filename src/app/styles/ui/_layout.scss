@@ -2,6 +2,7 @@
   .layout {
     display: flex;
 
+    &--buttons,
     &--sides {
       justify-content: space-between;
       align-items: center;
@@ -11,6 +12,12 @@
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+    }
+
+    &--buttons {
+      .button {
+        width: calc(50% - #{$size---padding / 2});
+      }
     }
   }
 }

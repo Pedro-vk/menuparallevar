@@ -76,7 +76,10 @@
     Hecho con ❤️ en tiempos de Covid-19
   </div>
 
-  <div class="footer text--right">
+  <div class="footer text--right layout layout--buttons">
+    <button class="button" [disabled]="!published" (click)="share()">
+      Compartir
+    </button>
     <button class="button" [disabled]="menu.invalid || !restaurant.menu.price" (click)="save()">
       {{published ? 'Guardar' : 'Publicar'}}
     </button>

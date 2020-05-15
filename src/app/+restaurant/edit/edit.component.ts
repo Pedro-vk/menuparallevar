@@ -23,9 +23,7 @@ export class EditComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    const restaurant = await this.getMyRestaurantGQL.fetch()
-      .toPromise()
-      .then(({data}) => data.myRestaurant)
+    const restaurant = await this.fetchRestaurant()
 
     this.restaurant = restaurant || {menu: {name: defaultMenuName}} as any
     this.exists = !!restaurant
@@ -38,6 +36,12 @@ export class EditComponent implements OnInit {
     }
 
     this.cdr.markForCheck()
+  }
+
+  async fetchRestaurant() {
+    return await this.getMyRestaurantGQL.fetch()
+      .toPromise()
+      .then(({data}) => data.myRestaurant)
   }
 
   async save(basic?: boolean) {
@@ -60,11 +64,27 @@ export class EditComponent implements OnInit {
 
     await this.saveRestaurantGQL.mutate({restaurant})
       .toPromise()
+      .then(({data}) => data.saveRestaurant.updated)
+    this.restaurant = await this.fetchRestaurant()
   }
 
   setDefaultSections() {
     this.restaurant.menu.sections = defaultSections
       .map(title => ({title, items: []}))
+  }
+
+  async share() {
+    const {id, name, menu: {price}} = this.restaurant
+    const shareData = {
+      title: `Menú de ${name}`,
+      text: `Descubre su menú del día para llevar.`,
+      url: `https://placeholder.test/${id}`,
+    }
+    try {
+      await (navigator as any).share(shareData)
+    } catch {
+      console.log('Native share is not supported!')
+    }
   }
 
   trackIndex(i: number) {
