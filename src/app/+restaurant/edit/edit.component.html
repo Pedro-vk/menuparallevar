@@ -155,7 +155,7 @@
           [ngModel]="restaurant.schedule.openAt | date: 'HH:mm' : '+0'"
           (change)="restaurant.schedule.openAt = $event.target.valueAsNumber"
           name="openAt"
-          class="text text--center text--big input">
+          class="text text--center text--big input input--time">
       </div>
 
       <div class="side prefix">
@@ -166,7 +166,7 @@
           [ngModel]="restaurant.schedule.closeAt | date: 'HH:mm' : '+0'"
           (change)="restaurant.schedule.closeAt = $event.target.valueAsNumber"
           name="closeAt"
-          class="text text--center text--big input">
+          class="text text--center text--big input input--time">
       </div>
     </div>
 

@@ -8,6 +8,14 @@
   line-height: initial;
   width: 100%;
   border-radius: 8px;
+  background: transparent;
+
+  &--time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    appearance: none;
+  }
 }
 
 @mixin ui-input-component() {
