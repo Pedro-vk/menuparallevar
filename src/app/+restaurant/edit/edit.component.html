@@ -76,7 +76,10 @@
     Hecho con ❤️ en tiempos de Covid-19
   </div>
 
-  <div class="footer text--right layout layout--buttons">
+
+  <div class="footer layout layout--buttons toast-wrapper">
+    <div class="toast" [class.toast--active]="toastVisible">{{toastMessage}}</div>
+
     <button type="button" class="button" [disabled]="!published || !restaurant.menu.price" (click)="share()">
       {{canShare ? 'Compartir' : 'Copiar link'}}
     </button>

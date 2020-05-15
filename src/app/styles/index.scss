@@ -25,6 +25,7 @@
 @import './ui/layout';
 @import './ui/switch';
 @import './ui/input';
+@import './ui/toast';
 
 @mixin ui-components() {
   @include ui-text-component;
@@ -33,4 +34,5 @@
   @include ui-layout-component;
   @include ui-switch-component;
   @include ui-input-component;
+  @include ui-toast-component;
 }

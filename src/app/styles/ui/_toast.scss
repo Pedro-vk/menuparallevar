@@ -1,0 +1,35 @@
+
+$ui-toast---background: gc(c3) !default;
+$ui-toast---color: gc(bg) !default;
+$ui-toast---height: 32px !default;
+
+@mixin ui-toast() {
+  @include transition(fast);
+  @include ui-text(small);
+
+  background: $ui-toast---background;
+  height: 0;
+  line-height: $ui-toast---height;
+  color: $ui-toast---color;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  padding: 0 $size---padding;
+  text-align: left;
+
+  &--active {
+    height: $ui-toast---height;
+  }
+
+  &-wrapper {
+    position: relative;
+  }
+}
+
+@mixin ui-toast-component() {
+  .toast {
+    @include ui-toast;
+  }
+}

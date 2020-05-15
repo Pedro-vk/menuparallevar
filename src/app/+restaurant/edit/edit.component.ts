@@ -15,6 +15,8 @@ export class EditComponent implements OnInit {
   published: boolean
   restaurant: Restaurant
   editRestaurant: boolean
+  toastVisible: any
+  toastMessage: string
   // @ts-ignore
   canShare = !!navigator.share
 
@@ -60,13 +62,15 @@ export class EditComponent implements OnInit {
       delete restaurant.menu.sections
       this.setDefaultSections()
     }
-    if (!basic) {
-      this.published = true
-    }
 
     await this.saveRestaurantGQL.mutate({restaurant})
       .toPromise()
       .then(({data}) => data.saveRestaurant.updated)
+
+    if (!basic) {
+      this.showToast(`Menú ${this.published ? 'guardado' : 'publicado'}. ¡Compártelo con tus clientes!`)
+      this.published = true
+    }
 
     if (!this.published && basic) {
       this.restaurant.id = (await this.fetchRestaurant())?.id
@@ -96,6 +100,18 @@ export class EditComponent implements OnInit {
         console.log('No Share and Clipboard API!')
       }
     }
+  }
+
+  showToast(text: string) {
+    this.toastMessage = text
+
+    clearTimeout(this.toastVisible)
+    this.toastVisible = setTimeout(() => {
+      this.toastVisible = false
+      this.cdr.markForCheck()
+    }, 3000) as any
+
+    this.cdr.markForCheck()
   }
 
   trackIndex(i: number) {
