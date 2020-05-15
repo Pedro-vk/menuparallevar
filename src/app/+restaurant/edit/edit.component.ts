@@ -78,8 +78,9 @@ export class EditComponent implements OnInit {
     const shareData = {
       title: `Menú de ${name}`,
       text: `🍽️ Te envío el menú del día de ${name}, el precio es de ${price.toFixed(2)}€!\nDisfrútalo 👌`,
-      url: `${document.location.href}${id}`,
+      url: `${document.location.origin}/${id}`,
     }
+    console.log(shareData)
     try {
       await (navigator as any).share(shareData)
     } catch {
