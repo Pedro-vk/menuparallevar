@@ -86,7 +86,7 @@ export class EditComponent implements OnInit {
     const {id, name, menu: {price}} = this.restaurant
     const data = {
       title: `Menú de ${name}`,
-      text: `🍽️ Te envío el menú del día de ${name}, el precio es de ${price.toFixed(2)}€!\nDisfrútalo 👌\n`,
+      text: `🍽️ Te envío el menú del día de ${name}, el precio es de ${price.toFixed(2)}€!\n👌 Disfrútalo\n`,
       url: `${document.location.origin}/${id}`,
     }
     if (this.canShare) {
@@ -96,6 +96,7 @@ export class EditComponent implements OnInit {
       try {
         // @ts-ignore
         await navigator.clipboard.writeText(data.text + data.url)
+        this.showToast(`Link copiado al portapapeles. ¡Listo para mandar!`)
       } catch {
         console.log('No Share and Clipboard API!')
       }
