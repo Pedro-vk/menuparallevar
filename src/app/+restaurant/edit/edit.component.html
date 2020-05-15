@@ -77,7 +77,7 @@
   </div>
 
   <div class="footer text--right layout layout--buttons">
-    <button type="button" class="button" [disabled]="!published" (click)="share()">
+    <button type="button" class="button" [disabled]="!published || !restaurant.menu.price" (click)="share()">
       {{canShare ? 'Compartir' : 'Copiar link'}}
     </button>
     <button type="button" class="button" [disabled]="menu.invalid || !restaurant.menu.price" (click)="save()">
