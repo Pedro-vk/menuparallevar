@@ -6,13 +6,18 @@
 
 html,
 body {
+  -webkit-overflow-scrolling: touch;
   height: 100%;
-  height: 100vh;
 }
+
 body {
   @include get-font();
 
   background: gc(bg);
+
+  -webkit-tap-highlight-color: gc(brand);
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 app-root {
