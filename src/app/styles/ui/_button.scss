@@ -17,11 +17,27 @@ $ui-button---height: 40px !default;
   display: inline-flex;
   cursor: pointer;
   justify-content: center;
+  box-shadow: inset 0 0 0 100px gc(shadow, 0);
 
+  &--alt,
   &[disabled] {
     background: gc(bgdark);
+  }
+  &[disabled] {
     color: gc(c1);
     pointer-events: none;
+  }
+
+  &:active {
+    box-shadow: inset 0 0 0 100px gc(shadow, 0.16);
+  }
+
+  &--alt {
+    color: gc(c3);
+
+    &:active {
+      box-shadow: inset 0 0 0 100px gc(shadow, 0.04);
+    }
   }
 
   &--secondary {
