@@ -15,6 +15,8 @@ export class EditComponent implements OnInit {
   published: boolean
   restaurant: Restaurant
   editRestaurant: boolean
+  // @ts-ignore
+  canShare = !!navigator.share
 
   constructor(
     private saveRestaurantGQL: SaveRestaurantGQL,
@@ -78,16 +80,21 @@ export class EditComponent implements OnInit {
 
   async share() {
     const {id, name, menu: {price}} = this.restaurant
-    const shareData = {
+    const data = {
       title: `Menú de ${name}`,
       text: `🍽️ Te envío el menú del día de ${name}, el precio es de ${price.toFixed(2)}€!\nDisfrútalo 👌\n`,
       url: `${document.location.origin}/${id}`,
     }
-    console.log(shareData)
-    try {
-      await (navigator as any).share(shareData)
-    } catch {
-      console.log('Native share is not supported!')
+    if (this.canShare) {
+      // @ts-ignore
+      await navigator.share(data)
+    } else {
+      try {
+        // @ts-ignore
+        await navigator.clipboard.writeText(data.text + data.url)
+      } catch {
+        console.log('No Share and Clipboard API!')
+      }
     }
   }
 
