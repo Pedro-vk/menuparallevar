@@ -28,11 +28,6 @@
   text-align: right;
   padding: 0;
   padding-left: $size---padding / 2;
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
 }
 
 .price-tip {
@@ -78,6 +73,17 @@
     transform: translateX(-50%) translateY(-50%);
   }
 }
+
+.prefix {
+  display: flex;
+  align-items: baseline;
+
+  span {
+    padding-right: $size---padding / 2;
+    display: block;
+  }
+}
+
 
 .schedule,
 .input {

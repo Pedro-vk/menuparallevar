@@ -2,6 +2,7 @@
   .layout {
     display: flex;
 
+    &--cols,
     &--buttons,
     &--sides {
       justify-content: space-between;
@@ -14,10 +15,9 @@
       overflow: hidden;
     }
 
-    &--buttons {
-      .button {
-        width: calc(50% - #{$size---padding / 2});
-      }
+    &--cols .side,
+    &--buttons .button {
+      width: calc(50% - #{$size---padding / 2});
     }
   }
 }

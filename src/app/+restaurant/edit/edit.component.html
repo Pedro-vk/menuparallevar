@@ -146,6 +146,30 @@
       </div>
     </div>
 
+    <div class="layout layout--cols padding--top">
+      <div class="side prefix">
+        <span>De</span>
+        <input
+          type="time"
+          required
+          [ngModel]="restaurant.schedule.openAt | date: 'HH:mm' : '+0'"
+          (change)="restaurant.schedule.openAt = $event.target.valueAsNumber"
+          name="openAt"
+          class="text text--center text--big input">
+      </div>
+
+      <div class="side prefix">
+        <span>a</span>
+        <input
+          type="time"
+          required
+          [ngModel]="restaurant.schedule.closeAt | date: 'HH:mm' : '+0'"
+          (change)="restaurant.schedule.closeAt = $event.target.valueAsNumber"
+          name="closeAt"
+          class="text text--center text--big input">
+      </div>
+    </div>
+
   </form>
 
   <div class="footer">
