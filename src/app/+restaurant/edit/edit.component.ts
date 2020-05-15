@@ -39,7 +39,7 @@ export class EditComponent implements OnInit {
   }
 
   async fetchRestaurant() {
-    return await this.getMyRestaurantGQL.fetch()
+    return await this.getMyRestaurantGQL.fetch(undefined, {fetchPolicy: 'network-only'})
       .toPromise()
       .then(({data}) => data.myRestaurant)
   }
@@ -65,7 +65,10 @@ export class EditComponent implements OnInit {
     await this.saveRestaurantGQL.mutate({restaurant})
       .toPromise()
       .then(({data}) => data.saveRestaurant.updated)
-    this.restaurant = await this.fetchRestaurant()
+
+    if (!this.published && basic) {
+      this.restaurant.id = (await this.fetchRestaurant())?.id
+    }
   }
 
   setDefaultSections() {
