@@ -143,3 +143,35 @@
     }
   }
 }
+
+.emoji {
+  @include transition(fast);
+
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  font-size: 32px;
+  border-radius: 50%;
+  background: gc(bgdark);
+  box-shadow: inset 0 0 0 0 gc(brand);
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  margin: $size---padding;
+  cursor: pointer;
+
+  &--selected {
+    box-shadow: inset 0 0 0 4px gc(brand);
+    pointer-events: none;
+  }
+
+  &--alone {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  &-wrapper {
+    text-align: center;
+    padding: $size---padding / 2;
+  }
+}

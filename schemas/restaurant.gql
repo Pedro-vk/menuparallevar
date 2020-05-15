@@ -37,12 +37,14 @@ type Restaurant {
   id: ID!
   name: String!
   phone: String
+  icon: String
   menu: Menu!
   schedule: Schedule!
 }
 input RestaurantInput {
   name: String!
   phone: String
+  icon: String
   menu: MenuInput!
   schedule: ScheduleInput!
 }

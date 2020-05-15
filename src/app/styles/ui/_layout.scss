@@ -19,5 +19,9 @@
     &--buttons .button {
       width: calc(50% - #{$size---padding / 2});
     }
+
+    &--no-overflow {
+      overflow: hidden;
+    }
   }
 }

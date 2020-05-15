@@ -3,6 +3,7 @@ query getRestaurant($id: ID!) {
     id
     name
     phone
+    icon
     schedule {
       days
       openAt
@@ -26,6 +27,7 @@ query getMyRestaurant {
     id
     name
     phone
+    icon
     schedule {
       days
       openAt

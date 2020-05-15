@@ -4,10 +4,15 @@
       Volver al inicio
     </div>
 
-    <h1 class="text text--h1 text--ellipsis">{{restaurant.name}}</h1>
-    <span class="text text--small text--link padding--half-top clickable" (click)="editRestaurant = true">
-      Editar información de mi restaurante
-    </span>
+    <div class="layout layout--sides">
+      <div class="layout--no-overflow padding--right">
+        <h1 class="text text--h1 text--ellipsis">{{restaurant.name}}</h1>
+        <span class="text text--small text--link padding--half-top clickable" (click)="editRestaurant = true">
+          Editar información de mi restaurante
+        </span>
+      </div>
+      <div class="emoji emoji--alone" (click)="editEmoji = true">{{restaurant.icon}}</div>
+    </div>
 
     <div class="divider--space"></div>
 
@@ -179,6 +184,38 @@
       class="button button--full"
       [disabled]="info.invalid || !restaurant.name"
       (click)="save(true); editRestaurant = false">
+
+      Guardar
+    </button>
+  </div>
+</div>
+
+<!-- Emoji selection -->
+<div class="overlay" [class.overlay--visible]="editEmoji">
+  <div class="overlay-header">
+    <span class="mat-icon mat-icon--area mat-icon--dark clickable" (click)="editEmoji = false">
+      close
+    </span>
+    <div class="text text--bold overlay-header__title">Elige qué te representa</div>
+    <span class="mat-icon mat-icon--area"></span>
+  </div>
+
+  <div class="overlay-content emoji-wrapper">
+    <div
+      *ngFor="let emoji of emojis; trackBy: trackIndex"
+      class="emoji"
+      [class.emoji--selected]="emoji === restaurant?.icon"
+      (click)="restaurant.icon = emoji">
+
+      {{emoji}}
+    </div>
+  </div>
+
+  <div class="footer">
+    <button
+      type="button"
+      class="button button--full"
+      (click)="save(true); editEmoji = false">
 
       Guardar
     </button>

@@ -4,6 +4,13 @@ import { SaveRestaurantGQL, GetMyRestaurantGQL, Restaurant } from 'src/app/share
 
 const defaultSections = ['Entrante', 'Plato principal', 'Postre']
 const defaultMenuName = 'Menú del día'
+const defaultDays = 'LMXJVSD'
+const defaultEmojis = `
+  🍴🍔🍟🍕🌭🥪🌮🌯🥙🥘🍚🍛🍜🍝🍲🍱🍘🍙🍠🍢🍣🍨🍩🍪🎂🍷🥢🍽🥄
+  🍺☕🥂🥬🥦🍄🥜🌰🍞🥐🥖🥨🥯🥞🧀🍖🍇🍈🍉🍊🍋🍌🍍🥭🍎🍏🍐🍑🍒
+  🍓🥝🍅🥥🥑🍆🥔🥕🌽🌶🥒🍗🥩🥓🥣🥗🍿🧂🥫🍤🍥🥮🍡🥟🥠🥡🍦🍧🍰
+  🧁🥧🍫🍬🍭🍮🍯🍼🥛🍵🍶🍾🍸🍹🍻🥃🥤
+`
 
 @Component({
   selector: 'app-edit',
@@ -15,11 +22,13 @@ export class EditComponent implements OnInit {
   published: boolean
   restaurant: Restaurant
   editRestaurant: boolean
+  editEmoji: boolean
   toastVisible: any
   toastMessage: string
   // @ts-ignore
   canShare = !!navigator.share
-  days = 'LMXJVSD'.split('')
+  days = defaultDays.split('')
+  emojis = [...defaultEmojis].filter(_ => !_.match(/\s/))
 
   constructor(
     private saveRestaurantGQL: SaveRestaurantGQL,
@@ -28,9 +37,11 @@ export class EditComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    console.log(this)
     const restaurant = await this.fetchRestaurant()
 
     this.restaurant = restaurant || {
+      icon: '🍴',
       menu: {name: defaultMenuName},
       schedule: {days: [true, true, true, true, true], openAt: 0, closeAt: 0},
     } as any
