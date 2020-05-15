@@ -30,5 +30,8 @@
     &--space-and-half {
       padding-top: $size---padding * 1.5;
     }
+    &--double {
+      padding-top: $size---padding * 2;
+    }
   }
 }

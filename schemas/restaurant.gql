@@ -8,18 +8,18 @@ input SectionInput {
 }
 
 type Menu {
-  price: Float!
+  price: Float
   name: String!
   includeBread: Boolean
   includeBeverage: Boolean
-  sections: [Section!]!
+  sections: [Section!]
 }
 input MenuInput {
-  price: Float!
+  price: Float
   name: String!
   includeBread: Boolean
   includeBeverage: Boolean
-  sections: [SectionInput!]!
+  sections: [SectionInput!]
 }
 
 type Restaurant {

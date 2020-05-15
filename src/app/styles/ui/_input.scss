@@ -1,0 +1,17 @@
+@mixin ui-input() {
+  @include ui-text;
+
+  border: 1px solid gc(c2);
+  padding: 0 $size---padding / 2;
+  height: 40px;
+  line-height: 40px;
+  line-height: initial;
+  width: 100%;
+  border-radius: 8px;
+}
+
+@mixin ui-input-component() {
+  .input {
+    @include ui-input;
+  }
+}

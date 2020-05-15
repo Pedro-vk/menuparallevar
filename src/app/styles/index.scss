@@ -24,6 +24,7 @@
 @import './ui/button';
 @import './ui/layout';
 @import './ui/switch';
+@import './ui/input';
 
 @mixin ui-components() {
   @include ui-text-component;
@@ -31,4 +32,5 @@
   @include ui-button-component;
   @include ui-layout-component;
   @include ui-switch-component;
+  @include ui-input-component;
 }

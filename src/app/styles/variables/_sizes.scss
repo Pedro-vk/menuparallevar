@@ -4,3 +4,4 @@ $size---footer-message: 56px !default;
 
 
 $size---content: calc(100% - #{$size---footer-message + $size---footer});
+$size---overlay-content: calc(100% - #{$size---footer});
