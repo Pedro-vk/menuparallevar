@@ -79,6 +79,37 @@
   }
 }
 
+.schedule,
 .input {
   margin-top: $size---padding / 4;
+}
+
+// Schedule component
+.schedule {
+  height: 40px;
+  padding: $size---padding / 4 0;
+  border-radius: $size---padding / 2;
+  border: 1px solid gc(c2);
+  display: flex;
+  align-items: stretch;
+
+  &__button {
+    @include transition(fast);
+    @include ui-text(upper);
+
+    background: gc(bg);
+    color: gc(c3);
+    border-radius: $size---padding / 4;
+    margin: 0 $size---padding / 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    cursor: pointer;
+
+    &--active {
+      background: gc(brand);
+      color: gc(bg);
+    }
+  }
 }

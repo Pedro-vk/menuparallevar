@@ -22,16 +22,29 @@ input MenuInput {
   sections: [SectionInput!]
 }
 
+type Schedule {
+  days: [Boolean!]
+  openAt: Int!
+  closeAt: Int!
+}
+input ScheduleInput {
+  days: [Boolean!]
+  openAt: Int!
+  closeAt: Int!
+}
+
 type Restaurant {
   id: ID!
   name: String!
   phone: String
   menu: Menu!
+  schedule: Schedule!
 }
 input RestaurantInput {
   name: String!
   phone: String
   menu: MenuInput!
+  schedule: ScheduleInput!
 }
 
 type Query {

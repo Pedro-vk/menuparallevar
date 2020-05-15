@@ -129,6 +129,23 @@
         Usaremos el teléfono para que los clientes te puedan llamar directamente
       </div>
     </div>
+
+    <div class="divider--half-space"></div>
+
+    <div class="padding--top">
+      <div class="text text--small text--alt">Horario</div>
+      <div class="schedule">
+        <div
+          *ngFor="let day of days; let index = index"
+          (click)="restaurant.schedule.days[index] = !restaurant.schedule.days[index]"
+          class="schedule__button"
+          [class.schedule__button--active]="restaurant.schedule.days[index]">
+
+          {{day}}
+        </div>
+      </div>
+    </div>
+
   </form>
 
   <div class="footer">

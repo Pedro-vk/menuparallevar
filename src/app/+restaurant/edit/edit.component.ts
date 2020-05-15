@@ -19,6 +19,7 @@ export class EditComponent implements OnInit {
   toastMessage: string
   // @ts-ignore
   canShare = !!navigator.share
+  days = 'LMXJVSD'.split('')
 
   constructor(
     private saveRestaurantGQL: SaveRestaurantGQL,
@@ -29,7 +30,10 @@ export class EditComponent implements OnInit {
   async ngOnInit() {
     const restaurant = await this.fetchRestaurant()
 
-    this.restaurant = restaurant || {menu: {name: defaultMenuName}} as any
+    this.restaurant = restaurant || {
+      menu: {name: defaultMenuName},
+      schedule: {days: [true, true, true, true, true], openAt: 0, closeAt: 0},
+    } as any
     this.exists = !!restaurant
     this.published = !!this.restaurant.menu.sections?.length
 
@@ -96,7 +100,7 @@ export class EditComponent implements OnInit {
       try {
         // @ts-ignore
         await navigator.clipboard.writeText(data.text + data.url)
-        this.showToast(`Link copiado al portapapeles. ¡Listo para mandar!`)
+        this.showToast(`Link copiado en el portapapeles. ¡Listo para mandar!`)
       } catch {
         console.log('No Share and Clipboard API!')
       }

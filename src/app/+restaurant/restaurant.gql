@@ -3,6 +3,11 @@ query getRestaurant($id: ID!) {
     id
     name
     phone
+    schedule {
+      days
+      openAt
+      closeAt
+    }
     menu {
       name
       price
@@ -21,6 +26,11 @@ query getMyRestaurant {
     id
     name
     phone
+    schedule {
+      days
+      openAt
+      closeAt
+    }
     menu {
       name
       price
