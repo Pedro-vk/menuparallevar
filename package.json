@@ -15,7 +15,7 @@
     "i18n:extract": "ngx-translate-extract --sort -i ./src -o ./src/i18n/*.json --format-indentation '  '",
     "i18n:duplicate-base": "jq 'to_entries | map( {(.key) :  (if .value == \"\" then .key else .value end) } ) | add' src/i18n/en.json > src/i18n/en.json.tmp && mv -f src/i18n/en.json.tmp src/i18n/en.json",
     "graphql:generate": "graphql-codegen",
-    "graphql:apollo:push:env": "apollo service:push --graph=AppGraphLlevateloACasaGraph --variant=$APOLLO_ENGINE_ENV --key=$APOLLO_ENGINE_KEY --localSchemaFile=server/graphql/schema.graphql",
+    "graphql:apollo:push:env": "apollo service:push --graph=LlevateloACasaGraph --variant=$APOLLO_ENGINE_ENV --key=$APOLLO_ENGINE_KEY --localSchemaFile=server/graphql/schema.graphql",
     "graphql:apollo:push:dev": "apollo service:push --graph=LlevateloACasaGraph --variant=development --key=$APOLLO_ENGINE_KEY --localSchemaFile=server/graphql/schema.graphql",
     "predev": "npm run graphql:generate",
     "predevserver": "npm run graphql:generate && npm run graphql:apollo:push:dev"

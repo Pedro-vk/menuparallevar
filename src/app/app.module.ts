@@ -3,7 +3,6 @@ import { CommonModule, registerLocaleData } from '@angular/common'
 import localeEs from '@angular/common/locales/es'
 import { HttpClientModule } from '@angular/common/http'
 import { BrowserModule } from '@angular/platform-browser'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule } from '@angular/forms'
 import { AngularFireModule } from '@angular/fire'
 
@@ -32,7 +31,6 @@ registerLocaleData(localeEs, 'es')
     CommonModule,
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule,
     FormsModule,
 
     AngularFireModule.initializeApp(environment.firebase),
