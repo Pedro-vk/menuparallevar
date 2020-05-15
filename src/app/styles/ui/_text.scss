@@ -108,6 +108,11 @@ $ui-text--upper---font-size: 16px !default;
     &--underline {
       text-decoration: underline;
     }
+    &--ellipsis {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
     &--left { text-align: left; }
     &--right { text-align: right; }

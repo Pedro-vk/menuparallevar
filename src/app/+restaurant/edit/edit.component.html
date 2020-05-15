@@ -1,10 +1,10 @@
-<ng-container *ngIf="restaurant">
+<div class="container" [class.container--hidden]="editRestaurant || editEmoji" *ngIf="restaurant">
   <form #menu="ngForm" class="content padding toast-wrapper--banner">
     <div class="toast toast--banner toast--alt text--underline" routerLink="/">
       Volver al inicio
     </div>
 
-    <h1 class="text text--h1">{{restaurant.name}}</h1>
+    <h1 class="text text--h1 text--ellipsis">{{restaurant.name}}</h1>
     <span class="text text--small text--link padding--half-top clickable" (click)="editRestaurant = true">
       Editar información de mi restaurante
     </span>
@@ -12,10 +12,11 @@
     <div class="divider--space"></div>
 
     <div class="padding--top padding--bottom layout layout--sides">
-      <h2 class="text text--h2 layout--ellipsis">{{restaurant.menu.name}}</h2>
+      <h2 class="text text--h2 text--ellipsis">{{restaurant.menu.name}}</h2>
       <div>
         <input
           #price
+          inputmode="decimal"
           name="price"
           [(ngModel)]="restaurant.menu.price"
           class="text text--h2 text--high price-input"
@@ -80,7 +81,6 @@
     Hecho con ❤️ en tiempos de Covid-19
   </div>
 
-
   <div class="footer layout layout--buttons toast-wrapper">
     <div class="toast" [class.toast--active]="toastVisible">{{toastMessage}}</div>
 
@@ -91,19 +91,20 @@
       {{published ? 'Guardar' : 'Publicar'}}
     </button>
   </div>
-</ng-container>
+</div>
 
+<!-- Restaurant info -->
 <div class="overlay" [class.overlay--visible]="editRestaurant" *ngIf="restaurant">
 
-  <span class="mat-icon mat-icon--dark overlay-close clickable" *ngIf="exists" (click)="editRestaurant = false">
-    close
-  </span>
+  <div class="overlay-header">
+    <span class="mat-icon mat-icon--area mat-icon--dark clickable" *ngIf="exists" (click)="editRestaurant = false">
+      close
+    </span>
+    <div class="text text--bold overlay-header__title">Mi restaurante</div>
+    <span class="mat-icon mat-icon--area"></span>
+  </div>
 
   <form #info="ngForm" class="overlay-content">
-    <div class="text text--h2 text--center">Mi restaurante</div>
-
-    <div class="divider--double"></div>
-
     <div class="padding--top">
       <div class="text text--small text--alt">Nombre</div>
       <input
