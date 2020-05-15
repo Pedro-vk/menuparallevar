@@ -1,0 +1,9 @@
+<div>
+  Usuario: {{(user$ | async)?.displayName}}
+  <br><br>
+  <div routerLink="mi-restaurante">Editar mi restaurante</div>
+  <br><br>
+
+  <div (click)="login()">login</div>
+  <div (click)="logout()">logout</div>
+</div>

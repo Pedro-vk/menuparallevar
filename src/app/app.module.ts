@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { GraphQLModule } from './graphql.module'
 import { AppComponent } from './app.component'
 
+import { landingsComponents } from './+landing'
 import { restaurantsComponents } from './+restaurant'
 // import { providers } from './shared'
 
@@ -21,6 +22,7 @@ registerLocaleData(localeEs, 'es')
 @NgModule({
   declarations: [
     AppComponent,
+    ...landingsComponents,
     ...restaurantsComponents,
   ],
   imports: [
