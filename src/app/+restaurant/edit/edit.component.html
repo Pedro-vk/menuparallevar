@@ -11,7 +11,7 @@
           Editar información de mi restaurante
         </span>
       </div>
-      <div class="emoji emoji--alone" (click)="editEmoji = true">{{restaurant.icon}}</div>
+      <div class="emoji emoji--alone clickable" (click)="editEmoji = true">{{restaurant.icon}}</div>
     </div>
 
     <div class="divider--space"></div>
@@ -203,7 +203,7 @@
   <div class="overlay-content emoji-wrapper">
     <div
       *ngFor="let emoji of emojis; trackBy: trackIndex"
-      class="emoji"
+      class="emoji clickable"
       [class.emoji--selected]="emoji === restaurant?.icon"
       (click)="restaurant.icon = emoji">
 
