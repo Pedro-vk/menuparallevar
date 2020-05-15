@@ -80,7 +80,7 @@ export class EditComponent implements OnInit {
     const {id, name, menu: {price}} = this.restaurant
     const shareData = {
       title: `Menú de ${name}`,
-      text: `🍽️ Te envío el menú del día de ${name}, el precio es de ${price.toFixed(2)}€!\nDisfrútalo 👌`,
+      text: `🍽️ Te envío el menú del día de ${name}, el precio es de ${price.toFixed(2)}€!\nDisfrútalo 👌\n`,
       url: `${document.location.origin}/${id}`,
     }
     console.log(shareData)
