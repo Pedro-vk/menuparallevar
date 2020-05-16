@@ -1,2 +1,8 @@
 @import './styles/index';
 
+// Workaround to prevent inital scrolling on refresh to wrong place
+.hidden {
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
