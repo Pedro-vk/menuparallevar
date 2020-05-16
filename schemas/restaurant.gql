@@ -51,6 +51,7 @@ input RestaurantInput {
 
 type Query {
   restaurant(id: ID!): Restaurant
+  restaurantsNumber: Int!
   myRestaurant: Restaurant
 }
 

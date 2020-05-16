@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app'
 import { filter } from 'rxjs/operators'
 
-import { GetUserGQL } from 'src/app/shared/graphql'
+import { GetUserGQL, GetRestaurantsNumberGQL } from 'src/app/shared/graphql'
 
 @Component({
   selector: 'app-home',
@@ -13,22 +13,20 @@ import { GetUserGQL } from 'src/app/shared/graphql'
 export class HomeComponent implements OnInit {
   emojis = [...'🌯🥙🥘🍚🍟🍝🍔🍕🌮🌭🍜🥪🍛🍝']
 
-  companies: number | string = '∞'
   user$: AngularFireAuth['user']
+  restaurants$: Promise<number>
 
   constructor(
     private fireAuth: AngularFireAuth,
     private getUserGQL: GetUserGQL,
+    private getRestaurantsNumberGQL: GetRestaurantsNumberGQL,
   ) { }
 
   ngOnInit() {
     this.user$ = this.fireAuth.user
-    this.user$
-      .pipe(filter(_ => !!_))
-      .subscribe(() =>
-        this.getUserGQL.fetch()
-          .toPromise()
-      )
+    this.restaurants$ = this.getRestaurantsNumberGQL.fetch()
+      .toPromise()
+      .then(({data}) => data.restaurantsNumber)
   }
 
   login() {

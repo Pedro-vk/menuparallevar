@@ -18,8 +18,13 @@ export class RestaurantResolver {
   }
 
   @resolver()
+  static async restaurantsNumber(parent: unknown, args: unknown, {db}: Context) {
+    return await db.collection('restaurants').countDocuments()
+  }
+
+  @resolver()
   @role(Roles.ALL)
-  static async myRestaurant(parent: unknown, args: any, {db, uid}: Context) {
+  static async myRestaurant(parent: unknown, args: unknown, {db, uid}: Context) {
     const [restaurant] = await db.collection('restaurants').find({createdBy: uid}).toArray()
     if (!restaurant) {
       return

@@ -46,10 +46,13 @@ function typeProxy(target: any, propertyKey: string) {
       if (result instanceof Array) {
         resolve(result.map(_ => ({__typename, ..._})))
       }
-      resolve({
-        __typename,
-        ...result,
-      })
+      if (result instanceof Object) {
+        resolve({
+          __typename,
+          ...result,
+        })
+      }
+      resolve(result)
     } catch (e) {
       reject(e)
     }

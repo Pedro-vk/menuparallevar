@@ -4,7 +4,7 @@
 </div>
 <ng-template #restaurantsNumber>
   <div class="toast toast--banner toast--alt text">
-    <span class="text--high">{{companies}}</span> restaurantes ya lo están usando 🚀
+    <span class="text--high">{{(restaurants$ | async) || '∞'}}</span> restaurantes ya lo están usando 🚀
   </div>
 </ng-template>
 
