@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
 
 import { SaveRestaurantGQL, GetMyRestaurantGQL, Restaurant } from 'src/app/shared/graphql'
+import { inputNumberFixer } from 'src/app/shared'
 
 const defaultSections = ['Entrante', 'Plato principal', 'Postre']
 const defaultMenuName = 'Menú del día'
@@ -40,6 +41,10 @@ export class EditComponent implements OnInit {
   get isTouched() {
     return this.checkIsTouched()
   }
+
+  priceFixer = inputNumberFixer(price => {
+    this.restaurant.menu.price = price
+  }, 0, 900, 2)
 
   constructor(
     private saveRestaurantGQL: SaveRestaurantGQL,

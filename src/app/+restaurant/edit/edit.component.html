@@ -27,7 +27,9 @@
           #price
           inputmode="decimal"
           name="price"
-          [(ngModel)]="restaurant.menu.price"
+          [ngModel]="restaurant.menu.price"
+          (keypress)="priceFixer.keypress($event)"
+          (keyup)="priceFixer.keyup($event)"
           (focus)="helpDone('price')"
           (blur)="helpDone('price', true)"
           class="text text--h2 text--high price-input"
