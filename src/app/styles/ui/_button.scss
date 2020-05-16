@@ -29,12 +29,18 @@ $ui-button---height: 40px !default;
   }
 
   &:active {
+    transform: scale(0.96);
+  }
+
+  &:hover,
+  &:active {
     box-shadow: inset 0 0 0 100px gc(shadow, 0.16);
   }
 
   &--alt {
     color: gc(c3);
 
+    &:hover,
     &:active {
       box-shadow: inset 0 0 0 100px gc(shadow, 0.04);
     }
