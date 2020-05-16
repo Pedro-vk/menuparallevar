@@ -41,14 +41,17 @@
 .price-tip {
   @include transition(fast);
 
-  display: inline-flex;
-  vertical-align: bottom;
-  width: 0;
+  display: block;
   white-space: nowrap;
-  position: relative;
-  top: 20px;
-  justify-content: flex-end;
+  position: absolute;
+  top: 100%;
+  right: 0;
   opacity: 1;
+  line-height: 20px;
+
+  &-wrapper {
+    position: relative;
+  }
 }
 
 .price-input:focus ~ .price-tip {
