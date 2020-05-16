@@ -4,7 +4,7 @@ $ui-emoji--selected---border-color: gc(brand) !default;
 $ui-emoji---size: 64px !default;
 
 @mixin ui-emoji() {
-  @include transition(fast);
+  @include transition;
 
   width: $ui-emoji---size;
   height: $ui-emoji---size;
@@ -12,7 +12,7 @@ $ui-emoji---size: 64px !default;
   font-size: $ui-emoji---size / 2;
   border-radius: $ui-emoji---size / 2;
   background: $ui-emoji---background;
-  box-shadow: inset 0 0 0 0 $ui-emoji--selected---border-color;
+  box-shadow: inset 0 0 0 4px transparent;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
