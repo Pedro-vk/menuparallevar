@@ -1,4 +1,5 @@
 @mixin ui-input() {
+  @include transition;
   @include ui-text;
 
   border: 1px solid gc(c2);
@@ -9,12 +10,19 @@
   width: 100%;
   border-radius: 8px;
   background: transparent;
+  appearance: none;
+
+  &:focus {
+    border-color: gc(brand);
+  }
+  &:invalid:not(:focus).ng-touched {
+    border-color: gc(error);
+  }
 
   &--time {
     display: flex;
-    justify-content: center;
     align-items: center;
-    appearance: none;
+    text-align: left;
   }
 }
 
