@@ -1,4 +1,4 @@
-<div>
+<div class="padding">
   Usuario: {{(user$ | async)?.displayName}}
   <br><br>
   <div routerLink="mi-restaurante">Editar mi restaurante</div>
@@ -6,4 +6,103 @@
 
   <div (click)="login()">login</div>
   <div (click)="logout()">logout</div>
+</div>
+
+
+<div class="padding">
+  <h1 class="text text--h1">
+    Crea el menú de tu restaurante. <span class="text--high">Online</span>.
+  </h1>
+
+  <div class="divider--space"></div>
+
+  <h2 class="text text--alt">
+    En menos de 5 minutos podrás compartirlo con todos tus clientes.
+  </h2>
+</div>
+
+<div class="padding layout layout--buttons">
+  <button type="button" class="button">
+    Crear
+  </button>
+  <button type="button" class="button button--alt text--ellipsis">
+    Ver ejemplo
+  </button>
+</div>
+
+<div class="divider--double"></div>
+
+<div class="padding bgdark">
+  <h3 class="text text--h2 padding--top padding--half-bottom">💙 Manifiesto</h3>
+
+  <p class="text text--bold text--high padding--bottom">
+    En tiempos extraordinarios, necesitamos acciones extraordinarias. 💪
+  </p>
+
+  <p class="text text--alt padding--half-bottom">
+    Para ayudar a todos esos pequeños negocios que gran parte de sus ingresos provenian de los menús
+    que elaboraban cada semana y dado la situación actual causada por el 🦠 Covid-19, hemos trabajado
+    en esta iniciativa gratuita para ayudar a digitalizar todos esos menús diarios de una manera sencilla,
+    y que los puedan compartir con sus clientes sin necesidad de ser unos expertos en plataformas digitales.
+  </p>
+</div>
+
+<div class="divider--space"></div>
+
+
+<div class="padding">
+  <h3 class="text text--h2 padding--top padding--half-bottom">💦 Más claros que el agua</h3>
+
+  <div>
+    <div class="layout layout--sides">
+      <h4>¿El servicio es gratuito?</h4>
+      <span class="mat-icon mat-icon--area mat-icon--dark">keyboard_arrow_down</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="layout layout--sides">
+      <h4>¿Qué necesito para empezar?</h4>
+      <span class="mat-icon mat-icon--area mat-icon--dark">keyboard_arrow_down</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="layout layout--sides">
+      <h4>¿Puedo borrar mis datos?</h4>
+      <span class="mat-icon mat-icon--area mat-icon--dark">keyboard_arrow_down</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="layout layout--sides">
+      <h4>¿A que huelen las nubes?</h4>
+      <span class="mat-icon mat-icon--area mat-icon--dark">keyboard_arrow_down</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider--space"></div>
+
+<div class="padding">
+  <h3 class="text text--h2 padding--top padding--half-bottom">📫 Tu opinión nos importa</h3>
+
+  <p class="text text--alt padding--bottom">
+    Si tienes alguna nueva idea para este proyecto, una manera de expandirlo o simplemente
+    quieres decirnos “Hola 👋”, te invitamos a que nos envies un mail. Estaremos encantados
+    de escucharte y/o poder ayudarte.
+  </p>
+
+  <a href="mailto:info@menuparallevar.com" target="_blank">
+    <button type="button" class="button button--secondary">
+      Enviar un mail
+    </button>
+  </a>
+</div>
+
+<div class="divider--double"></div>
+
+
+<div class="bgdark text text--alt text--center padding">
+  Hecho con ❤️ en tiempos de Covid-19
 </div>
