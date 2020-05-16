@@ -11,26 +11,33 @@
           Editar información de mi restaurante
         </span>
       </div>
-      <div class="emoji emoji--alone clickable" (click)="editEmoji = true">{{restaurant.icon}}</div>
+      <div class="emoji emoji--alone clickable tooltip-wrapper" (click)="helpDone('icon'); editEmoji = true">
+        {{restaurant.icon}}
+
+        <div class="tooltip" [class.tooltip--visible]="tooltip === 'icon'">Elige un icono</div>
+      </div>
     </div>
 
     <div class="divider--space"></div>
 
     <div class="padding--top padding--bottom layout layout--sides">
       <h2 class="text text--h2 text--ellipsis">{{restaurant.menu.name}}</h2>
-      <div class="price-tip-wrapper">
+      <div class="price-tip-wrapper tooltip-wrapper">
         <input
           #price
           inputmode="decimal"
           name="price"
           [(ngModel)]="restaurant.menu.price"
+          (focus)="helpDone('price')"
+          (blur)="helpDone('price', true)"
           class="text text--h2 text--high price-input"
           type="number"
           required
           placeholder="##,##"
           min="0"><!--
-     --><span class="text text--h2 text--high">€</span><!--
-     --><span class="text text--small text--alt price-tip" (click)="price.focus()">Pulsa para editar</span>
+     --><span class="text text--h2 text--high">€</span>
+        <div class="tooltip" [class.tooltip--visible]="tooltip === 'price'">Añade un precio</div>
+        <span class="text text--small text--alt price-tip" (click)="price.focus()">Pulsa para editar</span>
       </div>
     </div>
 

@@ -4,6 +4,7 @@ import { SaveRestaurantGQL, GetMyRestaurantGQL, Restaurant } from 'src/app/share
 
 const defaultSections = ['Entrante', 'Plato principal', 'Postre']
 const defaultMenuName = 'Menú del día'
+const defaultEmoji = '🍴'
 const defaultDays = 'LMXJVSD'
 const defaultEmojis = `
   🍴🍔🍟🍕🌭🥪🌮🌯🥙🥘🍚🍛🍜🍝🍲🍱🍘🍙🍠🍢🍣🍨🍩🍪🎂🍷🥢🍽🥄
@@ -29,6 +30,7 @@ export class EditComponent implements OnInit {
   canShare = !!navigator.share
   days = defaultDays.split('')
   emojis = [...defaultEmojis].filter(_ => !_.match(/\s/))
+  tooltip?: 'price' | 'icon'
 
   constructor(
     private saveRestaurantGQL: SaveRestaurantGQL,
@@ -40,12 +42,19 @@ export class EditComponent implements OnInit {
     const restaurant = await this.fetchRestaurant()
 
     this.restaurant = restaurant || {
-      icon: '🍴',
+      icon: defaultEmoji,
       menu: {name: defaultMenuName},
       schedule: {days: [true, true, true, true, true], openAt: 0, closeAt: 0},
     } as any
     this.exists = !!restaurant
     this.published = !!this.restaurant.menu.sections?.length
+
+    if (!this.published) {
+      setTimeout(() => {
+        this.tooltip = 'price'
+        this.cdr.markForCheck()
+      }, 300)
+    }
 
     if (!this.exists) {
       this.editRestaurant = true
@@ -57,7 +66,7 @@ export class EditComponent implements OnInit {
   }
 
   async fetchRestaurant() {
-    return await this.getMyRestaurantGQL.fetch(undefined, {fetchPolicy: 'network-only'})
+    return await this.getMyRestaurantGQL.fetch(undefined, {fetchPolicy: 'no-cache'})
       .toPromise()
       .then(({data}) => data.myRestaurant)
   }
@@ -127,6 +136,15 @@ export class EditComponent implements OnInit {
     }, 3000) as any
 
     this.cdr.markForCheck()
+  }
+
+  helpDone(type: string, complete?: boolean) {
+    if (type === this.tooltip) {
+      delete this.tooltip
+    }
+    if (complete && type === 'price' && this.restaurant.icon === defaultEmoji) {
+      this.tooltip = 'icon'
+    }
   }
 
   trackIndex(i: number) {

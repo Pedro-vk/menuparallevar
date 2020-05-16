@@ -54,6 +54,7 @@
   }
 }
 
+.tooltip--visible ~ .price-tip,
 .price-input:focus ~ .price-tip {
   opacity: 0;
   pointer-events: none;
@@ -145,5 +146,47 @@
       background: gc(brand);
       color: gc(bg);
     }
+  }
+}
+
+.tooltip {
+  @include transition(fast);
+  @include ui-text(small);
+
+  background: gc(c3);
+  color: gc(bg);
+  height: 24px;
+  line-height: 24px;
+  padding: 0 $size---padding / 2;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 10px;
+  white-space: nowrap;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+
+  &:before {
+    content: '';
+    display: block;
+    border-top: 0;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+    border-bottom: 6px solid gc(c3);
+    position: absolute;
+    top: -6px;
+    right: 32px;
+    transform: translateX(50%);
+  }
+
+  &--visible {
+    opacity: 1;
+    pointer-events: initial;
+    transition-delay: 0.3s;
+  }
+
+  &-wrapper {
+    position: relative;
   }
 }
