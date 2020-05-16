@@ -14,8 +14,8 @@ export function inputNumberFixer(
       const vMax = Number.parseFloat(target.max) || max
       const vMin = Number.parseFloat(target.min) || min
       const quantity = +(Math.max(Math.min(value, vMax), vMin) || 0).toFixed(Math.min(decimals, maxDecimals))
+      onQuantity(quantity, ...proxiedArgs)
       if (value !== quantity) {
-        onQuantity(quantity, ...proxiedArgs)
         target.value = quantity
       }
     },
