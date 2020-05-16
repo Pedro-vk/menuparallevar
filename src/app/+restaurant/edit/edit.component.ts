@@ -32,6 +32,10 @@ export class EditComponent implements OnInit {
   emojis = [...defaultEmojis].filter(_ => !_.match(/\s/))
   tooltip?: 'price' | 'icon'
 
+  get isValid() {
+    return this.checkIsValid()
+  }
+
   constructor(
     private saveRestaurantGQL: SaveRestaurantGQL,
     private getMyRestaurantGQL: GetMyRestaurantGQL,
@@ -124,6 +128,17 @@ export class EditComponent implements OnInit {
         console.log('No Share and Clipboard API!')
       }
     }
+  }
+
+  checkIsValid() {
+    const {price, sections} = this.restaurant.menu
+
+    const empties = sections
+      .map(({items}) => items)
+      .flat()
+      .filter(_ => !_)
+
+    return !!price && !empties.length
   }
 
   showToast(text: string) {

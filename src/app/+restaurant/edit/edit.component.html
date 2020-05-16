@@ -1,5 +1,5 @@
 <div class="container" [class.container--hidden]="editRestaurant || editEmoji" *ngIf="restaurant">
-  <form #menu="ngForm" class="content padding toast-wrapper--banner">
+  <form class="content padding toast-wrapper--banner">
     <div class="toast toast--banner toast--alt text--underline" routerLink="/">
       Volver al inicio
     </div>
@@ -96,10 +96,10 @@
   <div class="footer layout layout--buttons toast-wrapper">
     <div class="toast" [class.toast--active]="toastVisible">{{toastMessage}}</div>
 
-    <button type="button" class="button" [disabled]="!published || !restaurant.menu.price" (click)="share()">
+    <button type="button" class="button" [disabled]="!published || !isValid" (click)="share()">
       {{canShare ? 'Compartir' : 'Copiar link'}}
     </button>
-    <button type="button" class="button" [disabled]="menu.invalid || !restaurant.menu.price" (click)="save()">
+    <button type="button" class="button" [disabled]="!isValid" (click)="save()">
       {{published ? 'Guardar' : 'Publicar'}}
     </button>
   </div>
