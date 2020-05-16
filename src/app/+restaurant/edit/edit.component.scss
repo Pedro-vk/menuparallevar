@@ -69,6 +69,7 @@
   background: gc(bg);
   display: none;
   flex-direction: column;
+  z-index: 7;
 
   &--visible {
     display: flex;
@@ -199,6 +200,26 @@
     position: absolute;
     top: -6px;
     right: 32px;
+    transform: translateX(50%);
+  }
+
+  &--error {
+    background: gc(error);
+
+    &:before {
+      border-bottom-color: gc(error);
+    }
+  }
+
+  @at-root .input:invalid:not(:focus).ng-touched ~ & {
+    opacity: 1;
+    pointer-events: initial;
+    transition-delay: 0.3s;
+  }
+
+  &--center,
+  &--center:before {
+    right: 50%;
     transform: translateX(50%);
   }
 

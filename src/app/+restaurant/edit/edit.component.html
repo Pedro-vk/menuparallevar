@@ -100,7 +100,7 @@
       {{canShare ? 'Compartir' : 'Copiar link'}}
     </button>
     <button type="button" class="button" [disabled]="!isValid || !isTouched" (click)="save('menu')">
-      {{published ? 'Guardar' : 'Publicar'}}
+      Publicar
     </button>
   </div>
 </div>
@@ -117,18 +117,19 @@
   </div>
 
   <form #info="ngForm" class="overlay-content padding">
-    <div class="padding--top">
+    <div class="padding--top tooltip-wrapper">
       <div class="text text--small text--alt">Nombre</div>
       <input
         name="name"
         required
         [(ngModel)]="restaurant.name"
         class="text input">
+      <div class="tooltip tooltip--center tooltip--error">Este campo es necesario</div>
     </div>
 
     <div class="divider--half-space"></div>
 
-    <div class="padding--top">
+    <div class="padding--top tooltip-wrapper">
       <div class="text text--small text--alt">Número de teléfono</div>
       <input
         type="tel"
@@ -137,10 +138,11 @@
         name="phone"
         [(ngModel)]="restaurant.phone"
         class="text input">
+      <div class="tooltip tooltip--center tooltip--error">Este campo es necesario</div>
+    </div>
 
-      <div class="text text--small text--alt text--center padding--half-top">
-        Usaremos el teléfono para que los clientes te puedan llamar directamente
-      </div>
+    <div class="text text--small text--alt text--center padding--half-top">
+      Usaremos el teléfono para que los clientes te puedan llamar directamente
     </div>
 
     <div class="divider--half-space"></div>
