@@ -168,6 +168,15 @@ export class EditComponent implements OnInit {
     return hash
   }
 
+  revertRestaurant() {
+    this.restaurant.name = this.savedRestaurant.name
+    this.restaurant.phone = this.savedRestaurant.phone
+    this.restaurant.schedule = JSON.parse(JSON.stringify(this.savedRestaurant.schedule))
+  }
+  revertEmoji() {
+    this.restaurant.icon = this.savedRestaurant.icon
+  }
+
   showToast(text: string) {
     this.toastMessage = text
 

@@ -109,7 +109,7 @@
 <div class="overlay" [class.overlay--visible]="editRestaurant" *ngIf="restaurant">
 
   <div class="overlay-header">
-    <span class="mat-icon mat-icon--area mat-icon--dark clickable" *ngIf="exists" (click)="editRestaurant = false">
+    <span class="mat-icon mat-icon--area mat-icon--dark clickable" *ngIf="exists" (click)="revertRestaurant(); editRestaurant = false">
       close
     </span>
     <div class="text text--bold overlay-header__title">Mi restaurante</div>
@@ -200,7 +200,7 @@
 <!-- Emoji selection -->
 <div class="overlay" [class.overlay--visible]="editEmoji">
   <div class="overlay-header">
-    <span class="mat-icon mat-icon--area mat-icon--dark clickable" (click)="editEmoji = false">
+    <span class="mat-icon mat-icon--area mat-icon--dark clickable" (click)="revertEmoji(); editEmoji = false">
       close
     </span>
     <div class="text text--bold overlay-header__title">Elige qué te representa</div>
