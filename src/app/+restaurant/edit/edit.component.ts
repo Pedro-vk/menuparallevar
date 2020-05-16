@@ -22,10 +22,12 @@ export class EditComponent implements OnInit {
   exists: boolean
   published: boolean
   restaurant: Restaurant
+  savedRestaurant: Restaurant
   editRestaurant: boolean
   editEmoji: boolean
   toastVisible: any
   toastMessage: string
+  savedHashState?: string
   // @ts-ignore
   canShare = !!navigator.share
   days = defaultDays.split('')
@@ -35,6 +37,9 @@ export class EditComponent implements OnInit {
   get isValid() {
     return this.checkIsValid()
   }
+  get isTouched() {
+    return this.checkIsTouched()
+  }
 
   constructor(
     private saveRestaurantGQL: SaveRestaurantGQL,
@@ -43,11 +48,12 @@ export class EditComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+    console.log(this)
     const restaurant = await this.fetchRestaurant()
 
     this.restaurant = restaurant || {
       icon: defaultEmoji,
-      menu: {name: defaultMenuName},
+      menu: {name: defaultMenuName, includeBeverage: false, includeBread: false},
       schedule: {days: [true, true, true, true, true], openAt: 0, closeAt: 0},
     } as any
     this.exists = !!restaurant
@@ -70,9 +76,11 @@ export class EditComponent implements OnInit {
   }
 
   async fetchRestaurant() {
-    return await this.getMyRestaurantGQL.fetch(undefined, {fetchPolicy: 'no-cache'})
+    const restaurant = await this.getMyRestaurantGQL.fetch(undefined, {fetchPolicy: 'no-cache'})
       .toPromise()
       .then(({data}) => data.myRestaurant)
+    this.savedRestaurant = JSON.parse(JSON.stringify(restaurant))
+    return restaurant
   }
 
   async save(basic?: boolean) {
@@ -90,9 +98,7 @@ export class EditComponent implements OnInit {
       this.setDefaultSections()
     }
 
-    await this.saveRestaurantGQL.mutate({restaurant})
-      .toPromise()
-      .then(({data}) => data.saveRestaurant.updated)
+    await this.saveRestaurant(restaurant)
 
     if (!basic) {
       this.showToast(`Menú ${this.published ? 'guardado' : 'publicado'}. ¡Compártelo con tus clientes!`)
@@ -104,13 +110,20 @@ export class EditComponent implements OnInit {
     }
   }
 
+  async saveRestaurant(restaurant: Restaurant) {
+    await this.saveRestaurantGQL.mutate({restaurant})
+      .toPromise()
+      .then(({data}) => data.saveRestaurant.updated)
+    this.savedRestaurant = JSON.parse(JSON.stringify(restaurant))
+  }
+
   setDefaultSections() {
     this.restaurant.menu.sections = defaultSections
       .map(title => ({title, items: []}))
   }
 
   async share() {
-    const {id, name, menu: {price}} = this.restaurant
+    const {id, name, menu: {price}} = this.savedRestaurant
     const data = {
       title: `Menú de ${name}`,
       text: `🍽️ Te envío el menú del día de ${name}, el precio es de ${price.toFixed(2)}€!\n👌 Disfrútalo\n`,
@@ -139,6 +152,20 @@ export class EditComponent implements OnInit {
       .filter(_ => !_)
 
     return !!price && !empties.length
+  }
+
+  checkIsTouched() {
+    return this.hashState() !== this.hashState(true)
+  }
+
+  hashState(saved?: boolean) {
+    const {price, sections, includeBeverage, includeBread} = (saved ? this.savedRestaurant : this.restaurant).menu
+
+    let hash = sections
+      .map(({items}) => items.join('|'))
+      .join('-')
+    hash += `-${[price, includeBeverage, includeBread].join('-')}`
+    return hash
   }
 
   showToast(text: string) {

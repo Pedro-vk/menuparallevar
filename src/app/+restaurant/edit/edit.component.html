@@ -96,10 +96,10 @@
   <div class="footer layout layout--buttons toast-wrapper">
     <div class="toast" [class.toast--active]="toastVisible">{{toastMessage}}</div>
 
-    <button type="button" class="button" [disabled]="!published || !isValid" (click)="share()">
+    <button type="button" class="button" [disabled]="!published || isTouched" (click)="share()">
       {{canShare ? 'Compartir' : 'Copiar link'}}
     </button>
-    <button type="button" class="button" [disabled]="!isValid" (click)="save()">
+    <button type="button" class="button" [disabled]="!isValid || !isTouched" (click)="save()">
       {{published ? 'Guardar' : 'Publicar'}}
     </button>
   </div>
