@@ -158,7 +158,7 @@ export class EditComponent implements OnInit {
   checkIsValid() {
     const {price, sections} = this.restaurant.menu
 
-    const empties = sections
+    const empties = (sections || [])
       .map(({items}) => items)
       .flat()
       .filter(_ => !_)
@@ -173,7 +173,7 @@ export class EditComponent implements OnInit {
   hashState(saved?: boolean) {
     const {price, sections, includeBeverage, includeBread} = (saved ? this.savedRestaurant : this.restaurant).menu
 
-    let hash = sections
+    let hash = (sections || [])
       .map(({items}) => items.join('|'))
       .join('-')
     hash += `-${[price, includeBeverage, includeBread].join('-')}`
