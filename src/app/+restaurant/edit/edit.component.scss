@@ -1,14 +1,11 @@
 @import '../../styles/index';
 
 :host {
-  min-height: 100%;
+  height: 100%;
 }
 
 .container {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  padding-bottom: $size---footer;
+  height: 100%;
 
   &--hidden {
     display: none;
@@ -16,7 +13,7 @@
 }
 
 .content {
-  flex: 1;
+  min-height: $size---content;
 }
 
 .footer-message {
@@ -27,9 +24,7 @@
   @include shadow(2, $reverse: true);
 
   height: $size---footer;
-  position: fixed;
-  left: 0;
-  width: 100%;
+  position: sticky;
   bottom: 0;
   background: gc(bg);
   border-top: 1px solid gc(border);
