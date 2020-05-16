@@ -140,7 +140,9 @@
         name="phone"
         [(ngModel)]="restaurant.phone"
         class="text input">
-      <div class="tooltip tooltip--center tooltip--error">Este campo es necesario</div>
+      <div class="tooltip tooltip--center tooltip--error">
+        {{restaurant.phone ? 'Formato no válido' : 'Este campo es necesario'}}
+      </div>
     </div>
 
     <div class="text text--small text--alt text--center padding--half-top">
