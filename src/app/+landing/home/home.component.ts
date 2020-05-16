@@ -11,7 +11,7 @@ import { GetUserGQL } from 'src/app/shared/graphql'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  emojis = [...'🌯🥙🥘🍚🍟🍝🍔🍕🌮🌭🍜🥪🍛🍝']
 
   user$: AngularFireAuth['user']
 

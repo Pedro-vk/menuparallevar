@@ -3,3 +3,14 @@
 .bgdark {
   background: gc(bgdark);
 }
+
+.emojis {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  justify-content: center;
+
+  .emoji {
+    margin: 0 $size---padding / 2;
+  }
+}

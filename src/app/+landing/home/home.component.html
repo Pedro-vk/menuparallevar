@@ -8,6 +8,13 @@
   <div (click)="logout()">logout</div>
 </div>
 
+<div class="emojis padding">
+  <div class="emoji emoji--alone" *ngFor="let emoji of emojis">
+    {{emoji}}
+  </div>
+</div>
+
+
 
 <div class="padding">
   <h1 class="text text--h1">
