@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app'
 import { filter } from 'rxjs/operators'
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private fireAuth: AngularFireAuth,
+    private router: Router,
     private getUserGQL: GetUserGQL,
     private getRestaurantsNumberGQL: GetRestaurantsNumberGQL,
   ) { }
@@ -29,11 +31,12 @@ export class HomeComponent implements OnInit {
       .then(({data}) => data.restaurantsNumber)
   }
 
-  login() {
-    this.fireAuth.signInWithPopup(new auth.GoogleAuthProvider())
+  async login() {
+    await this.fireAuth.signInWithPopup(new auth.GoogleAuthProvider())
+    this.router.navigate(['/mi-restaurante'])
   }
 
-  logout() {
-    this.fireAuth.signOut()
+  async logout() {
+    await this.fireAuth.signOut()
   }
 }
