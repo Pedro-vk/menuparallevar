@@ -13,6 +13,7 @@ import { GetUserGQL } from 'src/app/shared/graphql'
 export class HomeComponent implements OnInit {
   emojis = [...'🌯🥙🥘🍚🍟🍝🍔🍕🌮🌭🍜🥪🍛🍝']
 
+  companies: number | string = '∞'
   user$: AngularFireAuth['user']
 
   constructor(

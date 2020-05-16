@@ -1,11 +1,14 @@
-<ng-container *ngIf="user$ | async as user">
+<div class="toast toast--banner toast--alt text" *ngIf="user$ | async as user; else restaurantsNumber">
+  No soy {{user.displayName}}.
+  <span class="text--underline clickable" (click)="logout()">Cerrar sesión.</span>
+</div>
+<ng-template #restaurantsNumber>
   <div class="toast toast--banner toast--alt text">
-    No soy {{user.displayName}}.
-    <span class="text--underline clickable" (click)="logout()">Cerrar sesión.</span>
+    <span class="text--high">{{companies}}</span> restaurantes ya lo están usando 🚀
   </div>
+</ng-template>
 
-  <div class="divider--double"></div>
-</ng-container>
+<div class="divider--double"></div>
 
 <div class="emojis padding--bottom">
   <div class="emoji emoji--alone" *ngFor="let emoji of emojis">
