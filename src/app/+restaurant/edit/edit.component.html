@@ -99,7 +99,7 @@
     <button type="button" class="button" [disabled]="!published || isTouched" (click)="share()">
       {{canShare ? 'Compartir' : 'Copiar link'}}
     </button>
-    <button type="button" class="button" [disabled]="!isValid || !isTouched" (click)="save()">
+    <button type="button" class="button" [disabled]="!isValid || !isTouched" (click)="save('menu')">
       {{published ? 'Guardar' : 'Publicar'}}
     </button>
   </div>
@@ -190,7 +190,7 @@
       type="button"
       class="button button--full"
       [disabled]="info.invalid || !restaurant.name"
-      (click)="save(true); editRestaurant = false">
+      (click)="save('restaurant', true); editRestaurant = false">
 
       Guardar
     </button>
@@ -222,7 +222,7 @@
     <button
       type="button"
       class="button button--full"
-      (click)="save(true); editEmoji = false">
+      (click)="save('emoji', true); editEmoji = false">
 
       Guardar
     </button>

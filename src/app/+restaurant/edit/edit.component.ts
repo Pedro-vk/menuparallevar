@@ -83,16 +83,26 @@ export class EditComponent implements OnInit {
     return restaurant
   }
 
-  async save(basic?: boolean) {
+  async save(type: string, basic?: boolean) {
     const restaurant: Restaurant = {
-      ...this.restaurant,
+      ...this.savedRestaurant,
       id: undefined,
-      menu: {
-        ...this.restaurant.menu,
-        sections: (this.restaurant.menu.sections || [])
-          .map(section => ({...section, items: section.items.filter(_ => !!_)}))
-      },
     }
+
+    switch (type) {
+      case 'menu':
+        restaurant.menu = this.restaurant.menu
+        break
+      case 'emoji':
+        restaurant.icon = this.restaurant.icon
+        break
+      case 'restaurant':
+        restaurant.name = this.restaurant.name
+        restaurant.phone = this.restaurant.phone
+        restaurant.schedule = this.restaurant.schedule
+        break
+    }
+
     if ((!this.published && basic) || !restaurant.menu.sections.length) {
       delete restaurant.menu.sections
       this.setDefaultSections()
@@ -106,7 +116,7 @@ export class EditComponent implements OnInit {
     }
 
     if (!this.published && basic) {
-      this.restaurant.id = (await this.fetchRestaurant())?.id
+      this.restaurant.id = this.savedRestaurant.id = (await this.fetchRestaurant())?.id
     }
   }
 
