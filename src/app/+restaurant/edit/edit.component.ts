@@ -48,7 +48,6 @@ export class EditComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    console.log(this)
     const restaurant = await this.fetchRestaurant()
 
     this.restaurant = restaurant || {

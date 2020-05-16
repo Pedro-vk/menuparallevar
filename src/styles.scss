@@ -21,12 +21,15 @@ body {
 }
 
 app-root {
+  height: 100%;
+  display: block;
+  overflow-y: auto;
+}
+.app-root-content {
+  position: relative;
   max-width: $size---max-width;
   height: 100%;
   margin: auto;
-  display: block;
-  position: relative;
-  overflow-y: auto;
 }
 
 * {
