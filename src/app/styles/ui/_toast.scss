@@ -34,7 +34,9 @@ $ui-toast---height: 32px !default;
   &--banner {
     height: $ui-toast---height;
     width: 100%;
-    left: 0;
+    max-width: $size---max-width;
+    left: 50%;
+    transform: translateX(-50%);
     top: 0;
     text-align: center;
     position: fixed;

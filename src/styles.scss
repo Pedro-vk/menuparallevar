@@ -21,10 +21,11 @@ body {
 }
 
 app-root {
-  max-width: 460px;
+  max-width: $size---max-width;
   height: 100%;
   margin: auto;
   display: block;
+  position: relative;
 }
 
 * {
