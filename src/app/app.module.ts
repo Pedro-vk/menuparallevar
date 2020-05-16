@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule } from '@angular/forms'
 import { AngularFireModule } from '@angular/fire'
+import { AngularFireAnalyticsModule, ScreenTrackingService, UserTrackingService, DEBUG_MODE } from '@angular/fire/analytics'
 
 import { environment } from '../environments/environment'
 
@@ -34,10 +35,14 @@ registerLocaleData(localeEs, 'es')
     FormsModule,
 
     AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAnalyticsModule,
   ],
   providers: [
     // ...providers,
     // ...pipes,
+    ScreenTrackingService,
+    UserTrackingService,
+    {provide: DEBUG_MODE, useValue: !environment.production},
     {provide: LOCALE_ID, useValue: 'es'},
   ],
   bootstrap: [AppComponent]
