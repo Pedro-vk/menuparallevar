@@ -124,7 +124,10 @@ export class EditComponent implements OnInit {
     await this.saveRestaurantGQL.mutate({restaurant})
       .toPromise()
       .then(({data}) => data.saveRestaurant.updated)
-    this.savedRestaurant = JSON.parse(JSON.stringify(restaurant))
+    this.savedRestaurant = {
+      ...JSON.parse(JSON.stringify(restaurant)),
+      id: this.savedRestaurant.id,
+    }
   }
 
   setDefaultSections() {
@@ -148,7 +151,7 @@ export class EditComponent implements OnInit {
         await navigator.clipboard.writeText(data.text + data.url)
         this.showToast(`Link copiado en el portapapeles. ¡Listo para mandar!`)
       } catch {
-        console.log('No Share and Clipboard API!')
+        console.warn('No Share and Clipboard API!')
       }
     }
   }
