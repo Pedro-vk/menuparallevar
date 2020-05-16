@@ -7,9 +7,9 @@
     <div class="layout layout--sides padding--half-top">
       <div class="layout--no-overflow padding--right">
         <h1 class="text text--h1 text--ellipsis">{{restaurant.name}}</h1>
-        <span class="text text--small text--link padding--half-top clickable" (click)="editRestaurant = true">
+        <div class="text text--small text--link padding--half-top clickable" (click)="editRestaurant = true">
           Editar información de mi restaurante
-        </span>
+        </div>
       </div>
       <div class="emoji emoji--alone clickable tooltip-wrapper" (click)="helpDone('icon'); editEmoji = true">
         {{restaurant.icon}}
