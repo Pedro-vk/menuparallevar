@@ -1,5 +1,10 @@
 @import '../../styles/index';
 
+:host {
+  padding-top: $size---padding * 4;
+  display: block;
+}
+
 .bgdark {
   background: gc(bgdark);
 }

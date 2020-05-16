@@ -1,20 +1,17 @@
-<div class="padding">
-  Usuario: {{(user$ | async)?.displayName}}
-  <br><br>
-  <div routerLink="mi-restaurante">Editar mi restaurante</div>
-  <br><br>
+<ng-container *ngIf="user$ | async as user">
+  <div class="toast toast--banner toast--alt text">
+    ¡Hola {{user.displayName}}!
+    <span class="text--underline clickable" (click)="logout()">Cerrar sesión.</span>
+  </div>
 
-  <div (click)="login()">login</div>
-  <div (click)="logout()">logout</div>
-</div>
+  <div class="divider--double"></div>
+</ng-container>
 
-<div class="emojis padding">
+<div class="emojis padding--bottom">
   <div class="emoji emoji--alone" *ngFor="let emoji of emojis">
     {{emoji}}
   </div>
 </div>
-
-
 
 <div class="padding">
   <h1 class="text text--h1">
@@ -29,9 +26,14 @@
 </div>
 
 <div class="padding layout layout--buttons">
-  <button type="button" class="button">
-    Crear
+  <button type="button" class="button" routerLink="mi-restaurante" *ngIf="user$ | async; else loginButton">
+    Editar
   </button>
+  <ng-template #loginButton>
+    <button type="button" class="button" (click)="login()">
+      Crear
+    </button>
+  </ng-template>
   <button type="button" class="button button--alt text--ellipsis">
     Ver ejemplo
   </button>
