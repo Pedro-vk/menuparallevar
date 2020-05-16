@@ -35,14 +35,18 @@ registerLocaleData(localeEs, 'es')
     FormsModule,
 
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAnalyticsModule,
+    ...(environment.production ? [AngularFireAnalyticsModule] : []),
   ],
   providers: [
     // ...providers,
     // ...pipes,
-    ScreenTrackingService,
-    UserTrackingService,
-    {provide: DEBUG_MODE, useValue: !environment.production},
+    ...(environment.production
+      ? [
+        ScreenTrackingService,
+        UserTrackingService,
+        {provide: DEBUG_MODE, useValue: !environment.production},
+      ]
+      : []),
     {provide: LOCALE_ID, useValue: 'es'},
   ],
   bootstrap: [AppComponent]
