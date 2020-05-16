@@ -1,6 +1,6 @@
 <ng-container *ngIf="user$ | async as user">
   <div class="toast toast--banner toast--alt text">
-    ¡Hola {{user.displayName}}!
+    No soy {{user.displayName}}.
     <span class="text--underline clickable" (click)="logout()">Cerrar sesión.</span>
   </div>
 
@@ -13,31 +13,44 @@
   </div>
 </div>
 
-<div class="padding">
-  <h1 class="text text--h1">
-    Crea el menú de tu restaurante. <span class="text--high">Online</span>.
-  </h1>
+<ng-container *ngIf="user$ | async as user; else defaultView">
+  <div class="padding">
+    <h1 class="text text--h1">
+      Hola de nuevo,
+      <br>
+      <span class="text--high">{{user.displayName}}</span>.
+    </h1>
 
-  <div class="divider--space"></div>
+    <div class="divider--space"></div>
 
-  <h2 class="text text--alt">
-    En menos de 5 minutos podrás compartirlo con todos tus clientes.
-  </h2>
-</div>
+    <button type="button" class="button button--full" routerLink="mi-restaurante">
+      Edit mi restaurante
+    </button>
+  </div>
+</ng-container>
 
-<div class="padding layout layout--buttons">
-  <button type="button" class="button" routerLink="mi-restaurante" *ngIf="user$ | async; else loginButton">
-    Editar
-  </button>
-  <ng-template #loginButton>
+<ng-template #defaultView>
+  <div class="padding">
+    <h1 class="text text--h1">
+      Crea el menú de tu restaurante. <span class="text--high">Online</span>.
+    </h1>
+
+    <div class="divider--space"></div>
+
+    <h2 class="text text--alt">
+      En menos de 5 minutos podrás compartirlo con todos tus clientes.
+    </h2>
+  </div>
+
+  <div class="padding layout layout--buttons">
     <button type="button" class="button" (click)="login()">
       Crear
     </button>
-  </ng-template>
-  <button type="button" class="button button--alt text--ellipsis">
-    Ver ejemplo
-  </button>
-</div>
+    <button type="button" class="button button--alt text--ellipsis">
+      Ver ejemplo
+    </button>
+  </div>
+</ng-template>
 
 <div class="divider--double"></div>
 
