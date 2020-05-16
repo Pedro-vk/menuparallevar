@@ -76,8 +76,6 @@
 
   &-content {
     flex: 1;
-    padding: $size---padding;
-    padding-top: 20px;
   }
   &-header {
     padding: $size---padding;
@@ -113,6 +111,29 @@
   }
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px + 20px, 1fr));
+  grid-auto-rows: 1fr;
+
+  &:before{
+    content: '';
+    width: 0;
+    padding-bottom: 100%;
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
+
+  &__cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  & > &__cell:first-child {
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+  }
+}
 
 .schedule,
 .input {
@@ -149,6 +170,7 @@
   }
 }
 
+// Tooltip component
 .tooltip {
   @include transition(fast);
   @include ui-text(small);

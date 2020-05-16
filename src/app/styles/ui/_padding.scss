@@ -2,6 +2,8 @@
   .padding {
     padding: $size---padding;
 
+    &--half { padding: $size---padding / 2; }
+
     &--top { padding-top: $size---padding; }
     &--left { padding-left: $size---padding; }
     &--right { padding-right: $size---padding; }

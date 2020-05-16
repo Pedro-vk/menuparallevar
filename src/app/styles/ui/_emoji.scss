@@ -16,7 +16,6 @@ $ui-emoji---size: 64px !default;
   display: inline-block;
   text-align: center;
   vertical-align: middle;
-  margin: $size---padding;
   cursor: default;
 
   &--selected {
@@ -27,11 +26,6 @@ $ui-emoji---size: 64px !default;
   &--alone {
     margin: 0;
     flex-shrink: 0;
-  }
-
-  &-wrapper {
-    text-align: center;
-    padding: $size---padding / 2 !important;
   }
 }
 

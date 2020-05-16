@@ -116,7 +116,7 @@
     <span class="mat-icon mat-icon--area"></span>
   </div>
 
-  <form #info="ngForm" class="overlay-content">
+  <form #info="ngForm" class="overlay-content padding">
     <div class="padding--top">
       <div class="text text--small text--alt">Nombre</div>
       <input
@@ -207,14 +207,15 @@
     <span class="mat-icon mat-icon--area"></span>
   </div>
 
-  <div class="overlay-content emoji-wrapper">
-    <div
-      *ngFor="let emoji of emojis; trackBy: trackIndex"
-      class="emoji clickable"
-      [class.emoji--selected]="emoji === restaurant?.icon"
-      (click)="restaurant.icon = emoji">
+  <div class="overlay-content padding--half grid">
+    <div class="grid__cell" *ngFor="let emoji of emojis; trackBy: trackIndex">
+      <div
+        class="emoji clickable"
+        [class.emoji--selected]="emoji === restaurant?.icon"
+        (click)="restaurant.icon = emoji">
 
-      {{emoji}}
+        {{emoji}}
+      </div>
     </div>
   </div>
 
