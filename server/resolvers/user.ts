@@ -14,8 +14,8 @@ export class UserResolver {
   @role(Roles.ALL)
   static async removeUserData(parent: unknown, args: unknown, {db, uid}: Context) {
     if (uid) {
-      await db.collection('user').remove({_id: uid})
-      await db.collection('restaurants').remove({createdBy: uid})
+      await db.collection('user').deleteOne({_id: uid})
+      await db.collection('restaurants').deleteOne({createdBy: uid})
       return true
     }
     return false
