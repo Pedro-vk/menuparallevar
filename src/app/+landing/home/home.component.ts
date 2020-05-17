@@ -12,7 +12,7 @@ import { GetUserGQL, GetRestaurantsNumberGQL } from 'src/app/shared/graphql'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  emojis = [...'🌯🥙🥘🍚🍟🍝🍔🍕🌮🌭🍜🥪🍛🍝']
+  emojis = [...'🍕🌮🍜🌯🍝🍔🍕🌮🍜🌯🍝🍔']
 
   user$: AngularFireAuth['user']
   restaurants$: Promise<number>
