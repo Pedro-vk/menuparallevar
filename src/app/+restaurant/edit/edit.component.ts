@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core'
+import { Router } from '@angular/router'
+import { AngularFireAuth } from '@angular/fire/auth'
 
-import { SaveRestaurantGQL, GetMyRestaurantGQL, Restaurant } from 'src/app/shared/graphql'
+import { SaveRestaurantGQL, GetMyRestaurantGQL, RemoveUserDataGQL, Restaurant } from 'src/app/shared/graphql'
 import { inputNumberFixer } from 'src/app/shared'
 
 const defaultSections = ['Entrante', 'Plato principal', 'Postre']
@@ -54,8 +56,11 @@ export class EditComponent implements OnInit {
   }, 0, 900, 2)
 
   constructor(
+    private fireAuth: AngularFireAuth,
+    private router: Router,
     private saveRestaurantGQL: SaveRestaurantGQL,
     private getMyRestaurantGQL: GetMyRestaurantGQL,
+    private removeUserDataGQL: RemoveUserDataGQL,
     private cdr: ChangeDetectorRef,
   ) { }
 
@@ -146,6 +151,18 @@ export class EditComponent implements OnInit {
   setDefaultSections() {
     this.restaurant.menu.sections = defaultSections
       .map(title => ({title, items: []}))
+  }
+
+  removeData() {
+    setTimeout(async () => {
+      const remove = confirm('¿Quieres eliminar todos tus datos?')
+
+      if (remove) {
+        await this.removeUserDataGQL.mutate().toPromise()
+      }
+      await this.fireAuth.signOut()
+      await this.router.navigate(['/'])
+    }, 100)
   }
 
   async share() {

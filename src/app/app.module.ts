@@ -1,11 +1,14 @@
 import { NgModule, LOCALE_ID } from '@angular/core'
 import { CommonModule, registerLocaleData } from '@angular/common'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import localeEs from '@angular/common/locales/es'
 import { HttpClientModule } from '@angular/common/http'
 import { BrowserModule } from '@angular/platform-browser'
 import { FormsModule } from '@angular/forms'
 import { AngularFireModule } from '@angular/fire'
 import { AngularFireAnalyticsModule, ScreenTrackingService, UserTrackingService, DEBUG_MODE } from '@angular/fire/analytics'
+
+import { MatMenuModule } from '@angular/material/menu'
 
 import { environment } from '../environments/environment'
 
@@ -33,9 +36,12 @@ registerLocaleData(localeEs, 'es')
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     ...(environment.production ? [AngularFireAnalyticsModule] : []),
+
+    MatMenuModule,
   ],
   providers: [
     // ...providers,

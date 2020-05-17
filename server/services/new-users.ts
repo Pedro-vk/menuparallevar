@@ -12,7 +12,7 @@ export class NewUserMiddleware implements Middleware {
 
     const exsists = db.collection('user').find({_id: uid})
 
-    if (!this.usedUid.includes(uid) && !await exsists.count()) {
+    if (!await exsists.count()) {
       await db.collection('user')
         .insertOne({
           _id: uid,

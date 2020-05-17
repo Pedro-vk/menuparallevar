@@ -58,7 +58,12 @@
             placeholder="Nuevo plato"
             class="text dish__input">
 
-          <span class="dish__icon mat-icon mat-icon--area clickable" (click)="section.items.splice(index, 1)">delete</span>
+          <span
+            class="dish__icon mat-icon mat-icon--area clickable"
+            (click)="section.items.splice(index, 1)">
+
+            delete
+          </span>
         </div>
 
         <div class="divider--space"></div>
@@ -119,7 +124,11 @@
       close
     </span>
     <div class="text text--bold overlay-header__title">Mi restaurante</div>
-    <span class="mat-icon mat-icon--area"></span>
+    <span class="mat-icon mat-icon--area mat-icon--dark clickable" [matMenuTriggerFor]="menu">more_vert</span>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="removeData()">Eliminar todos tus datos</button>
+    </mat-menu>
   </div>
 
   <form #info="ngForm" class="overlay-content padding">

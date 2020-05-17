@@ -8,3 +8,7 @@ type User {
 type Query {
   user: User
 }
+
+type Mutation {
+  removeUserData: Boolean
+}

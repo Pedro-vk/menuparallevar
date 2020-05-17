@@ -1,8 +1,16 @@
 @import './app/styles/index';
+@import '~@angular/material/theming';
 
 @include reset;
 
+@include mat-core;
 @include ui-components;
+
+$app-color: mat-palette($mat-indigo);
+
+$app-color-theme: mat-light-theme($app-color, $app-color, $app-color);
+
+@include angular-material-theme($app-color-theme);
 
 html,
 body {
