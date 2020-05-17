@@ -37,7 +37,11 @@ $ui-button---height: 40px !default;
     pointer-events: none;
   }
 
-  &:hover,
+  @media (hover: hover) {
+    &:hover {
+      box-shadow: inset 0 0 0 100px gc(shadow, 0.16);
+    }
+  }
   &:active {
     box-shadow: inset 0 0 0 100px gc(shadow, 0.16);
   }
@@ -45,7 +49,11 @@ $ui-button---height: 40px !default;
   &--alt {
     color: gc(c3);
 
-    &:hover,
+    @media (hover: hover) {
+      &:hover {
+        box-shadow: inset 0 0 0 100px gc(shadow, 0.04);
+      }
+    }
     &:active {
       box-shadow: inset 0 0 0 100px gc(shadow, 0.04);
     }
