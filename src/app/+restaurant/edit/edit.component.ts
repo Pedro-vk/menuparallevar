@@ -258,7 +258,9 @@ export class EditComponent implements OnInit {
 
   focusLastInput(element: any) {
     setTimeout(() => {
-      Array.from<any>(element.querySelectorAll('input')).pop().focus()
+      const input = Array.from<any>(element.querySelectorAll('input')).pop()
+      input.focus()
+      input.setAttribute('autofocus', 'autofocus')
     }, 100)
   }
 
