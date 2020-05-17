@@ -3,9 +3,18 @@ $ui-button---color: gc(bg) !default;
 $ui-button---background: gc(brand) !default;
 $ui-button---height: 40px !default;
 
+@mixin ui-button-clickable($scale: 1) {
+  @include transition(fast);
+
+  &:active {
+    transform: scale(1 - ($scale * 0.04));
+  }
+}
+
 @mixin ui-button() {
   @include ui-text(upper);
   @include transition(fast);
+  @include ui-button-clickable;
 
   border: 0;
   color: $ui-button---color;
@@ -26,10 +35,6 @@ $ui-button---height: 40px !default;
   &[disabled] {
     color: gc(c1);
     pointer-events: none;
-  }
-
-  &:active {
-    transform: scale(0.96);
   }
 
   &:hover,
