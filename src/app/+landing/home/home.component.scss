@@ -14,27 +14,24 @@ $emojis---visible-width: 488px;
 .emojis {
   display: flex;
   flex-wrap: nowrap;
-  overflow: hidden;
   justify-content: flex-start;
-
-  &:before {
-    content: '';
-    display: block;
-    width: 0;
-    animation: emoji-slider 10s linear infinite;
-  }
+  animation: emoji-slider 10s linear infinite;
 
   .emoji {
     margin: 0 $size---padding / 2;
+  }
+
+  &-wrapper {
+    overflow: hidden;
   }
 }
 
 @keyframes emoji-slider {
   from {
-    margin-left: $size---padding / -2;
+    transform: translateX($size---padding / -2);
   }
 
   to {
-    margin-left: -$emojis---visible-width;
+    transform: translateX(-$emojis---visible-width);
   }
 }
