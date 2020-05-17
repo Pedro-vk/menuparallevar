@@ -1,13 +1,16 @@
-<div class="toast toast--banner toast--alt text" *ngIf="user$ | async as user; else restaurantsNumber">
-  No soy {{user.displayName}}.
-  <span class="text--underline clickable" (click)="logout()">Cerrar sesión.</span>
-</div>
-<ng-template #restaurantsNumber>
-  <div class="toast toast--banner toast--alt text">
-    <span class="text--high">{{(restaurants$ | async) || '∞'}}</span> restaurantes ya lo están usando 🚀
+<div class="padding--right padding--left">
+  <div class="toast toast--banner toast--alt text" *ngIf="user$ | async as user; else restaurantsNumber">
+    No soy {{user.displayName}}.
+    <span class="text--underline clickable" (click)="logout()">Cerrar sesión.</span>
   </div>
-</ng-template>
+  <ng-template #restaurantsNumber>
+    <div class="toast toast--banner toast--alt text">
+      <span class="text--high">{{(restaurants$ | async) || '∞'}}</span> restaurantes ya lo están usando 🚀
+    </div>
+  </ng-template>
+</div>
 
+<div class="divider--double"></div>
 <div class="divider--double"></div>
 
 <div class="emojis-wrapper padding--bottom">
