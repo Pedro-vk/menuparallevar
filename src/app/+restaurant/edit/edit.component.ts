@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core'
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core'
 
 import { SaveRestaurantGQL, GetMyRestaurantGQL, Restaurant } from 'src/app/shared/graphql'
 import { inputNumberFixer } from 'src/app/shared'
@@ -17,7 +17,8 @@ const defaultEmojis = `
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.scss']
+  styleUrls: ['./edit.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditComponent implements OnInit {
   exists: boolean
@@ -213,6 +214,13 @@ export class EditComponent implements OnInit {
     if (complete && type === 'price' && this.restaurant.icon === defaultEmoji) {
       this.tooltip = 'icon'
     }
+  }
+
+  focusLastInput(element: any) {
+    setTimeout(() => {
+      console.log(element)
+      Array.from<any>(element.querySelectorAll('input')).pop().focus()
+    }, 100)
   }
 
   trackIndex(i: number) {

@@ -44,7 +44,7 @@
     </div>
 
     <ng-container *ngFor="let section of restaurant.menu.sections; let sIndex = index; let last = last; trackBy: trackIndex">
-      <div class="padding--top padding--bottom">
+      <div class="padding--top padding--bottom" #sectionContainer>
         <h3 class="text text--alt">{{section.title}}</h3>
 
         <div
@@ -63,7 +63,11 @@
 
         <div class="divider--space"></div>
 
-        <button type="button" class="button button--secondary" (click)="section.items.push(undefined)">
+        <button
+          type="button"
+          (click)="section.items.push(undefined); focusLastInput(sectionContainer)"
+          class="button button--secondary">
+
           Añadir {{section.title | lowercase}}
         </button>
       </div>
