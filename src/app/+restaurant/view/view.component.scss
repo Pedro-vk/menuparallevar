@@ -28,6 +28,7 @@
   background: gc(bg);
   top: 32px;
   z-index: 2;
+  border-bottom: 1px solid gc(border);
   margin: 0 (-$size---padding);
   padding-right: $size---padding;
   padding-left: $size---padding;
