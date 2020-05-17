@@ -98,7 +98,11 @@ export class EditComponent implements OnInit {
 
     switch (type) {
       case 'menu':
-        restaurant.menu = this.restaurant.menu
+        restaurant.menu = {
+          ...this.restaurant.menu,
+          sections: (this.restaurant.menu.sections || [])
+            .map(section => ({...section, items: section.items.filter(_ => !!_)})),
+        }
         break
       case 'emoji':
         restaurant.icon = this.restaurant.icon
@@ -168,12 +172,12 @@ export class EditComponent implements OnInit {
   checkIsValid() {
     const {price, sections} = this.restaurant.menu
 
-    const items = (sections || [])
+    const list = (sections || [])
       .map(({items}) => items)
       .flat()
-    const empties = items.filter(_ => !_)
+    const filled = list.filter(_ => !!_)
 
-    return !!price && items.length && !empties.length
+    return !!price && list.length && filled.length
   }
 
   checkIsTouched() {
