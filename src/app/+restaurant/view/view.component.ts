@@ -71,7 +71,6 @@ export class ViewComponent implements OnInit {
             let remaining = 0
             Array.from({length: 7})
               .forEach((_, i) => {
-                console.log([!stop, !days[(day + 1 + i) % 7], (day + 1 + i) % 7])
                 if (!stop && !days[(day + 1 + i) % 7]) {
                   remaining++
                 } else {
@@ -79,7 +78,6 @@ export class ViewComponent implements OnInit {
                 }
               })
             closeRemaining = `Abre el ${weekDays[(remaining + day + 1) % 7]}`
-            console.log(day, stop, remaining, closeRemaining)
           }
           let openRemaining: any = (closeAt - now)
           if (openRemaining < 0) {
