@@ -119,9 +119,16 @@
 <div class="overlay" [class.overlay--visible]="editRestaurant" *ngIf="restaurant">
 
   <div class="overlay-header">
-    <span class="mat-icon mat-icon--area mat-icon--dark clickable" *ngIf="exists" (click)="revertRestaurant(); editRestaurant = false">
+    <span
+      class="mat-icon mat-icon--area mat-icon--dark clickable"
+      *ngIf="exists; else emptyIcon"
+      (click)="revertRestaurant(); editRestaurant = false">
+
       close
     </span>
+    <ng-template #emptyIcon>
+      <span class="mat-icon mat-icon--area"></span>
+    </ng-template>
     <div class="text text--bold overlay-header__title">Mi restaurante</div>
     <span class="mat-icon mat-icon--area mat-icon--dark clickable" [matMenuTriggerFor]="menu">more_vert</span>
 
