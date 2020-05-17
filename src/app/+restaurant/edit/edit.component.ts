@@ -127,6 +127,7 @@ export class EditComponent implements OnInit {
     }
 
     await this.saveRestaurant(restaurant)
+    this.exists = true
 
     if (!basic) {
       this.showToast(`Menú ${this.published ? 'guardado' : 'publicado'}. ¡Compártelo con tus clientes!`)
