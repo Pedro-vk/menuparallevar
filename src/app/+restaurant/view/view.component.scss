@@ -23,6 +23,12 @@
   padding: $size---padding;
 }
 
+.sticky-header {
+  position: sticky;
+  background: gc(bg);
+  top: 32px;
+}
+
 .status {
   &__indicator {
     width: 12px;

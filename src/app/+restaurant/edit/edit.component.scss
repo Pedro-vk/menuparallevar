@@ -31,6 +31,13 @@
   padding: $size---padding;
 }
 
+.sticky-header {
+  position: sticky;
+  background: gc(bg);
+  top: 32px;
+  z-index: 2;
+}
+
 .price-input {
   width: 90px;
   text-align: right;
