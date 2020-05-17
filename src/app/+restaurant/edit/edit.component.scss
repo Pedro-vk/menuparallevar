@@ -54,6 +54,38 @@
   }
 }
 
+.dish {
+  position: relative;
+  margin: 0 $size---padding / -2;
+  height: 40px;
+
+  &__input {
+    @include transition(fast);
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+    padding-left: $size---padding / 2;
+    padding-right: 40px + $size---padding;
+    border-radius: 4px;
+
+    &:focus {
+      background: gc(brand, 0.08);
+    }
+
+    @include placeholder {
+      opacity: 0.24;
+      font-style: italic;
+    }
+  }
+  &__icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
 .tooltip--visible ~ .price-tip,
 .price-input:focus ~ .price-tip {
   opacity: 0;

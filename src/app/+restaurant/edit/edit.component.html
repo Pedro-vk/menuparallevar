@@ -49,16 +49,16 @@
 
         <div
           *ngFor="let item of section.items; let index = index; trackBy: trackIndex"
-          class="padding--half-top layout layout--sides">
+          class="dish">
 
           <input
             required
             name="dish-{{sIndex}}-{{index}}"
             [(ngModel)]="section.items[index]"
             placeholder="Nuevo plato"
-            class="text">
+            class="text dish__input">
 
-          <span class="mat-icon clickable" (click)="section.items.splice(index, 1)">delete</span>
+          <span class="dish__icon mat-icon mat-icon--area clickable" (click)="section.items.splice(index, 1)">delete</span>
         </div>
 
         <div class="divider--space"></div>
