@@ -53,10 +53,13 @@
       <div class="status__text">
         <div class="text text--small">{{status.open ? 'Abierto ahora' : 'Cerrado'}}</div>
         <div class="text text--small text--alt" *ngIf="status.open">
-          Cierra en {{status.openRemaining}}
+          {{status.openRemaining}}
         </div>
-        <div class="text text--small text--alt" *ngIf="!status.open">
+        <div class="text text--small text--alt" *ngIf="!status.open && !status.closeRemaining">
           Abre a las {{status.openAt | date : 'HH:mm' : '+0'}}
+        </div>
+        <div class="text text--small text--alt" *ngIf="!status.open && status.closeRemaining">
+          {{status.closeRemaining}} a las {{status.openAt | date : 'HH:mm' : '+0'}}
         </div>
       </div>
     </ng-container>

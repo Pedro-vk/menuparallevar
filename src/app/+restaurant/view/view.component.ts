@@ -5,6 +5,8 @@ import { switchMap, map, startWith } from 'rxjs/operators'
 
 import { Query, GetRestaurantGQL, Restaurant, Menu } from 'src/app/shared/graphql'
 
+const weekDays = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
+
 @Component({
   selector: 'app-view',
   templateUrl: './view.component.html',
@@ -51,24 +53,48 @@ export class ViewComponent implements OnInit {
           const h24 = 24 * 60 * 60 * 1000
           const m1 = 60 * 1000
           const now = (Date.now() - (new Date().getTimezoneOffset() * m1)) % h24
+          const midnightOffset = (openAt > closeAt) ? closeAt : 0
+          const day = (new Date(Date.now() - midnightOffset).getDay() + 6) % 7
           let open = false
-          if (openAt <= closeAt) {
-            open = openAt <= now && now <= closeAt
-          } else {
-            open = openAt <= now || now <= closeAt
+          let closeRemaining
+          if (days[day]) {
+            if (openAt === closeAt) {
+              open = true
+            } else if (openAt < closeAt) {
+              open = openAt <= now && now <= closeAt
+            } else {
+              open = openAt <= now || now <= closeAt
+            }
+          }
+          if (!open && !days[(day + 1) % 7]) {
+            let stop = false
+            let remaining = 0
+            Array.from({length: 7})
+              .forEach((_, i) => {
+                console.log([!stop, !days[(day + 1 + i) % 7], (day + 1 + i) % 7])
+                if (!stop && !days[(day + 1 + i) % 7]) {
+                  remaining++
+                } else {
+                  stop = true
+                }
+              })
+            closeRemaining = `Abre el ${weekDays[(remaining + day + 1) % 7]}`
+            console.log(day, stop, remaining, closeRemaining)
           }
           let openRemaining: any = (closeAt - now)
           if (openRemaining < 0) {
             openRemaining += h24
           }
-          if (openRemaining < (60 * m1)) {
+          if (openAt === closeAt) {
+            openRemaining = 'Abieto 24 horas'
+          } else if (openRemaining < (60 * m1)) {
             const m = Math.ceil(openRemaining / 60 / 1000)
-            openRemaining = `${m} minuto${m !== 1 ? 's' : ''}`
+            openRemaining = `Cierra en ${m} minuto${m !== 1 ? 's' : ''}`
           } else {
             const h = Math.floor(openRemaining / 60 / 60 / 1000)
-            openRemaining = `${h} hora${h !== 1 ? 's' : ''}`
+            openRemaining = `Cierra en ${h} hora${h !== 1 ? 's' : ''}`
           }
-          return {openAt, closeAt, open, openRemaining}
+          return {openAt, closeAt, open, openRemaining, closeRemaining}
         })
       )
   }
