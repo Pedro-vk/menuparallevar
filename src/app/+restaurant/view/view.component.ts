@@ -20,7 +20,15 @@ export class ViewComponent implements OnInit {
     this.restaurant$ = this.route.paramMap
       .pipe(
         switchMap(params => this.getRestaurantGQL.fetch({id: params.get('id')})),
-        map(({data}) => data.restaurant)
+        map(({data}) => data.restaurant),
+        map(restaurant => ({
+          ...restaurant,
+          menu: {
+            ...restaurant.menu,
+            sections: restaurant.menu.sections
+              .filter(({items}) => items.length),
+          },
+        }))
       )
   }
 
