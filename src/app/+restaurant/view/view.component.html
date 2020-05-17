@@ -7,7 +7,10 @@
     <div class="layout layout--sides padding--half-top">
       <div class="layout--no-overflow padding--right">
         <h1 class="text text--h1 text--ellipsis">{{restaurant.name}}</h1>
-        <span class="text text--small text--alt padding--half-top">{{now | date : 'EEEE, d \'de\' MMMM'}}</span>
+        <span class="text text--small text--alt padding--half-top">
+          {{now | date : 'EEEE,' | titlecase}}
+          {{now | date : 'd \'de\' MMMM'}}
+        </span>
       </div>
       <div class="emoji emoji--alone">{{restaurant.icon}}</div>
     </div>
