@@ -27,6 +27,10 @@
   position: sticky;
   background: gc(bg);
   top: 32px;
+  z-index: 2;
+  margin: 0 (-$size---padding);
+  padding-right: $size---padding;
+  padding-left: $size---padding;
 }
 
 .status {
