@@ -168,12 +168,12 @@ export class EditComponent implements OnInit {
   checkIsValid() {
     const {price, sections} = this.restaurant.menu
 
-    const empties = (sections || [])
+    const items = (sections || [])
       .map(({items}) => items)
       .flat()
-      .filter(_ => !_)
+    const empties = items.filter(_ => !_)
 
-    return !!price && !empties.length
+    return !!price && items.length && !empties.length
   }
 
   checkIsTouched() {
@@ -222,7 +222,6 @@ export class EditComponent implements OnInit {
 
   focusLastInput(element: any) {
     setTimeout(() => {
-      console.log(element)
       Array.from<any>(element.querySelectorAll('input')).pop().focus()
     }, 100)
   }
