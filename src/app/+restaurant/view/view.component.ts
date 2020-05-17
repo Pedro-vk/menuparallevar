@@ -13,6 +13,7 @@ import { Query, GetRestaurantGQL, Restaurant, Menu } from 'src/app/shared/graphq
 export class ViewComponent implements OnInit {
   restaurant$: Observable<Restaurant>
   status$: Observable<{open: boolean, openAt: number, closeAt: number, openRemaining: string}>
+  includes$: Observable<string>
   now = Date.now()
 
   constructor(private route: ActivatedRoute, private getRestaurantGQL: GetRestaurantGQL) { }
@@ -31,6 +32,14 @@ export class ViewComponent implements OnInit {
           },
         }))
       )
+
+    this.includes$ = this.restaurant$
+      .pipe(map(({menu: {includeBeverage, includeBread}}) => {
+        if (includeBeverage === includeBread) {
+          return includeBeverage ? 'Incluye pan y bebida' : 'No incluye pan o bebida'
+        }
+        return `Incluye ${includeBread ? 'pan' : 'bebida'}`
+      }))
 
     this.status$ = combineLatest(
       this.restaurant$,
@@ -63,16 +72,4 @@ export class ViewComponent implements OnInit {
         })
       )
   }
-
-  menuIncludes(menu: Menu) {
-    const list = []
-    if (menu.includeBread) {
-      list.push('pan')
-    }
-    if (menu.includeBeverage) {
-      list.push('bebida')
-    }
-    return list.join(' y ')
-  }
-
 }

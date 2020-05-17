@@ -31,8 +31,8 @@
       <div class="divider" [class.divider--space]="last"></div>
     </ng-container>
 
-    <div class="padding--top text text--small text--alt text--center" *ngIf="menuIncludes(restaurant.menu) as includes">
-      Incluye {{includes}}
+    <div class="padding--top text text--small text--alt text--center">
+      {{includes$ | async}}
     </div>
 
     <div class="divider--space-and-half"></div>
