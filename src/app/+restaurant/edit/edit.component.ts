@@ -50,6 +50,9 @@ export class EditComponent implements OnInit {
   get isTouched() {
     return this.checkIsTouched()
   }
+  get isInfoTouched() {
+    return this.checkIsInfoTouched()
+  }
 
   priceFixer = inputNumberFixer(price => {
     this.restaurant.menu.price = price
@@ -199,17 +202,28 @@ export class EditComponent implements OnInit {
   }
 
   checkIsTouched() {
-    return this.hashState() !== this.hashState(true)
+    return this.hashState('main') !== this.hashState('main', true)
   }
 
-  hashState(saved?: boolean) {
-    const {price, sections, includeBeverage, includeBread} = (saved ? this.savedRestaurant : this.restaurant).menu
+  checkIsInfoTouched() {
+    return this.hashState('info') !== this.hashState('info', true)
+  }
 
-    let hash = (sections || [])
-      .map(({items}) => items.filter(_ => !!_).join('|'))
-      .join('-')
-    hash += `-${[price, includeBeverage, includeBread].join('-')}`
-    return hash
+  hashState(type: string, saved?: boolean) {
+    const restaurant = (saved ? this.savedRestaurant : this.restaurant)
+    if (type === 'main') {
+      const {price, sections, includeBeverage, includeBread} = restaurant.menu
+
+      let hash = (sections || [])
+        .map(({items}) => items.filter(_ => !!_).join('|'))
+        .join('-')
+      hash += `-${[price, includeBeverage, includeBread].join('-')}`
+      return hash
+    }
+    if (type === 'info') {
+      const {name, phone, schedule: {openAt, closeAt, days}} = restaurant
+      return [name, phone, openAt, closeAt, days].join('-')
+    }
   }
 
   revertRestaurant() {
