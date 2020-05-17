@@ -1,5 +1,5 @@
 type Section {
-  title: String!
+  title: String! @cacheControl(maxAge: 60)
   items: [String!]!
 }
 input SectionInput {
@@ -9,7 +9,7 @@ input SectionInput {
 
 type Menu {
   price: Float
-  name: String!
+  name: String! @cacheControl(maxAge: 60)
   includeBread: Boolean
   includeBeverage: Boolean
   sections: [Section!]
@@ -50,8 +50,8 @@ input RestaurantInput {
 }
 
 type Query {
-  restaurant(id: ID!): Restaurant
-  restaurantsNumber: Int!
+  restaurant(id: ID!): Restaurant @cacheControl(maxAge: 5)
+  restaurantsNumber: Int! @cacheControl(maxAge: 240)
   myRestaurant: Restaurant
 }
 
