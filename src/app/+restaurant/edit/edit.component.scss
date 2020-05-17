@@ -38,22 +38,6 @@
   padding-left: $size---padding / 2;
 }
 
-.price-tip {
-  @include transition(fast);
-
-  display: block;
-  white-space: nowrap;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  opacity: 1;
-  line-height: 20px;
-
-  &-wrapper {
-    position: relative;
-  }
-}
-
 .dish {
   position: relative;
   margin: 0 $size---padding / -2;
@@ -84,12 +68,6 @@
     right: 0;
     top: 0;
   }
-}
-
-.tooltip--visible ~ .price-tip,
-.price-input:focus ~ .price-tip {
-  opacity: 0;
-  pointer-events: none;
 }
 
 .overlay {
