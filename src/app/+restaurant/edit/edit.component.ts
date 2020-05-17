@@ -205,7 +205,7 @@ export class EditComponent implements OnInit {
     const {price, sections, includeBeverage, includeBread} = (saved ? this.savedRestaurant : this.restaurant).menu
 
     let hash = (sections || [])
-      .map(({items}) => items.join('|'))
+      .map(({items}) => items.filter(_ => !!_).join('|'))
       .join('-')
     hash += `-${[price, includeBeverage, includeBread].join('-')}`
     return hash
