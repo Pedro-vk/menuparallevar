@@ -14,6 +14,12 @@ const defaultEmojis = `
   🧁🥧🍫🍬🍭🍮🍯🍼🥛🍵🍶🍾🍸🍹🍻🥃🥤
 `
 
+const defaultRestaurant = {
+  icon: defaultEmoji,
+  menu: {name: defaultMenuName, includeBeverage: false, includeBread: false},
+  schedule: {days: [true, true, true, true, true], openAt: 0, closeAt: 0},
+} as any
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -56,11 +62,7 @@ export class EditComponent implements OnInit {
   async ngOnInit() {
     const restaurant = await this.fetchRestaurant()
 
-    this.restaurant = restaurant || {
-      icon: defaultEmoji,
-      menu: {name: defaultMenuName, includeBeverage: false, includeBread: false},
-      schedule: {days: [true, true, true, true, true], openAt: 0, closeAt: 0},
-    } as any
+    this.restaurant = restaurant || defaultRestaurant
     this.exists = !!restaurant
     this.published = !!this.restaurant.menu.sections?.length
 
@@ -84,7 +86,7 @@ export class EditComponent implements OnInit {
     const restaurant = await this.getMyRestaurantGQL.fetch(undefined, {fetchPolicy: 'no-cache'})
       .toPromise()
       .then(({data}) => data.myRestaurant)
-    this.savedRestaurant = JSON.parse(JSON.stringify(restaurant))
+    this.savedRestaurant = JSON.parse(JSON.stringify(restaurant || defaultRestaurant))
     return restaurant
   }
 
@@ -109,7 +111,9 @@ export class EditComponent implements OnInit {
     }
 
     if ((!this.published && basic) || !restaurant.menu.sections.length) {
-      delete restaurant.menu.sections
+      if (restaurant.menu?.sections) {
+        delete restaurant.menu.sections
+      }
       this.setDefaultSections()
     }
 
