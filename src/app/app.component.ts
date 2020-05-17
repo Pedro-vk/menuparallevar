@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core'
+import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core'
+import { DOCUMENT } from '@angular/common'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app'
 import { filter } from 'rxjs/operators'
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit {
   user$: AngularFireAuth['user']
 
   constructor(
+    @Inject(DOCUMENT) private document: any,
     private fireAuth: AngularFireAuth,
     private getUserGQL: GetUserGQL,
   ) { }
@@ -27,6 +29,8 @@ export class AppComponent implements OnInit {
         this.getUserGQL.fetch()
           .toPromise()
       )
+
+    this.document.body.ontouchstart = () => {}
   }
 
   login() {
