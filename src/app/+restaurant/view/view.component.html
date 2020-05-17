@@ -43,7 +43,22 @@
   Hecho con ❤️ en tiempos de Covid-19
 </div>
 
-<div class="footer text--right">
+<div class="footer layout layout--sides">
+  <div class="status layout layout--sides">
+    <ng-container *ngIf="status$ | async as status">
+      <div class="status__indicator" [class.status__indicator--open]="status.open"></div>
+      <div class="status__text">
+        <div class="text text--small">{{status.open ? 'Abierto ahora' : 'Cerrado'}}</div>
+        <div class="text text--small text--alt" *ngIf="status.open">
+          Cierra en {{status.openRemaining}}
+        </div>
+        <div class="text text--small text--alt" *ngIf="!status.open">
+          Abre a las {{status.openAt | date : 'HH:mm' : '+0'}}
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
   <a href="tel:{{(restaurant$ | async)?.phone}}">
     <button class="button" [disabled]="!(restaurant$ | async)?.phone">
       Llamar
