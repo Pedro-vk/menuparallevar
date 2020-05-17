@@ -37,6 +37,7 @@
     "@angular/router": "^9.1.0",
     "@graphql-codegen/fragment-matcher": "^1.13.5",
     "@ngneat/until-destroy": "^7.1.6",
+    "@ngx-meta/core": "^9.0.0",
     "@ngx-translate/core": "^12.1.2",
     "@xobotyi/scrollbar-width": "^1.9.5",
     "apollo-angular": "^1.9.1",

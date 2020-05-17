@@ -9,6 +9,6 @@ export const restaurantsComponents = [
 ]
 
 export const restaurantRoutes: Routes = [
-  {path: 'mi-restaurante', component: EditComponent},
+  {path: 'mi-restaurante', component: EditComponent, data: {meta: {title: 'Mi restaurante'}}},
   {path: ':id', component: ViewComponent},
 ]

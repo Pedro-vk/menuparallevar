@@ -1,18 +1,36 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
+import { MetaModule, MetaLoader, MetaStaticLoader, PageTitlePositioning, MetaGuard } from '@ngx-meta/core'
 
 import { landingRoutes } from './+landing'
 import { restaurantRoutes } from './+restaurant'
 
 const routes: Routes = [
-  {path: '', canActivateChild: [], children: [
+  {path: '', canActivateChild: [MetaGuard], children: [
     ...landingRoutes,
     ...restaurantRoutes,
   ]},
 ]
 
+export function metaFactory(): MetaLoader {
+  return new MetaStaticLoader({
+    pageTitlePositioning: PageTitlePositioning.PrependPageTitle,
+    pageTitleSeparator: ' - ',
+    applicationName: 'Menú para llevar',
+    defaults: {
+      title: 'Menú para llevar',
+    },
+  })
+}
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes),
+    MetaModule.forRoot({
+      provide: MetaLoader,
+      useFactory: metaFactory
+    })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
