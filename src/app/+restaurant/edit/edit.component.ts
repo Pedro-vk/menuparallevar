@@ -139,6 +139,7 @@ export class EditComponent implements OnInit {
     if (!this.published && basic) {
       this.restaurant.id = this.savedRestaurant.id = (await this.fetchRestaurant())?.id
     }
+    this.cdr.markForCheck()
   }
 
   async saveRestaurant(restaurant: Restaurant) {
