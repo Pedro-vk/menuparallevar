@@ -133,7 +133,6 @@ export class EditComponent implements OnInit {
     this.exists = true
 
     if (!basic) {
-      this.showToast(`Menú ${this.published ? 'guardado' : 'publicado'}. ¡Compártelo con tus clientes!`)
       this.published = true
     }
 
