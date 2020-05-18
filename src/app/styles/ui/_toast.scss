@@ -17,7 +17,7 @@ $ui-toast---height: 32px !default;
   right: 0;
   overflow: hidden;
   padding: 0 $size---padding;
-  text-align: left;
+  text-align: center;
 
   &--active {
     height: $ui-toast---height;
