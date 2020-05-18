@@ -109,7 +109,8 @@
     <div class="toast" [class.toast--active]="toastVisible || (published && !isTouched)">
       <ng-container *ngIf="toastVisible; else checkMenu">{{toastMessage}}</ng-container>
       <ng-template #checkMenu>
-        🥳 Menú guardado. <span class="text--underline">Ver menú</span>
+        🥳 Menú guardado.
+        <span class="text--underline clickable" routerLink="vista-previa">Ver menú</span>
       </ng-template>
     </div>
 

@@ -10,5 +10,6 @@ export const restaurantsComponents = [
 
 export const restaurantRoutes: Routes = [
   {path: 'mi-restaurante', component: EditComponent, data: {meta: {title: 'Mi restaurante'}}},
+  {path: 'mi-restaurante/vista-previa', component: ViewComponent},
   {path: ':id', component: ViewComponent},
 ]
