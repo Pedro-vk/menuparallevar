@@ -75,9 +75,23 @@
     }
   }
   &__icon {
+    @include transition(fast);
+
     position: absolute;
     right: 0;
     top: 0;
+
+    &--focus {
+      pointer-events: none;
+      opacity: 0;
+    }
+  }
+  &__input:focus:not(:placeholder-shown) ~ &__icon {
+    pointer-events: none;
+    opacity: 0;
+  }
+  &__input:focus:not(:placeholder-shown) ~ &__icon--focus {
+    opacity: 1;
   }
 }
 
