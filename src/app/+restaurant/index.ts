@@ -18,5 +18,11 @@ export const restaurantRoutes: Routes = [
     resolve: {restaurant: RestaurantResolverService},
     data: {restaurant: 'own'},
   },
+  {
+    path: 'ejemplo',
+    component: ViewComponent,
+    resolve: {restaurant: RestaurantResolverService},
+    data: {restaurant: 'demo'},
+  },
   {path: ':id', component: ViewComponent, resolve: {restaurant: RestaurantResolverService}},
 ]
