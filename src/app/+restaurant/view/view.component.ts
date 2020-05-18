@@ -13,7 +13,7 @@ const weekDays = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado
   styleUrls: ['./view.component.scss']
 })
 export class ViewComponent implements OnInit {
-  restaurant$: Observable<Restaurant>
+  restaurant$: Observable<Restaurant & {type: string}>
   status$: Observable<{open: boolean, openAt: number, closeAt: number, openRemaining: string}>
   includes$: Observable<string>
   now = Date.now()
@@ -21,11 +21,9 @@ export class ViewComponent implements OnInit {
   constructor(private route: ActivatedRoute, private getRestaurantGQL: GetRestaurantGQL) { }
 
   ngOnInit() {
-    this.restaurant$ = this.route.paramMap
+    this.restaurant$ = this.route.data
       .pipe(
-        switchMap(params => this.getRestaurantGQL.fetch({id: params.get('id')})),
-        map(({data}) => data.restaurant),
-        map(restaurant => ({
+        map(({restaurant}) => ({
           ...restaurant,
           menu: {
             ...restaurant.menu,

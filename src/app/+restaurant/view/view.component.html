@@ -1,7 +1,11 @@
 <div class="content padding toast-wrapper--banner">
   <ng-container *ngIf="restaurant$ | async as restaurant">
-    <div class="toast toast--banner toast--color" routerLink="/">
+
+    <div class="toast toast--banner toast--color" routerLink="/" *ngIf="restaurant.type !== 'own'">
       Creado con <span class="text--underline">menuparallevar.com</span>
+    </div>
+    <div class="toast toast--banner toast--alt text--underline" routerLink="../" *ngIf="restaurant.type === 'own'">
+      Volver a editar
     </div>
 
     <div class="layout layout--sides padding--half-top">
