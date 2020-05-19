@@ -92,6 +92,7 @@
   }
   &__input:focus:not(:placeholder-shown) ~ &__icon--focus {
     opacity: 1;
+    pointer-events: initial;
   }
 }
 

@@ -46,11 +46,6 @@ app-root {
   -webkit-tap-highlight-color: transparent;
 }
 
-[routerLink],
-.clickable {
-  cursor: pointer;
-}
-
 a {
   text-decoration: none;
 }
@@ -110,4 +105,9 @@ input {
     -webkit-appearance: none;
     margin: 0;
   }
+}
+
+[routerLink],
+.clickable {
+  cursor: pointer;
 }
