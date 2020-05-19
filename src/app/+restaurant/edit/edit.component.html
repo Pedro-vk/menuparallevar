@@ -116,7 +116,7 @@
       <ng-container *ngIf="toastVisible; else checkMenu">{{toastMessage}}</ng-container>
       <ng-template #checkMenu>
         🥳 Menú guardado.
-        <span class="text--underline clickable" routerLink="vista-previa">Ver menú</span>
+        <span class="text--underline clickable" [routerLink]="['../', restaurant.id]">Ver menú</span>
       </ng-template>
     </div>
 

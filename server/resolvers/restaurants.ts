@@ -5,25 +5,27 @@ import { Context, Roles } from '../types'
 
 import { QueryRestaurantArgs, MutationSaveRestaurantArgs } from '../graphql/schema'
 
-const cleanRestaurant = (restaurant) => {
+const checkRestaurant = (uid) => (restaurant) => {
   (restaurant.menu.sections || [])
     .forEach((section, i) => {
       delete section.title
       section.section = i
     })
 
+  restaurant.owner = restaurant.createdBy === uid
+  restaurant.id = restaurant._id
   return restaurant
 }
 
 @type('Restaurant')
 export class RestaurantResolver {
   @resolver()
-  static async restaurant(parent: unknown, {id}: QueryRestaurantArgs, {db}: Context) {
-    const [restaurant] = await db.collection('restaurants').find({_id: new ObjectId(id)}).map(cleanRestaurant).toArray()
+  static async restaurant(parent: unknown, {id}: QueryRestaurantArgs, {db, uid}: Context) {
+    const [restaurant] = await db.collection('restaurants').find({_id: new ObjectId(id)}).map(checkRestaurant(uid)).toArray()
     if (!restaurant) {
       return
     }
-    return {...restaurant, id: restaurant._id}
+    return restaurant
   }
 
   @resolver()
@@ -34,11 +36,11 @@ export class RestaurantResolver {
   @resolver()
   @role(Roles.ALL)
   static async myRestaurant(parent: unknown, args: unknown, {db, uid}: Context) {
-    const [restaurant] = await db.collection('restaurants').find({createdBy: uid}).map(cleanRestaurant).toArray()
+    const [restaurant] = await db.collection('restaurants').find({createdBy: uid}).map(checkRestaurant(uid)).toArray()
     if (!restaurant) {
       return
     }
-    return {...restaurant, id: restaurant._id}
+    return restaurant
   }
 
   @mutation()

@@ -35,6 +35,7 @@ input ScheduleInput {
 
 type Restaurant {
   id: ID!
+  owner: Boolean!
   name: String!
   phone: String
   icon: String

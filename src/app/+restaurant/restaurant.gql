@@ -5,6 +5,7 @@ query getRestaurantsNumber {
 query getRestaurant($id: ID!) {
   restaurant(id: $id) {
     id
+    owner
     name
     phone
     icon
@@ -29,6 +30,7 @@ query getRestaurant($id: ID!) {
 query getMyRestaurant {
   myRestaurant {
     id
+    owner
     name
     phone
     icon

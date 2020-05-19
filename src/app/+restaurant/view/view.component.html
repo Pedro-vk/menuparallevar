@@ -2,10 +2,10 @@
 
   <div class="content padding toast-wrapper--banner">
 
-    <div class="toast toast--banner toast--color" routerLink="/" *ngIf="restaurant.type !== 'own'">
+    <div class="toast toast--banner toast--color" routerLink="/" *ngIf="!restaurant.owner">
       Creado con <span class="text--underline">menuparallevar.com</span>
     </div>
-    <div class="toast toast--banner toast--alt text--underline" routerLink="../" *ngIf="restaurant.type === 'own'">
+    <div class="toast toast--banner toast--alt text--underline" routerLink="../mi-restaurante" *ngIf="restaurant.owner">
       Volver a editar
     </div>
 
@@ -51,12 +51,12 @@
       Hecho con ❤️ en tiempos de Covid-19
     </div>
 
-    <div class="divider--double" *ngIf="restaurant.type === 'own'"></div>
+    <div class="divider--double" *ngIf="restaurant.owner"></div>
 
   </div>
 
   <div class="footer layout layout--sides toast-wrapper">
-    <div class="toast" [class.toast--active]="restaurant.type === 'own'">
+    <div class="toast" [class.toast--active]="restaurant.owner">
       👀 Así ven tus clientes el menú.
       <span class="text--underline clickable" (click)="share()">Compartir</span>
     </div>

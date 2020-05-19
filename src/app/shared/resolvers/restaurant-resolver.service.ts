@@ -7,6 +7,7 @@ import { Restaurant, GetRestaurantGQL, GetMyRestaurantGQL } from '../graphql'
 
 const demoRestaurant: Restaurant = {
   id: '',
+  owner: false,
   name: 'Paquito\'s Taquitos',
   phone: '600000000',
   icon: '🌮',
