@@ -150,7 +150,7 @@
 
   <form #info="ngForm" class="overlay-content padding">
     <div class="padding--top tooltip-wrapper">
-      <div class="text text--small text--alt">Nombre</div>
+      <div class="text text--small text--alt">Nombre del restaurante</div>
       <input
         name="name"
         required
@@ -162,7 +162,7 @@
     <div class="divider--half-space"></div>
 
     <div class="padding--top tooltip-wrapper">
-      <div class="text text--small text--alt">Número de teléfono</div>
+      <div class="text text--small text--alt">Teléfono de contacto</div>
       <input
         type="tel"
         required
@@ -176,7 +176,7 @@
     </div>
 
     <div class="text text--small text--alt text--center padding--half-top">
-      Usaremos el teléfono para que los clientes te puedan llamar directamente
+      Este es el número de contacto que mostraremos a tus clientes.
     </div>
 
     <div class="divider--half-space"></div>
@@ -228,7 +228,7 @@
       [disabled]="(info.invalid || !restaurant.name) || !isInfoTouched"
       (click)="save('restaurant', true); editRestaurant = false">
 
-      Guardar
+      Crear
     </button>
   </div>
 </div>
@@ -239,7 +239,7 @@
     <span class="mat-icon mat-icon--area mat-icon--dark clickable" (click)="revertEmoji(); editEmoji = false">
       close
     </span>
-    <div class="text text--bold overlay-header__title">Elige qué te representa</div>
+    <div class="text text--bold overlay-header__title">Elige uno para tu restaurante</div>
     <span class="mat-icon mat-icon--area"></span>
   </div>
 
