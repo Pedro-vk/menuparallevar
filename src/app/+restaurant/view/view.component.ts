@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
+import { MetaService } from '@ngx-meta/core'
 import { Observable, combineLatest, interval } from 'rxjs'
-import { switchMap, map, startWith } from 'rxjs/operators'
+import { switchMap, map, startWith, tap } from 'rxjs/operators'
 
 import { Query, GetRestaurantGQL, Restaurant, Menu } from 'src/app/shared/graphql'
 
@@ -18,7 +19,11 @@ export class ViewComponent implements OnInit {
   includes$: Observable<string>
   now = Date.now()
 
-  constructor(private route: ActivatedRoute, private getRestaurantGQL: GetRestaurantGQL) { }
+  constructor(
+    private metaService: MetaService,
+    private route: ActivatedRoute,
+    private getRestaurantGQL: GetRestaurantGQL,
+  ) { }
 
   ngOnInit() {
     this.restaurant$ = this.route.data
@@ -30,7 +35,8 @@ export class ViewComponent implements OnInit {
             sections: restaurant.menu.sections
               .filter(({items}) => items.length),
           },
-        }))
+        })),
+        tap(({name}) => this.metaService.setTitle(`Menú de ${name}`)),
       )
 
     this.includes$ = this.restaurant$
