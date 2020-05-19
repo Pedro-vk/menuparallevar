@@ -1,5 +1,6 @@
-<div class="content padding toast-wrapper--banner">
-  <ng-container *ngIf="restaurant$ | async as restaurant">
+<ng-container *ngIf="restaurant$ | async as restaurant">
+
+  <div class="content padding toast-wrapper--banner">
 
     <div class="toast toast--banner toast--color" routerLink="/" *ngIf="restaurant.type !== 'own'">
       Creado con <span class="text--underline">menuparallevar.com</span>
@@ -43,35 +44,46 @@
     </div>
 
     <div class="divider--space-and-half"></div>
-  </ng-container>
-</div>
 
-<div class="footer-message text text--alt text--center padding">
-  Hecho con ❤️ en tiempos de Covid-19
-</div>
+    <div class="flex-expand"></div>
 
-<div class="footer layout layout--sides">
-  <div class="status layout layout--sides">
-    <ng-container *ngIf="status$ | async as status">
-      <div class="status__indicator" [class.status__indicator--open]="status.open"></div>
-      <div class="status__text">
-        <div class="text text--small">{{status.open ? 'Abierto ahora' : 'Cerrado'}}</div>
-        <div class="text text--small text--alt" *ngIf="status.open">
-          {{status.openRemaining}}
-        </div>
-        <div class="text text--small text--alt" *ngIf="!status.open && !status.closeRemaining">
-          Abre a las {{status.openAt | date : 'HH:mm' : '+0'}}
-        </div>
-        <div class="text text--small text--alt" *ngIf="!status.open && status.closeRemaining">
-          {{status.closeRemaining}} a las {{status.openAt | date : 'HH:mm' : '+0'}}
-        </div>
-      </div>
-    </ng-container>
+    <div class="footer-message text text--alt text--center padding padding--remove-horizontal">
+      Hecho con ❤️ en tiempos de Covid-19
+    </div>
+
+    <div class="divider--double" *ngIf="restaurant.type === 'own'"></div>
+
   </div>
 
-  <a href="tel:{{(restaurant$ | async)?.phone}}">
-    <button class="button" [disabled]="!(restaurant$ | async)?.phone">
-      Llamar
-    </button>
-  </a>
-</div>
+  <div class="footer layout layout--sides toast-wrapper">
+    <div class="toast" [class.toast--active]="restaurant.type === 'own'">
+      👀 Así ven tus clientes el menú.
+      <span class="text--underline clickable" (click)="share()">Compartir</span>
+    </div>
+
+    <div class="status layout layout--sides">
+      <ng-container *ngIf="status$ | async as status">
+        <div class="status__indicator" [class.status__indicator--open]="status.open"></div>
+        <div class="status__text">
+          <div class="text text--small">{{status.open ? 'Abierto ahora' : 'Cerrado'}}</div>
+          <div class="text text--small text--alt" *ngIf="status.open">
+            {{status.openRemaining}}
+          </div>
+          <div class="text text--small text--alt" *ngIf="!status.open && !status.closeRemaining">
+            Abre a las {{status.openAt | date : 'HH:mm' : '+0'}}
+          </div>
+          <div class="text text--small text--alt" *ngIf="!status.open && status.closeRemaining">
+            {{status.closeRemaining}} a las {{status.openAt | date : 'HH:mm' : '+0'}}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <a href="tel:{{(restaurant$ | async)?.phone}}">
+      <button class="button" [disabled]="!(restaurant$ | async)?.phone">
+        Llamar
+      </button>
+    </a>
+  </div>
+
+</ng-container>

@@ -1,3 +1,5 @@
+import { Restaurant } from './graphql'
+
 export function inputNumberFixer(
   onQuantity: (qty: number, ...proxiedArgs: any[]) => void,
   min: number = -Infinity,
@@ -23,6 +25,27 @@ export function inputNumberFixer(
       if (['e', '-', '+'].includes(event.key)) {
         event.preventDefault()
       }
+    }
+  }
+}
+
+export async function shareRestaurant(restaurant: Restaurant) {
+  const {id, name, menu: {price}} = restaurant
+  const data = {
+    title: `Menú de ${name}`,
+    text: `🍽️ Te envío el menú del día de ${name}, el precio es de ${price.toFixed(2)}€!\n👌 Disfrútalo\n`,
+    url: `${document.location.origin}/${id}`,
+  }
+  // @ts-ignore
+  if (!!navigator.share) {
+    // @ts-ignore
+    await navigator.share(data)
+  } else {
+    try {
+      // @ts-ignore
+      await navigator.clipboard.writeText(data.text + data.url)
+    } catch {
+      console.warn('No Share and Clipboard API!')
     }
   }
 }

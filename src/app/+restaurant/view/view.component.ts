@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { MetaService } from '@ngx-meta/core'
 import { Observable, combineLatest, interval } from 'rxjs'
-import { switchMap, map, startWith, tap } from 'rxjs/operators'
+import { switchMap, map, startWith, tap, first } from 'rxjs/operators'
 
 import { Query, GetRestaurantGQL, Restaurant, Menu } from 'src/app/shared/graphql'
+import { shareRestaurant } from 'src/app/shared'
 
 const weekDays = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
 const defaultSections = ['entrante', 'primero', 'postre']
@@ -101,5 +102,9 @@ export class ViewComponent implements OnInit {
           return {openAt, closeAt, open, openRemaining, closeRemaining}
         })
       )
+  }
+
+  async share() {
+    await shareRestaurant(await this.restaurant$.pipe(first()).toPromise())
   }
 }

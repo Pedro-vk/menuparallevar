@@ -3,9 +3,9 @@ import { Router } from '@angular/router'
 import { AngularFireAuth } from '@angular/fire/auth'
 
 import { SaveRestaurantGQL, GetMyRestaurantGQL, RemoveUserDataGQL, Restaurant } from 'src/app/shared/graphql'
-import { inputNumberFixer } from 'src/app/shared'
+import { inputNumberFixer, shareRestaurant } from 'src/app/shared'
 
-enum sections {
+enum Sections {
   Starters,
   Main,
   Dessert,
@@ -161,7 +161,7 @@ export class EditComponent implements OnInit {
   }
 
   setDefaultSections() {
-    this.restaurant.menu.sections = Object.values(sections)
+    this.restaurant.menu.sections = Object.values(Sections)
       .filter(_ => typeof _ === 'number')
       .map(section => ({section: +section, items: []}))
   }
@@ -179,24 +179,8 @@ export class EditComponent implements OnInit {
   }
 
   async share() {
-    const {id, name, menu: {price}} = this.savedRestaurant
-    const data = {
-      title: `Menú de ${name}`,
-      text: `🍽️ Te envío el menú del día de ${name}, el precio es de ${price.toFixed(2)}€!\n👌 Disfrútalo\n`,
-      url: `${document.location.origin}/${id}`,
-    }
-    if (this.canShare) {
-      // @ts-ignore
-      await navigator.share(data)
-    } else {
-      try {
-        // @ts-ignore
-        await navigator.clipboard.writeText(data.text + data.url)
-        this.showToast(`Link copiado en el portapapeles. ¡Listo para mandar!`)
-      } catch {
-        console.warn('No Share and Clipboard API!')
-      }
-    }
+    await shareRestaurant(this.savedRestaurant)
+    this.showToast(`Link copiado en el portapapeles. ¡Listo para mandar!`)
   }
 
   checkIsValid() {

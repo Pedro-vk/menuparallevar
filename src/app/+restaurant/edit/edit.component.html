@@ -54,7 +54,7 @@
             required
             name="dish-{{sIndex}}-{{index}}"
             [(ngModel)]="section.items[index]"
-            placeholder="Nuevo plato"
+            placeholder="Escribe el nombre del plato"
             class="text dish__input">
 
           <span
@@ -124,7 +124,7 @@
       {{canShare ? 'Compartir' : 'Copiar link'}}
     </button>
     <button type="button" class="button" [disabled]="!isValid || !isTouched" (click)="save('menu')">
-      Publicar
+      Guardar
     </button>
   </div>
 </div>
