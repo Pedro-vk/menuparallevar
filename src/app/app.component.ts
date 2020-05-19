@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core'
+import { Component, OnInit, ChangeDetectionStrategy, Inject, ElementRef } from '@angular/core'
 import { DOCUMENT } from '@angular/common'
 import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app'
@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private document: any,
+    private elementRef: ElementRef,
     private fireAuth: AngularFireAuth,
     private getUserGQL: GetUserGQL,
   ) { }
@@ -39,5 +40,9 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.fireAuth.signOut()
+  }
+
+  restoreScroll() {
+    this.elementRef.nativeElement.scroll(0, 0)
   }
 }
