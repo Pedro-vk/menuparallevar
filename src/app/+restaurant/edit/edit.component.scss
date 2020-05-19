@@ -13,7 +13,14 @@
 }
 
 .content {
-  min-height: $size---content;
+  min-height: $size---content-no-message;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+}
+
+.flex-expand {
+  flex: 1;
 }
 
 .footer-message {
