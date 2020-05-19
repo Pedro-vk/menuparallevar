@@ -9,6 +9,7 @@ const routes: Routes = [
   {path: '', canActivateChild: [MetaGuard], children: [
     ...landingRoutes,
     ...restaurantRoutes,
+    {path: '**', redirectTo: '/404'},
   ]},
 ]
 

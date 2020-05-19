@@ -1,0 +1,19 @@
+@import '../../styles/index';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.footer-message {
+  background: gc(bgdark);
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

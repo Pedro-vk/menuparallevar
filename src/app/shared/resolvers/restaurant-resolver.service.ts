@@ -67,22 +67,22 @@ export class RestaurantResolverService implements Resolve<Restaurant> {
     private getMyRestaurantGQL: GetMyRestaurantGQL,
   ) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const id = route.paramMap.get('id')
     const type = route.data.restaurant
 
     if (id) {
       try {
-        return this.getRestaurantGQL.fetch({id})
+        return await this.getRestaurantGQL.fetch({id})
           .toPromise()
           .then(({data}) => ({type: 'id', ...data.restaurant}))
       } catch {
-        this.router.navigate(['/'])
+        this.router.navigate(['/404'])
         return EMPTY
       }
     }
     if (type === 'own') {
-      return this.getMyRestaurantGQL.fetch()
+      return await this.getMyRestaurantGQL.fetch()
         .toPromise()
         .then(({data}) => ({type: 'own', ...data.myRestaurant}))
     }
