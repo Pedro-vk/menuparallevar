@@ -35,3 +35,19 @@ $emojis---visible-width: 488px;
     transform: translateX(-$emojis---visible-width);
   }
 }
+
+
+.icon-opened {
+  transform-origin: 50% 50%;
+  transform: rotate(180deg);
+  color: gc(brand);
+}
+
+.collapsed {
+  overflow: hidden;
+
+  &--closed {
+    padding: 0;
+    height: 0;
+  }
+}

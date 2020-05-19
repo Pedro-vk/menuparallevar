@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   user$: AngularFireAuth['user']
   restaurants$: Promise<number>
 
+  faqsOpen = {}
+
   constructor(
     private fireAuth: AngularFireAuth,
     private router: Router,

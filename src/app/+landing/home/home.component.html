@@ -81,24 +81,39 @@
 <div class="padding">
   <h3 class="text text--h2 padding--top padding--half-bottom">🤔 Preguntas frecuentes</h3>
 
-  <div>
+  <div class="clickable" (click)="faqsOpen.start = !faqsOpen.start">
     <div class="layout layout--sides">
-      <h4>¿Qué necesito para empezar?</h4>
-      <span class="mat-icon mat-icon--area mat-icon--dark">keyboard_arrow_down</span>
+      <h4 class="text text--bold">¿Qué necesito para empezar?</h4>
+      <span class="mat-icon mat-icon--area mat-icon--dark clickable" [class.icon-opened]="faqsOpen.start">keyboard_arrow_down</span>
+    </div>
+    <div class="collapsed padding--half-top padding--bottom text text--small" [class.collapsed--closed]="!faqsOpen.start">
+      De momento, si quieres crear tu menú, necesitarás una cuenta de Google.
+      En el futuro habrá más formas de poder crear tu menú.
+      <div class="divider--half-space"></div>
     </div>
   </div>
 
-  <div>
+  <div class="clickable" (click)="faqsOpen.free = !faqsOpen.free">
     <div class="layout layout--sides">
-      <h4>¿El servicio es gratuito?</h4>
-      <span class="mat-icon mat-icon--area mat-icon--dark">keyboard_arrow_down</span>
+      <h4 class="text text--bold">¿El servicio es gratuito?</h4>
+      <span class="mat-icon mat-icon--area mat-icon--dark clickable" [class.icon-opened]="faqsOpen.free">keyboard_arrow_down</span>
+    </div>
+    <div class="collapsed padding--half-top padding--bottom text text--small" [class.collapsed--closed]="!faqsOpen.free">
+      Sí, este es un proyecto hecho para ayudar, sin intención de obtener benefício.
+      A día de hoy, podemos asumir los gastos que un servicio así conlleva.
+      <div class="divider--half-space"></div>
     </div>
   </div>
 
-  <div>
+  <div class="clickable" (click)="faqsOpen.data = !faqsOpen.data">
     <div class="layout layout--sides">
-      <h4>¿Puedo borrar mis datos?</h4>
-      <span class="mat-icon mat-icon--area mat-icon--dark">keyboard_arrow_down</span>
+      <h4 class="text text--bold">¿Puedo borrar mis datos?</h4>
+      <span class="mat-icon mat-icon--area mat-icon--dark clickable" [class.icon-opened]="faqsOpen.data">keyboard_arrow_down</span>
+    </div>
+    <div class="collapsed padding--half-top padding--bottom text text--small" [class.collapsed--closed]="!faqsOpen.data">
+      Por supuesto. Dentro de editar la información de tu restaurante verás un menú,
+      pulsando allí, puedes eliminar todos tus datos, para siempre.
+      <div class="divider--half-space"></div>
     </div>
   </div>
 
