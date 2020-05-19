@@ -31,24 +31,26 @@ const demoRestaurant = {
       {
         title: 'Entrante',
         items: [
-          'Ensalada mixta',
-          'Nachos zacatecas',
-          'Tostada de tinga 🌶',
-          'Pollo con mole 🌶',
-          'Sopa Azteca',
-          'Espaguetis en salsa poblana'
-        ]
+          'Ensalada de nopal',
+          'Sopa azteca',
+          'Aguachile',
+        ],
       },
       {
         title: 'Plato principal',
         items: [
-          'Burrito de pollo o ternera',
-          'Cochinita pibil',
-          'Pastor',
-          'Carnitas',
-          'Enchilada de mole o salsa verde 🌶',
-          'Tacos dorados'
-        ]
+          'Tacos al pastor',
+          'Sopes de pollo',
+          'Torta ahogada',
+        ],
+      },
+      {
+        title: 'Postre',
+        items: [
+          'Jericalla',
+          'Pastel de tres leches',
+          'Arroz con leche',
+        ],
       },
     ]
   }
