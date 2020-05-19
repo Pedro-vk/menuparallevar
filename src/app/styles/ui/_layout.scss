@@ -23,5 +23,9 @@
     &--no-overflow {
       overflow: hidden;
     }
+
+    &--align-start {
+      align-items: flex-start;
+    }
   }
 }

@@ -4,12 +4,12 @@
       Volver al inicio
     </div>
 
-    <div class="layout layout--sides padding--half-top">
+    <div class="layout layout--sides layout--align-start padding--half-top">
       <div class="layout--no-overflow padding--right">
-        <h1 class="text text--h1 text--ellipsis">{{restaurant.name}}</h1>
-        <div class="text text--small text--link padding--half-top clickable" (click)="editRestaurant = true">
+        <h1 class="text text--h1 text--ellipsis padding--half-bottom">{{restaurant.name}}</h1>
+        <span class="text text--small text--link clickable" (click)="editRestaurant = true">
           Editar información de mi restaurante
-        </div>
+        </span>
       </div>
       <div class="emoji emoji--alone clickable tooltip-wrapper" (click)="helpDone('icon'); editEmoji = true">
         {{restaurant.icon}}
