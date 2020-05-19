@@ -110,6 +110,7 @@ export class EditComponent implements OnInit {
     const restaurant: Restaurant = {
       ...this.savedRestaurant,
       id: undefined,
+      owner: undefined,
     }
 
     switch (type) {
