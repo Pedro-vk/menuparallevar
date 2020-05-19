@@ -28,7 +28,7 @@
 
     <ng-container *ngFor="let section of restaurant.menu.sections; let last = last">
       <div class="padding--top padding--bottom">
-        <h3 class="text text--alt">{{section.title}}</h3>
+        <h3 class="text text--alt">Escoge un {{sectionNames[section.section]}}</h3>
 
         <div class="padding--half-top text" *ngFor="let item of section.items">
           {{item}}

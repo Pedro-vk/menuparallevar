@@ -1,9 +1,9 @@
 type Section {
-  title: String! @cacheControl(maxAge: 60)
+  section: Int!
   items: [String!]!
 }
 input SectionInput {
-  title: String!
+  section: Int!
   items: [String!]!
 }
 

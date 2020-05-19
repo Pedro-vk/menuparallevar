@@ -5,7 +5,7 @@ import { switchMap } from 'rxjs/operators'
 
 import { Restaurant, GetRestaurantGQL, GetMyRestaurantGQL } from '../graphql'
 
-const demoRestaurant = {
+const demoRestaurant: Restaurant = {
   id: '',
   name: 'Paquito\'s Taquitos',
   phone: '600000000',
@@ -29,7 +29,7 @@ const demoRestaurant = {
     includeBeverage: true,
     sections: [
       {
-        title: 'Entrante',
+        section: 0,
         items: [
           'Ensalada de nopal',
           'Sopa azteca',
@@ -37,7 +37,7 @@ const demoRestaurant = {
         ],
       },
       {
-        title: 'Plato principal',
+        section: 1,
         items: [
           'Tacos al pastor',
           'Sopes de pollo',
@@ -45,7 +45,7 @@ const demoRestaurant = {
         ],
       },
       {
-        title: 'Postre',
+        section: 2,
         items: [
           'Jericalla',
           'Pastel de tres leches',
@@ -78,7 +78,7 @@ export class RestaurantResolverService implements Resolve<Restaurant> {
           .then(({data}) => ({type: 'id', ...data.restaurant}))
       } catch {
         this.router.navigate(['/404'])
-        return EMPTY
+        return EMPTY as any
       }
     }
     if (type === 'own') {
@@ -90,6 +90,6 @@ export class RestaurantResolverService implements Resolve<Restaurant> {
       return Promise.resolve({type: 'demo', ...demoRestaurant})
     }
 
-    return EMPTY
+    return EMPTY as any
   }
 }

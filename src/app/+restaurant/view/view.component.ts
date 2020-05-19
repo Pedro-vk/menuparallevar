@@ -7,6 +7,7 @@ import { switchMap, map, startWith, tap } from 'rxjs/operators'
 import { Query, GetRestaurantGQL, Restaurant, Menu } from 'src/app/shared/graphql'
 
 const weekDays = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
+const defaultSections = ['entrante', 'primero', 'postre']
 
 @Component({
   selector: 'app-view',
@@ -17,6 +18,7 @@ export class ViewComponent implements OnInit {
   restaurant$: Observable<Restaurant & {type: string}>
   status$: Observable<{open: boolean, openAt: number, closeAt: number, openRemaining: string}>
   includes$: Observable<string>
+  sectionNames = defaultSections
   now = Date.now()
 
   constructor(

@@ -5,7 +5,14 @@ import { AngularFireAuth } from '@angular/fire/auth'
 import { SaveRestaurantGQL, GetMyRestaurantGQL, RemoveUserDataGQL, Restaurant } from 'src/app/shared/graphql'
 import { inputNumberFixer } from 'src/app/shared'
 
-const defaultSections = ['Entrante', 'Plato principal', 'Postre']
+enum sections {
+  Starters,
+  Main,
+  Dessert,
+}
+
+const defaultSections = ['Entrante', 'Primero', 'Postre']
+
 const defaultMenuName = 'Menú del día'
 const defaultEmoji = '🍴'
 const defaultDays = 'LMXJVSD'
@@ -43,6 +50,7 @@ export class EditComponent implements OnInit {
   days = defaultDays.split('')
   emojis = [...defaultEmojis].filter(_ => !_.match(/\s/))
   tooltip?: 'price' | 'icon'
+  sectionNames = defaultSections
 
   get isValid() {
     return this.checkIsValid()
@@ -153,8 +161,9 @@ export class EditComponent implements OnInit {
   }
 
   setDefaultSections() {
-    this.restaurant.menu.sections = defaultSections
-      .map(title => ({title, items: []}))
+    this.restaurant.menu.sections = Object.values(sections)
+      .filter(_ => typeof _ === 'number')
+      .map(section => ({section: +section, items: []}))
   }
 
   removeData() {

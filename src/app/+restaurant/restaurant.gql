@@ -19,7 +19,7 @@ query getRestaurant($id: ID!) {
       includeBread
       includeBeverage
       sections {
-        title
+        section
         items
       }
     }
@@ -43,7 +43,7 @@ query getMyRestaurant {
       includeBread
       includeBeverage
       sections {
-        title
+        section
         items
       }
     }
