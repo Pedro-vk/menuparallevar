@@ -86,6 +86,8 @@ import { scalar, Logger, LogLevel, getQueryResolvers } from './utils'
 
   app.use(express.static(__dirname + distFolder))
 
+  app.use(require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN))
+
   const index = path.join(__dirname, distFolder, '/index.html')
   app.get('/', (req, res) => {
     res.sendFile(index)
