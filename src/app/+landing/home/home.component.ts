@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.user$ = this.fireAuth.user
-    const data$ = this.getLandingDataGQL.fetch()
+    const data$ = this.getLandingDataGQL.fetch(undefined, {errorPolicy: 'ignore'})
       .toPromise()
 
     this.restaurants$ = data$
