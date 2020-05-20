@@ -86,17 +86,18 @@ export class ViewComponent implements OnInit {
               })
             closeRemaining = `Abre el ${weekDays[(remaining + day + 1) % 7]}`
           }
-          let openRemaining: any = (closeAt - now)
-          if (openRemaining < 0) {
-            openRemaining += h24
+          let openRemaining: string
+          let remains = (closeAt - now)
+          if (remains < 0) {
+            remains += h24
           }
           if (openAt === closeAt) {
             openRemaining = 'Abieto 24 horas'
-          } else if (openRemaining < (60 * m1)) {
-            const m = Math.ceil(openRemaining / 60 / 1000)
+          } else if (remains < (60 * m1)) {
+            const m = Math.ceil(remains / 60 / 1000)
             openRemaining = `Cierra en ${m} minuto${m !== 1 ? 's' : ''}`
-          } else {
-            const h = Math.floor(openRemaining / 60 / 60 / 1000)
+          } else if (remains < (2.5 * 60 * m1)) {
+            const h = Math.floor(remains / 60 / 60 / 1000)
             openRemaining = `Cierra en ${h} hora${h !== 1 ? 's' : ''}`
           }
           return {openAt, closeAt, open, openRemaining, closeRemaining}

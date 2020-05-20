@@ -74,7 +74,7 @@ export class RestaurantResolverService implements Resolve<Restaurant> {
 
     if (id) {
       try {
-        return await this.getRestaurantGQL.fetch({id})
+        return await this.getRestaurantGQL.fetch({id}, {fetchPolicy: 'no-cache'})
           .toPromise()
           .then(({data}) => ({type: 'id', ...data.restaurant}))
       } catch {
