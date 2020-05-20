@@ -1,7 +1,3 @@
-query getRestaurantsNumber {
-  restaurantsNumber
-}
-
 query getRestaurant($id: ID!) {
   restaurant(id: $id) {
     id

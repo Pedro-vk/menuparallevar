@@ -1,0 +1,6 @@
+query getLandingData {
+  restaurantsNumber
+  myRestaurant {
+    name
+  }
+}

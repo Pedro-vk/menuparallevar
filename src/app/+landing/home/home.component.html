@@ -1,6 +1,6 @@
 <div class="padding--right padding--left">
-  <div class="toast toast--banner toast--alt text" *ngIf="user$ | async as user; else restaurantsNumber">
-    No soy {{user.displayName}}.
+  <div class="toast toast--banner toast--alt text" *ngIf="(user$ | async) && (restaurantName$ | async); else restaurantsNumber">
+    No soy {{(restaurantName$ | async) || (user$ | async)?.displayName}}.
     <span class="text--underline clickable" (click)="logout()">Cerrar sesión.</span>
   </div>
   <ng-template #restaurantsNumber>
@@ -21,12 +21,12 @@
   </div>
 </div>
 
-<ng-container *ngIf="user$ | async as user; else defaultView">
+<ng-container *ngIf="(user$ | async) && (restaurantName$ | async); else defaultView">
   <div class="padding">
     <h1 class="text text--h1">
       Hola de nuevo,
       <br>
-      <span class="text--high">{{user.displayName}}</span>.
+      <span class="text--high">{{(restaurantName$ | async) || (user$ | async)?.displayName}}</span>.
     </h1>
 
     <div class="divider--space"></div>

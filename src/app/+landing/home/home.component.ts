@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth'
 import { auth } from 'firebase/app'
 import { filter } from 'rxjs/operators'
 
-import { GetUserGQL, GetRestaurantsNumberGQL } from 'src/app/shared/graphql'
+import { GetUserGQL, GetLandingDataGQL } from 'src/app/shared/graphql'
 
 @Component({
   selector: 'app-home',
@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   user$: AngularFireAuth['user']
   restaurants$: Promise<number>
+  restaurantName$: Promise<string>
 
   faqsOpen = {} as any
 
@@ -23,14 +24,18 @@ export class HomeComponent implements OnInit {
     private fireAuth: AngularFireAuth,
     private router: Router,
     private getUserGQL: GetUserGQL,
-    private getRestaurantsNumberGQL: GetRestaurantsNumberGQL,
+    private getLandingDataGQL: GetLandingDataGQL,
   ) { }
 
   ngOnInit() {
     this.user$ = this.fireAuth.user
-    this.restaurants$ = this.getRestaurantsNumberGQL.fetch()
+    const data$ = this.getLandingDataGQL.fetch()
       .toPromise()
+
+    this.restaurants$ = data$
       .then(({data}) => data.restaurantsNumber)
+    this.restaurantName$ = data$
+      .then(({data}) => data.myRestaurant?.name)
   }
 
   async login() {
