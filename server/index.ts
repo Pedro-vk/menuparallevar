@@ -86,10 +86,6 @@ import { scalar, Logger, LogLevel, getQueryResolvers } from './utils'
 
   app.use(express.static(__dirname + distFolder))
 
-  const prerender = require('prerender-node').set('prerenderToken', process.env.PRERENDER_TOKEN)
-  prerender.crawlerUserAgents.push(...'facebookexternalhit|Twitterbot|Pinterest|linkedinbot|WhatsApp'.split('|'))
-  app.use(prerender)
-
   const index = path.join(__dirname, distFolder, '/index.html')
   app.get('/', (req, res) => {
     res.sendFile(index)
@@ -97,6 +93,12 @@ import { scalar, Logger, LogLevel, getQueryResolvers } from './utils'
   app.all('/*', (req, res) => {
     res.sendFile(index)
   })
+
+  const prerender = require('prerender-node')
+    .set('prerenderToken', process.env.PRERENDER_TOKEN)
+    .set('protocol', 'https')
+  prerender.crawlerUserAgents.push(...'facebookexternalhit|Twitterbot|Pinterest|linkedinbot|WhatsApp'.split('|'))
+  app.use(prerender)
 
   app.listen(process.env.PORT || 8080, () => console.log('App listening!'))
 })()
