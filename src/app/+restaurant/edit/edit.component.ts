@@ -99,11 +99,16 @@ export class EditComponent implements OnInit {
   }
 
   async fetchRestaurant() {
-    const restaurant = await this.getMyRestaurantGQL.fetch(undefined, {fetchPolicy: 'no-cache'})
-      .toPromise()
-      .then(({data}) => data.myRestaurant)
-    this.savedRestaurant = JSON.parse(JSON.stringify(restaurant || defaultRestaurant))
-    return restaurant
+    try {
+      const restaurant = await this.getMyRestaurantGQL.fetch(undefined, {fetchPolicy: 'no-cache'})
+        .toPromise()
+        .then(({data}) => data.myRestaurant)
+
+      this.savedRestaurant = JSON.parse(JSON.stringify(restaurant || defaultRestaurant))
+      return restaurant
+    } catch {
+      this.router.navigate(['/'])
+    }
   }
 
   async save(type: string, basic?: boolean) {
