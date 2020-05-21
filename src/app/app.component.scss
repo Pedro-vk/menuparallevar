@@ -1,6 +1,7 @@
 @import './styles/index';
 
 :host {
+  background: gc(bg);
 }
 
 // Workaround to prevent inital scrolling on refresh to wrong place
@@ -11,8 +12,6 @@
 }
 
 .app-root-content {
-  @include shadow(2);
-
   background: gc(bg);
   position: relative;
   max-width: $size---max-width;
@@ -27,7 +26,13 @@
 
 // Desktop view
 @media (min-width: 600px) {
+  :host {
+    background: gc(bgdark);
+  }
+
   .app-root-content {
+    @include shadow(2);
+
     margin: $size---padding * 3.5 auto $size---padding * 2;
     min-height: calc(100% - #{$size---footer-message + ($size---padding * 5.5)});
     border-radius: 8px;
