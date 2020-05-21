@@ -80,6 +80,12 @@ import { scalar, Logger, LogLevel, getQueryResolvers } from './utils'
 
   const app = express()
 
+  const prerender = require('prerender-node')
+    .set('prerenderToken', process.env.PRERENDER_TOKEN)
+    .set('protocol', 'https')
+  prerender.crawlerUserAgents.push(...'facebookexternalhit|Twitterbot|Pinterest|linkedinbot|WhatsApp'.split('|'))
+  app.use(prerender)
+
   server.applyMiddleware({app})
 
   const distFolder = '/../dist'
@@ -93,12 +99,6 @@ import { scalar, Logger, LogLevel, getQueryResolvers } from './utils'
   app.all('/*', (req, res) => {
     res.sendFile(index)
   })
-
-  const prerender = require('prerender-node')
-    .set('prerenderToken', process.env.PRERENDER_TOKEN)
-    .set('protocol', 'https')
-  prerender.crawlerUserAgents.push(...'facebookexternalhit|Twitterbot|Pinterest|linkedinbot|WhatsApp'.split('|'))
-  app.use(prerender)
 
   app.listen(process.env.PORT || 8080, () => console.log('App listening!'))
 })()
