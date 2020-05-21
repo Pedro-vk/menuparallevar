@@ -136,6 +136,10 @@ export class EditComponent implements OnInit {
         break
     }
 
+    if (basic) {
+      this.restoreScroll()
+    }
+
     if ((!this.published && basic) || !restaurant.menu.sections.length) {
       if (restaurant.menu?.sections) {
         delete restaurant.menu.sections
@@ -229,9 +233,11 @@ export class EditComponent implements OnInit {
     this.restaurant.name = this.savedRestaurant.name
     this.restaurant.phone = this.savedRestaurant.phone
     this.restaurant.schedule = JSON.parse(JSON.stringify(this.savedRestaurant.schedule))
+    this.restoreScroll()
   }
   revertEmoji() {
     this.restaurant.icon = this.savedRestaurant.icon
+    this.restoreScroll()
   }
 
   showToast(text: string) {
@@ -253,6 +259,10 @@ export class EditComponent implements OnInit {
     if (complete && type === 'price' && this.restaurant.icon === defaultEmoji) {
       this.tooltip = 'icon'
     }
+  }
+
+  restoreScroll() {
+    document.body.querySelector('app-root').scroll(0, 0)
   }
 
   focusLastInput(element: any) {

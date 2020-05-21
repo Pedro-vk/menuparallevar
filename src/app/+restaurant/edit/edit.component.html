@@ -7,11 +7,11 @@
     <div class="layout layout--sides layout--align-start padding--half-top">
       <div class="layout--no-overflow padding--right">
         <h1 class="text text--h1 text--ellipsis padding--half-bottom">{{restaurant.name}}</h1>
-        <span class="text text--small text--link clickable" (click)="editRestaurant = true">
+        <span class="text text--small text--link clickable" (click)="restoreScroll(); editRestaurant = true">
           Editar información de mi restaurante
         </span>
       </div>
-      <div class="emoji emoji--alone clickable tooltip-wrapper" (click)="helpDone('icon'); editEmoji = true">
+      <div class="emoji emoji--alone clickable tooltip-wrapper" (click)="helpDone('icon'); restoreScroll(); editEmoji = true">
         {{restaurant.icon}}
 
         <div class="tooltip" [class.tooltip--visible]="tooltip === 'icon'">Elige un icono</div>
