@@ -18,6 +18,7 @@ export function metaFactory(): MetaLoader {
     pageTitlePositioning: PageTitlePositioning.PrependPageTitle,
     pageTitleSeparator: ' - ',
     applicationName: 'Menú para llevar',
+    applicationUrl: 'https://menuparallevar.com',
     defaults: {
       title: 'Menú para llevar',
     },
