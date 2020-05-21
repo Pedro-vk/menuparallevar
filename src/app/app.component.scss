@@ -2,6 +2,8 @@
 
 :host {
   background: gc(bg);
+  display: flex;
+  flex-direction: column;
 }
 
 // Workaround to prevent inital scrolling on refresh to wrong place
@@ -11,6 +13,9 @@
   pointer-events: none;
 }
 
+.app-root-content-wrapper {
+  flex: 1;
+}
 .app-root-content {
   background: gc(bg);
   position: relative;
@@ -24,8 +29,23 @@
   background: gc(g1);
 }
 
+.dektop-disclaimer {
+  display: none;
+  width: $size---sidebar;
+  position: fixed;
+  top: $size---padding * 3.5;
+  left: 50%;
+  background: gc(bgalt);
+  margin-left: (($size---max-width - $size---sidebar + $size---padding) / 2);
+  border-radius: 8px;
+
+  .emoji {
+    background: gc(bgalt);
+  }
+}
+
 // Desktop view
-@media (min-width: 600px) {
+@media (min-width: $size---max-width + ($size---padding * 2)) {
   :host {
     background: gc(bgdark);
   }
@@ -34,7 +54,7 @@
     @include shadow(2);
 
     margin: $size---padding * 3.5 auto $size---padding * 2;
-    min-height: calc(100% - #{$size---footer-message + ($size---padding * 5.5)});
+    min-height: calc(100% - #{$size---padding * 5.5});
     border-radius: 8px;
     height: initial;
     display: flex;
@@ -54,6 +74,9 @@
     display: block;
   }
   ::ng-deep {
+    .no-desk {
+      display: none;
+    }
     .toast--banner {
       position: fixed;
     }
@@ -73,6 +96,56 @@
     }
     .footer {
       border-radius: 0 0 8px 8px;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  :host {
+  }
+  .app-root-content-wrapper {
+    width: 100vw;
+    padding-right: 380px;
+  }
+  .dektop-disclaimer {
+    display: block;
+  }
+  :host ::ng-deep div.footer {
+    @include shadow(2);
+
+    position: fixed;
+    width: $size---sidebar;
+    top: 216px + ($size---padding * 3.5) + $size---padding;
+    left: 50%;
+    margin-left: 52px;
+    margin-left: (($size---max-width - $size---sidebar + $size---padding) / 2);
+    border-radius: 8px;
+    flex-direction: column;
+    height: initial;
+    bottom: initial;
+
+    .button {
+      width: 100%;
+      margin-bottom: $size---padding;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .toast {
+      bottom: initial;
+      top: 100%;
+      margin-top: $size---padding;
+      border-radius: 8px;
+      height: 32px;
+      opacity: 0;
+      pointer-events: none;
+
+      &--active {
+        opacity: 1;
+        pointer-events: initial;
+      }
     }
   }
 }

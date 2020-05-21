@@ -2,6 +2,7 @@ $size---padding: 16px !default;
 $size---footer: 72px !default;
 $size---footer-message: 56px !default;
 $size---max-width: 464px !default;
+$size---sidebar: 360px !default;
 
 $size---content: calc(100% - #{$size---footer-message + $size---footer});
 $size---content-no-message: calc(100% - #{$size---footer});

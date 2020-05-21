@@ -1,7 +1,19 @@
 <div class="hidden">Llévatelo a casa</div>
 
-<div class="app-root-content">
-  <router-outlet (activate)="restoreScroll()" ></router-outlet>
+<div class="app-root-content-wrapper">
+  <div class="app-root-content">
+    <router-outlet (activate)="restoreScroll()" ></router-outlet>
+  </div>
+</div>
+
+<div class="dektop-disclaimer padding text--center">
+  <div class="divider--space"></div>
+  <div class="emoji emoji--alone">🤳</div>
+  <p class="text text--alt padding--top">
+    Estamos trabajando para ofrecer la mejor experiencia posible en tu ordenador.
+    Si lo prefieres, puedes usar el móvil.
+  </p>
+  <div class="divider--space"></div>
 </div>
 
 <div class="with-love-global text text--alt text--center padding" routerLink="sobre-nosotros">
