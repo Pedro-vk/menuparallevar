@@ -1,8 +1,50 @@
 @import './styles/index';
 
+:host {
+}
+
 // Workaround to prevent inital scrolling on refresh to wrong place
 .hidden {
   height: 0;
   opacity: 0;
   pointer-events: none;
+}
+
+.app-root-content {
+  @include shadow(2);
+
+  background: gc(bg);
+  position: relative;
+  max-width: $size---max-width;
+  height: 100%;
+  margin: auto;
+}
+
+.with-love-global {
+  display: none;
+  background: gc(g1);
+}
+
+// Desktop view
+@media (min-width: 600px) {
+  .app-root-content {
+    margin: $size---padding * 3.5 auto $size---padding * 2;
+    border-radius: 8px;
+    overflow: hidden;
+    height: initial;
+  }
+  .with-love-global {
+    display: block;
+  }
+  ::ng-deep {
+    .toast--banner {
+      position: fixed;
+    }
+    .toast--alt {
+      background: gc(g1);
+    }
+    .with-love {
+      display: none;
+    }
+  }
 }

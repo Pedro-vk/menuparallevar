@@ -1,7 +1,10 @@
 $palette: (
   bg:       #ffffff,
-  bgdark:   #F0F0F0,
+  bgdark:   mix(black, white, 4%),
+  bgalt:    rgba(#000000, 0.04),
   border:   #E7EAEC,
+
+  g1:       mix(black, white, 8%),
 
   c1:       mix(black, white, 16%),
   c2:       #7D7D7D,

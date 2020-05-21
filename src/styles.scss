@@ -21,7 +21,7 @@ body {
 body {
   @include get-font();
 
-  background: gc(bg);
+  background: gc(bgdark);
 
   -webkit-tap-highlight-color: gc(brand);
   -webkit-text-size-adjust: 100%;
@@ -32,12 +32,6 @@ app-root {
   height: 100%;
   display: block;
   overflow-y: auto;
-}
-.app-root-content {
-  position: relative;
-  max-width: $size---max-width;
-  height: 100%;
-  margin: auto;
 }
 
 * {
