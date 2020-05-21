@@ -12,6 +12,6 @@ export const landingsComponents = [
 
 export const landingRoutes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'sobre-nosotros', component: AboutComponent},
-  {path: '404', component: NotFoundComponent},
+  {path: 'sobre-nosotros', component: AboutComponent, data: {meta: {title: 'Sobre nosotros'}}},
+  {path: '404', component: NotFoundComponent, data: {meta: {title: 'Página no encontrada'}}},
 ]
