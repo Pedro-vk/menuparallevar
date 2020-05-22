@@ -101,19 +101,12 @@
 }
 
 @media (min-width: 900px) {
-  :host {
-  }
   .app-root-content-wrapper {
     width: 100vw;
     padding-right: 380px;
   }
   .dektop-disclaimer {
     display: block;
-  }
-  ::ng-deep {
-    .toast--banner {
-      padding-right: 380px;
-    }
   }
   :host ::ng-deep div.footer {
     @include shadow(2);
@@ -154,5 +147,17 @@
         pointer-events: initial;
       }
     }
+  }
+}
+
+@media (min-width: 1300px) {
+  .app-root-content-wrapper {
+    width: 100vw;
+    padding-right: 0;
+  }
+
+  .dektop-disclaimer,
+  :host ::ng-deep div.footer {
+    margin-left: ($size---max-width / 2) + $size---padding;
   }
 }
