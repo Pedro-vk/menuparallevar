@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { AngularFireAuth } from '@angular/fire/auth'
+import { AngularFireAnalytics } from '@angular/fire/analytics'
 import { auth } from 'firebase/app'
 import { filter } from 'rxjs/operators'
 
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private fireAuth: AngularFireAuth,
+    private fireAnalytics: AngularFireAnalytics,
     private router: Router,
     private getUserGQL: GetUserGQL,
     private getLandingDataGQL: GetLandingDataGQL,
@@ -40,10 +42,12 @@ export class HomeComponent implements OnInit {
 
   async login() {
     await this.fireAuth.signInWithPopup(new auth.GoogleAuthProvider())
+    this.fireAnalytics.logEvent('login')
     this.router.navigate(['/mi-restaurante'])
   }
 
   async logout() {
     await this.fireAuth.signOut()
+    this.fireAnalytics.logEvent('logout')
   }
 }

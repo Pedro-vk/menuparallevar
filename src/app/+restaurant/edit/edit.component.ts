@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core'
 import { Router } from '@angular/router'
 import { AngularFireAuth } from '@angular/fire/auth'
+import { AngularFireAnalytics } from '@angular/fire/analytics'
 
 import { SaveRestaurantGQL, GetMyRestaurantGQL, RemoveUserDataGQL, Restaurant } from 'src/app/shared/graphql'
 import { inputNumberFixer, shareRestaurant } from 'src/app/shared'
@@ -68,6 +69,7 @@ export class EditComponent implements OnInit {
 
   constructor(
     private fireAuth: AngularFireAuth,
+    private fireAnalytics: AngularFireAnalytics,
     private router: Router,
     private saveRestaurantGQL: SaveRestaurantGQL,
     private getMyRestaurantGQL: GetMyRestaurantGQL,
@@ -117,6 +119,8 @@ export class EditComponent implements OnInit {
       id: undefined,
       owner: undefined,
     }
+
+    this.fireAnalytics.logEvent('save_restaurant', {type})
 
     switch (type) {
       case 'menu':
@@ -178,9 +182,11 @@ export class EditComponent implements OnInit {
 
   removeData() {
     setTimeout(async () => {
+      this.fireAnalytics.logEvent('ask_remove_restaurant')
       const remove = confirm('¿Quieres eliminar todos tus datos?')
 
       if (remove) {
+        this.fireAnalytics.logEvent('remove_restaurant')
         await this.removeUserDataGQL.mutate().toPromise()
       }
       await this.fireAuth.signOut()
@@ -189,7 +195,8 @@ export class EditComponent implements OnInit {
   }
 
   async share() {
-    await shareRestaurant(this.savedRestaurant)
+    const api = await shareRestaurant(this.savedRestaurant)
+    this.fireAnalytics.logEvent('share', {api})
     this.showToast(`Link copiado en el portapapeles. ¡Listo para mandar!`)
   }
 

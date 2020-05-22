@@ -56,11 +56,6 @@
   </div>
 
   <div class="footer layout layout--sides toast-wrapper">
-    <div class="toast" [class.toast--active]="restaurant.owner">
-      👀 Así ven tus clientes el menú.
-      <span class="text--underline clickable" (click)="share()">Compartir</span>
-    </div>
-
     <div class="status layout layout--sides">
       <ng-container *ngIf="status$ | async as status">
         <div class="status__indicator" [class.status__indicator--open]="status.open"></div>
@@ -82,11 +77,16 @@
       </ng-container>
     </div>
 
-    <a href="tel:{{(restaurant$ | async)?.phone}}">
+    <a href="tel:{{(restaurant$ | async)?.phone}}" (click)="!!trackCall()">
       <button class="button" [disabled]="!(restaurant$ | async)?.phone">
         Llamar
       </button>
     </a>
+
+    <div class="toast" [class.toast--active]="restaurant.owner">
+      👀 Así ven tus clientes el menú.
+      <span class="text--underline clickable" (click)="share()">Compartir</span>
+    </div>
   </div>
 
 </ng-container>

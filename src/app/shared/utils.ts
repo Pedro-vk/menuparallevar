@@ -40,12 +40,15 @@ export async function shareRestaurant(restaurant: Restaurant) {
   if (!!navigator.share) {
     // @ts-ignore
     await navigator.share(data)
+    return 'share'
   } else {
     try {
       // @ts-ignore
       await navigator.clipboard.writeText(data.text + data.url)
+      return 'clipboard'
     } catch {
       console.warn('No Share and Clipboard API!')
     }
   }
+  return 'error'
 }

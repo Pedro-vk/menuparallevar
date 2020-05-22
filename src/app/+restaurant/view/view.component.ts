@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 import { MetaService } from '@ngx-meta/core'
+import { AngularFireAnalytics } from '@angular/fire/analytics'
 import { Observable, combineLatest, interval } from 'rxjs'
 import { switchMap, map, startWith, tap, first } from 'rxjs/operators'
 
@@ -23,6 +24,7 @@ export class ViewComponent implements OnInit {
   now = Date.now()
 
   constructor(
+    private fireAnalytics: AngularFireAnalytics,
     private metaService: MetaService,
     private route: ActivatedRoute,
     private getRestaurantGQL: GetRestaurantGQL,
@@ -106,6 +108,14 @@ export class ViewComponent implements OnInit {
   }
 
   async share() {
-    await shareRestaurant(await this.restaurant$.pipe(first()).toPromise())
+    const api = await shareRestaurant(await this.restaurant$.pipe(first()).toPromise())
+    this.fireAnalytics.logEvent('share', {api})
+  }
+
+  async trackCall() {
+    const {id} = await this.restaurant$.pipe(first()).toPromise()
+    const {open} = await this.status$.pipe(first()).toPromise()
+    this.fireAnalytics.logEvent('call', {id, open})
+    return true
   }
 }
