@@ -50,4 +50,9 @@ export class HomeComponent implements OnInit {
     await this.fireAuth.signOut()
     this.fireAnalytics.logEvent('logout')
   }
+
+  trackMail() {
+    this.fireAnalytics.logEvent('click_email')
+    return true
+  }
 }
