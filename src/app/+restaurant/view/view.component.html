@@ -51,7 +51,7 @@
       Hecho con ❤️ en tiempos de Covid-19
     </div>
 
-    <div class="divider--space-and-half no-desk" *ngIf="restaurant.owner"></div>
+    <div class="divider--double no-desk" *ngIf="restaurant.owner || restaurant.type === 'demo'"></div>
 
   </div>
 
@@ -82,6 +82,10 @@
         Llamar
       </button>
     </a>
+
+    <div class="toast" [class.toast--active]="restaurant.type === 'demo'">
+      👀 Así es como lo verán tus clientes.
+    </div>
 
     <div class="toast" [class.toast--active]="restaurant.owner">
       👀 Así ven tus clientes el menú.

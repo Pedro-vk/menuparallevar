@@ -20,8 +20,8 @@ const demoRestaurant: Restaurant = {
       true,
       true
     ],
-    openAt: 36000000,
-    closeAt: 72000000
+    openAt: 45000000,
+    closeAt: 82800000,
   },
   menu: {
     name: 'Menú del día',
@@ -53,8 +53,8 @@ const demoRestaurant: Restaurant = {
           'Arroz con leche',
         ],
       },
-    ]
-  }
+    ],
+  },
 }
 
 @Injectable({

@@ -231,7 +231,7 @@
       [disabled]="(info.invalid || !restaurant.name) || !isInfoTouched"
       (click)="save('restaurant', true); editRestaurant = false">
 
-      Crear
+      {{!published ? 'Crear' : 'Guardar'}}
     </button>
   </div>
 </div>

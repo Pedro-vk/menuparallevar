@@ -51,7 +51,7 @@
   }
 
   .app-root-content {
-    @include shadow(2);
+    @include shadow(3);
 
     margin: $size---padding * 3.5 auto $size---padding * 2;
     min-height: calc(100% - #{$size---padding * 5.5});
@@ -109,7 +109,7 @@
     display: block;
   }
   :host ::ng-deep div.footer {
-    @include shadow(2);
+    @include shadow(3);
 
     position: fixed;
     width: $size---sidebar;
