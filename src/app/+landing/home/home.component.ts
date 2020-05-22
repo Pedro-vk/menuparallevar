@@ -31,8 +31,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.user$ = this.fireAuth.user
-    const data$ = this.getLandingDataGQL.fetch(undefined, {fetchPolicy: 'network-only', errorPolicy: 'ignore'})
-      .toPromise()
+    const data$ = this.getLandingData()
 
     this.restaurants$ = data$
       .then(({data}) => data.restaurantsNumber)
@@ -40,9 +39,15 @@ export class HomeComponent implements OnInit {
       .then(({data}) => data.myRestaurant?.name)
   }
 
+  async getLandingData() {
+    return await this.getLandingDataGQL.fetch(undefined, {fetchPolicy: 'network-only', errorPolicy: 'ignore'})
+      .toPromise()
+  }
+
   async login() {
     await this.fireAuth.signInWithPopup(new auth.GoogleAuthProvider())
-    this.fireAnalytics.logEvent('login')
+    const empty = await this.getLandingData().then(({data}) => !data.myRestaurant)
+    this.fireAnalytics.logEvent('login', {empty})
     this.router.navigate(['/mi-restaurante'])
   }
 
