@@ -110,6 +110,11 @@
   .dektop-disclaimer {
     display: block;
   }
+  ::ng-deep {
+    .toast--banner {
+      padding-right: 380px;
+    }
+  }
   :host ::ng-deep div.footer {
     @include shadow(2);
 
