@@ -6,7 +6,7 @@ import { switchMap } from 'rxjs/operators'
 import { Restaurant, GetRestaurantGQL, GetMyRestaurantGQL } from '../graphql'
 
 const demoRestaurant: Restaurant = {
-  id: '',
+  id: 'demo',
   owner: false,
   name: 'Paquito\'s Taquitos',
   phone: '600000000',
