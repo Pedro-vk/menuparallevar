@@ -52,6 +52,7 @@ input RestaurantInput {
 
 type Query {
   restaurant(id: ID!): Restaurant @cacheControl(maxAge: 5)
+  restaurants: [Restaurant]
   restaurantsNumber: Int! @cacheControl(maxAge: 240)
   myRestaurant: Restaurant
 }

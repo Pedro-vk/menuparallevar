@@ -14,4 +14,5 @@ export interface Context {
 
 export enum Roles {
   ALL,
+  ADMIN,
 }

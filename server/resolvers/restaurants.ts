@@ -29,6 +29,16 @@ export class RestaurantResolver {
   }
 
   @resolver()
+  @role(Roles.ADMIN)
+  static async restaurants(parent: unknown, {id}: QueryRestaurantArgs, {db, uid}: Context) {
+    const restaurants = await db.collection('restaurants').find().map(checkRestaurant(uid)).toArray()
+    if (!restaurants.length) {
+      return
+    }
+    return restaurants
+  }
+
+  @resolver()
   static async restaurantsNumber(parent: unknown, args: unknown, {db}: Context) {
     return await db.collection('restaurants').countDocuments()
   }
