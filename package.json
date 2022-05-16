@@ -58,7 +58,7 @@
     "mongodb": "^3.5.6",
     "ng-dialog-animation": "^9.0.0",
     "ngx-translate-messageformat-compiler": "^4.6.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "prerender-node": "^3.2.5",
     "rxjs": "^6.5.5",
     "ts-node": "^8.9.1",
