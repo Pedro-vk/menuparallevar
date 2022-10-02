@@ -31,6 +31,9 @@ export class AppComponent implements OnInit {
           .toPromise()
       )
 
+    // this.user$.subscribe(async _ => console.log(`export AUTH_TOKEN="${await _.getIdToken()}"`))
+    this.user$.subscribe(async _ => console.log(JSON.stringify({authorization: await _.getIdToken?.()})))
+
     this.document.body.ontouchstart = () => {}
   }
 
